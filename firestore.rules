@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Function to check if user is admin
+    function isAdmin() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Function to check user role
+    function getRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    // Users Collection
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.auth.uid == userId;
+      allow update, delete: if request.auth.uid == userId || isAdmin();
+    }
+
+    // Products Collection
+    match /products/{productId} {
+      allow read: if request.auth != null;
+      allow create: if getRole() == 'farmer';
+      allow update, delete: if (getRole() == 'farmer' && resource.data.farmerId == request.auth.uid) || isAdmin() || getRole() == 'customer';
+      // Note: customer needs update access to deduct stock when ordering
+    }
+
+    // Orders Collection
+    match /orders/{orderId} {
+      allow read: if request.auth != null;
+      allow create: if getRole() == 'customer';
+      allow update: if request.auth != null; // driver/farmer/wholesaler all update status
+      allow delete: if isAdmin();
+    }
+
+    // Feedback Collection
+    match /feedback/{feedbackId} {
+      allow read: if request.auth != null;
+      allow create: if getRole() == 'customer';
+      allow update, delete: if isAdmin();
+    }
+  }
+}

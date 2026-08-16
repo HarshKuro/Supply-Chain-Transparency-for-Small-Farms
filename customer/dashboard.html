@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1><a href="#" style="color: white;">Customer Portal</a></h1>
+            <div class="user-info">
+                <span id="userName">Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <ul class="nav-links">
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="products.html">Browse Products</a></li>
+                <li><a href="cart.html">My Cart</a></li>
+                <li><a href="orders.html">My Orders</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h2>Welcome, <span id="welcomeName">Customer</span></h2>
+            
+            <div class="cards-grid">
+                <div class="stat-card">
+                    <h4>Available Products</h4>
+                    <div class="value" id="statProducts">0</div>
+                </div>
+                <div class="stat-card">
+                    <h4>My Orders</h4>
+                    <div class="value" id="statOrders">0</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Pending Orders</h4>
+                    <div class="value" id="statPending">0</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Delivered Orders</h4>
+                    <div class="value" id="statDelivered">0</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
+        import { initCustomerDashboard } from '../js/customer.js';
+        
+        checkRoleAccess('customer');
+        
+        document.getElementById('logoutBtn').addEventListener('click', logoutUser);
+        
+        getCurrentUserData((user) => {
+            if(user) {
+                document.getElementById('userName').textContent = user.name;
+                document.getElementById('welcomeName').textContent = user.name;
+                initCustomerDashboard(user);
+            }
+        });
+    </script>
+</body>
+</html>

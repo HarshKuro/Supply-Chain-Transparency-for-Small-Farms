@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deliveries - Driver</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1><a href="#" style="color: white;">Driver Portal</a></h1>
+            <div class="user-info">
+                <span id="userName">Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="deliveries.html" class="active">Deliveries</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h2>Available & Assigned Deliveries</h2>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Address</th>
+                            <th>Products</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="deliveriesTableBody">
+                        <tr><td colspan="6" style="text-align:center;">Loading deliveries...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
+        import { initDriverDeliveriesPage } from '../js/driver.js';
+        
+        checkRoleAccess('driver');
+        
+        document.getElementById('logoutBtn').addEventListener('click', logoutUser);
+        
+        getCurrentUserData((user) => {
+            if(user) {
+                document.getElementById('userName').textContent = user.name;
+                initDriverDeliveriesPage(user);
+            }
+        });
+    </script>
+</body>
+</html>

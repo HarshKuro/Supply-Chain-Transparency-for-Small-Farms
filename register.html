@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Supply Chain Transparency</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="index.html" style="color: white;">Supply Chain Transparency</a></h1>
+            <nav>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="auth-container">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select id="role" required>
+                        <option value="">Select Role...</option>
+                        <option value="farmer">Farmer</option>
+                        <option value="wholesaler">Wholesaler</option>
+                        <option value="driver">Driver</option>
+                        <option value="customer">Customer</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Register</button>
+            </form>
+            <div class="auth-links">
+                <p>Already have an account? <a href="login.html">Login here</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import { registerUser } from './js/auth.js';
+        
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const phone = document.getElementById('phone').value;
+            const role = document.getElementById('role').value;
+            
+            await registerUser(fullName, email, password, phone, role);
+        });
+    </script>
+</body>
+</html>

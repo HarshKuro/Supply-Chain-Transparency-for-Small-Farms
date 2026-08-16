@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Customer</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        .feedback-form {
+            max-width: 600px;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .rating {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .rating input[type="radio"] {
+            display: none;
+        }
+        .rating label {
+            cursor: pointer;
+            font-size: 2rem;
+            color: #ccc;
+        }
+        .rating label:hover,
+        .rating label:hover ~ label,
+        .rating input[type="radio"]:checked ~ label {
+            color: #FFC107;
+        }
+        .rating {
+            direction: rtl; /* reverse order so CSS ~ selector works nicely */
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1><a href="#" style="color: white;">Customer Portal</a></h1>
+            <div class="user-info">
+                <span id="userName">Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="products.html">Browse Products</a></li>
+                <li><a href="cart.html">My Cart</a></li>
+                <li><a href="orders.html">My Orders</a></li>
+                <li><a href="feedback.html" class="active">Feedback</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h2>Submit Feedback</h2>
+            
+            <div id="feedbackContainer" class="feedback-form">
+                <div id="feedbackMessage">Select an order to leave feedback.</div>
+                
+                <form id="feedbackForm" style="display: none;">
+                    <input type="hidden" id="orderId">
+                    <div style="margin-bottom: 1.5rem;">
+                        <strong>Order ID:</strong> <span id="displayOrderId"></span><br>
+                        <strong>Farmer:</strong> <span id="displayFarmer"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Rating (1 to 5)</label>
+                        <div class="rating">
+                            <input type="radio" id="star5" name="rating" value="5" required>
+                            <label for="star5">★</label>
+                            
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4">★</label>
+                            
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3">★</label>
+                            
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2">★</label>
+                            
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1">★</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Comment</label>
+                        <textarea id="comment" rows="4" required placeholder="Write your experience..."></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Feedback</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
+        import { initFeedbackPage } from '../js/customer.js';
+        
+        checkRoleAccess('customer');
+        
+        document.getElementById('logoutBtn').addEventListener('click', logoutUser);
+        
+        getCurrentUserData((user) => {
+            if(user) {
+                document.getElementById('userName').textContent = user.name;
+                initFeedbackPage(user);
+            }
+        });
+    </script>
+</body>
+</html>

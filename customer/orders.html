@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Customer</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        .tracker {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.5rem 0;
+            position: relative;
+            font-size: 0.85rem;
+        }
+        .tracker::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #E0E0E0;
+            z-index: 1;
+        }
+        .step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+        }
+        .step .circle {
+            width: 34px;
+            height: 34px;
+            background-color: #E0E0E0;
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        .step.active .circle {
+            background-color: var(--primary-color);
+        }
+        .step.completed .circle {
+            background-color: var(--secondary-color);
+        }
+        .order-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1><a href="#" style="color: white;">Customer Portal</a></h1>
+            <div class="user-info">
+                <span id="userName">Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="products.html">Browse Products</a></li>
+                <li><a href="cart.html">My Cart</a></li>
+                <li><a href="orders.html" class="active">My Orders</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h2>My Orders</h2>
+            
+            <div id="ordersContainer">
+                <div>Loading your orders...</div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
+        import { initCustomerOrdersPage } from '../js/customer.js';
+        
+        checkRoleAccess('customer');
+        
+        document.getElementById('logoutBtn').addEventListener('click', logoutUser);
+        
+        getCurrentUserData((user) => {
+            if(user) {
+                document.getElementById('userName').textContent = user.name;
+                initCustomerOrdersPage(user);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+/* css/style.css */
+:root {
+    --primary-color: #2E7D32; /* Dark green */
+    --secondary-color: #81C784; /* Light green */
+    --bg-color: #F5F5F5; /* Light neutral */
+    --card-bg: #FFFFFF;
+    --text-color: #333333;
+    --success-color: #4CAF50;
+    --warning-color: #FF9800;
+    --error-color: #F44336;
+    --border-color: #E0E0E0;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header / Navbar */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+header nav a {
+    color: white;
+    margin-left: 1rem;
+    font-weight: 500;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #1B5E20;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background-color: #66BB6A;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: var(--font-family);
+}
+
+/* Alerts */
+.alert {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.alert.success {
+    background-color: #E8F5E9;
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+    display: block;
+}
+
+.alert.error {
+    background-color: #FFEBEE;
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    display: block;
+}
+
+/* Loader */
+#loader {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    display: none;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+}

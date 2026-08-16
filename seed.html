@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed Database</title>
+    <style>
+        body { font-family: sans-serif; padding: 2rem; line-height: 1.6; }
+        .log-entry { margin-bottom: 0.5rem; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Seeding Database... Please wait.</h2>
+    <p>This script will create demo accounts and some sample products.</p>
+    <div id="log" style="background: #f5f5f5; padding: 1rem; border-radius: 5px; height: 300px; overflow-y: scroll; font-family: monospace;"></div>
+    
+    <div style="margin-top: 1rem;">
+        <a href="index.html" style="padding: 10px 15px; background: #2E7D32; color: white; text-decoration: none; border-radius: 4px; display: inline-block;">Go to Home</a>
+    </div>
+
+    <script type="module">
+        import { app, auth, db } from './js/firebase-config.js';
+        import { createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { collection, doc, setDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        const logDiv = document.getElementById('log');
+        const log = (msg, type = '') => {
+            logDiv.innerHTML += `<div class="log-entry ${type}">${msg}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        };
+
+        const users = [
+            { email: 'farmer@example.com', name: 'Ramesh (Farmer)', role: 'farmer', phone: '9876543210' },
+            { email: 'wholesaler@example.com', name: 'Suresh (Wholesaler)', role: 'wholesaler', phone: '9876543211' },
+            { email: 'driver@example.com', name: 'Raju (Driver)', role: 'driver', phone: '9876543212' },
+            { email: 'customer@example.com', name: 'Amit (Customer)', role: 'customer', phone: '9876543213' },
+            { email: 'admin@example.com', name: 'System Admin', role: 'admin', phone: '9876543214' }
+        ];
+
+        const products = [
+            { name: 'Tomato', category: 'Vegetables', description: 'Fresh farm tomatoes', price: 40, quantity: 100, unit: 'kg' },
+            { name: 'Potato', category: 'Vegetables', description: 'Fresh organic potatoes', price: 30, quantity: 200, unit: 'kg' },
+            { name: 'Onion', category: 'Vegetables', description: 'Red onions', price: 50, quantity: 150, unit: 'kg' },
+            { name: 'Carrot', category: 'Vegetables', description: 'Fresh carrots', price: 60, quantity: 80, unit: 'kg' },
+            { name: 'Spinach', category: 'Vegetables', description: 'Green spinach', price: 20, quantity: 50, unit: 'kg' },
+            { name: 'Apple', category: 'Fruits', description: 'Fresh sweet apples', price: 120, quantity: 100, unit: 'kg' },
+            { name: 'Wheat', category: 'Grains', description: 'High quality wheat', price: 25, quantity: 500, unit: 'kg' },
+            { name: 'Rice', category: 'Grains', description: 'Basmati rice', price: 60, quantity: 400, unit: 'kg' }
+        ];
+
+        async function seed() {
+            let farmerId = null;
+
+            log('--- Starting User Creation ---');
+            for (const u of users) {
+                try {
+                    log(`Attempting to create: ${u.email}`);
+                    const cred = await createUserWithEmailAndPassword(auth, u.email, 'password123');
+                    await setDoc(doc(db, "users", cred.user.uid), {
+                        name: u.name,
+                        email: u.email,
+                        phone: u.phone,
+                        role: u.role,
+                        createdAt: serverTimestamp()
+                    });
+                    log(`Success: Created ${u.role} account.`, 'success');
+                    
+                    if (u.role === 'farmer') {
+                        farmerId = cred.user.uid;
+                    }
+                } catch (e) {
+                    if (e.code === 'auth/email-already-in-use') {
+                        log(`Notice: ${u.email} already exists. Attempting to log in to fetch ID...`, 'error');
+                        try {
+                            // Fallback to sign in to get the UID (so we can attach products to the farmer)
+                            const { signInWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js");
+                            const cred = await signInWithEmailAndPassword(auth, u.email, 'password123');
+                            if (u.role === 'farmer') farmerId = cred.user.uid;
+                            log(`Successfully retrieved ID for ${u.email}.`, 'success');
+                        } catch (err) {
+                            log(`Could not log in to existing account: ${err.message}`, 'error');
+                        }
+                    } else {
+                        log(`Error creating ${u.email}: ${e.message}`, 'error');
+                    }
+                }
+            }
+
+            log('<br>--- Starting Product Creation ---');
+            if (farmerId) {
+                for (const p of products) {
+                    try {
+                        await addDoc(collection(db, "products"), {
+                            ...p,
+                            available: true,
+                            farmerId: farmerId,
+                            farmerName: 'Ramesh (Farmer)',
+                            createdAt: serverTimestamp()
+                        });
+                        log(`Success: Added product ${p.name}`, 'success');
+                    } catch (e) {
+                        log(`Error adding ${p.name}: ${e.message}`, 'error');
+                    }
+                }
+            } else {
+                log('Notice: Could not find farmer ID to attach products to. This usually happens if the farmer account already existed before running this script. You might need to add products manually via the Farmer Dashboard.', 'error');
+            }
+
+            try {
+                await signOut(auth);
+            } catch (e) {}
+            
+            log('<br><b>--- SEEDING COMPLETE ---</b>', 'success');
+            log('<b>All accounts have the password: <code>password123</code></b>');
+        }
+
+        // Start seeding automatically
+        seed();
+    </script>
+</body>
+</html>
