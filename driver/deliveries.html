@@ -3,31 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deliveries - Driver</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <title>Active Deliveries | AgriTrace Driver</title>
+    <link rel="stylesheet" href="../css/style.css?v=3">
+    <link rel="stylesheet" href="../css/dashboard.css?v=3">
 </head>
 <body>
-    <header>
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1><a href="#" style="color: white;">Driver Portal</a></h1>
-            <div class="user-info">
-                <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
-            </div>
-        </div>
-    </header>
+    <header id="app-navbar" class="app-navbar"></header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <ul class="nav-links">
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="deliveries.html" class="active">Deliveries</a></li>
-            </ul>
+            <div>
+                <div class="sidebar-header">
+                    <span class="tag" style="color: #f59e0b; background: rgba(245, 158, 11, 0.12);">🚚 Logistics Node</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html"><span>📊</span> Dashboard</a></li>
+                    <li><a href="deliveries.html" class="active"><span>🗺️</span> Active Deliveries</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <p><span class="status-dot"></span> Route Optimization Online</p>
+            </div>
         </aside>
 
         <main class="main-content">
-            <h2>Available & Assigned Deliveries</h2>
+            <div style="margin-bottom: 2rem;">
+                <h2>🗺️ Available & Assigned Deliveries</h2>
+                <p style="color: #64748b; font-size: 0.95rem;">Pick up verified produce crates, update transit status in real time, and mark completed handoffs.</p>
+            </div>
             
             <div class="table-container">
                 <table>
@@ -35,14 +38,14 @@
                         <tr>
                             <th>Order ID</th>
                             <th>Customer</th>
-                            <th>Address</th>
-                            <th>Products</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Delivery Address / Contact</th>
+                            <th>Crate Items</th>
+                            <th>Delivery Status</th>
+                            <th style="text-align: right;">Action</th>
                         </tr>
                     </thead>
                     <tbody id="deliveriesTableBody">
-                        <tr><td colspan="6" style="text-align:center;">Loading deliveries...</td></tr>
+                        <tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading available deliveries...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -50,11 +53,13 @@
     </div>
 
     <script type="module">
+        import { initNavbar } from '../js/navbar.js';
+        initNavbar({ role: 'driver' });
+
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initDriverDeliveriesPage } from '../js/driver.js';
         
         checkRoleAccess('driver');
-        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {

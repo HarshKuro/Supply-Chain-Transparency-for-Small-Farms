@@ -3,47 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orders to Verify - Wholesaler</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <title>Orders to Verify | AgriTrace Wholesaler</title>
+    <link rel="stylesheet" href="../css/style.css?v=3">
+    <link rel="stylesheet" href="../css/dashboard.css?v=3">
 </head>
 <body>
-    <header>
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1><a href="#" style="color: white;">Wholesaler Portal</a></h1>
-            <div class="user-info">
-                <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
-            </div>
-        </div>
-    </header>
+    <header id="app-navbar" class="app-navbar"></header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <ul class="nav-links">
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="orders.html" class="active">Orders to Verify</a></li>
-            </ul>
+            <div>
+                <div class="sidebar-header">
+                    <span class="tag" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.12);">🏬 Aggregation Node</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html"><span>📊</span> Dashboard</a></li>
+                    <li><a href="orders.html" class="active"><span>🔍</span> Orders to Verify</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <p><span class="status-dot"></span> Audit Ready</p>
+            </div>
         </aside>
 
         <main class="main-content">
-            <h2>Orders to Verify</h2>
+            <div style="margin-bottom: 2rem;">
+                <h2>🔍 Inventory Audit & Order Verification</h2>
+                <p style="color: #64748b; font-size: 0.95rem;">Review farm produce batches, verify quality inspection, and sign off for logistics handover.</p>
+            </div>
             
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
                             <th>Order ID</th>
-                            <th>Farmer</th>
+                            <th>Direct Farmer</th>
                             <th>Customer</th>
-                            <th>Products</th>
+                            <th>Items & Quantities</th>
                             <th>Total</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th style="text-align: right;">Action</th>
                         </tr>
                     </thead>
                     <tbody id="ordersTableBody">
-                        <tr><td colspan="7" style="text-align:center;">Loading orders...</td></tr>
+                        <tr><td colspan="7" style="text-align:center; padding: 2rem;">Loading batches for verification...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -51,11 +54,13 @@
     </div>
 
     <script type="module">
+        import { initNavbar } from '../js/navbar.js';
+        initNavbar({ role: 'wholesaler' });
+
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initWholesalerOrdersPage } from '../js/wholesaler.js';
         
         checkRoleAccess('wholesaler');
-        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {

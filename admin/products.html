@@ -3,48 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - Admin</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <title>Global Produce Catalog | AgriTrace Admin</title>
+    <link rel="stylesheet" href="../css/style.css?v=3">
+    <link rel="stylesheet" href="../css/dashboard.css?v=3">
 </head>
 <body>
-    <header>
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1><a href="#" style="color: white;">Admin Portal</a></h1>
-            <div class="user-info">
-                <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
-            </div>
-        </div>
-    </header>
+    <header id="app-navbar" class="app-navbar"></header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <ul class="nav-links">
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="users.html">Manage Users</a></li>
-                <li><a href="products.html" class="active">All Products</a></li>
-                <li><a href="orders.html">All Orders</a></li>
-            </ul>
+            <div>
+                <div class="sidebar-header">
+                    <span class="tag" style="color: #ef4444; background: rgba(239, 68, 68, 0.12);">⚡ Master Console</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html"><span>📊</span> Overview</a></li>
+                    <li><a href="users.html"><span>👥</span> User Directory</a></li>
+                    <li><a href="products.html" class="active"><span>🌱</span> Global Produce</a></li>
+                    <li><a href="orders.html"><span>📦</span> All Network Orders</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <p><span class="status-dot"></span> Catalog Supervision</p>
+            </div>
         </aside>
 
         <main class="main-content">
-            <h2>All Products</h2>
+            <div style="margin-bottom: 2rem;">
+                <h2>🌱 Global Farm Produce Oversight</h2>
+                <p style="color: #64748b; font-size: 0.95rem;">Audit all crop listings, verify fair farmgate pricing caps, and manage produce availability across the entire network.</p>
+            </div>
             
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>Product Name</th>
-                            <th>Farmer</th>
-                            <th>Price</th>
-                            <th>Stock</th>
+                            <th>Produce Name</th>
+                            <th>Direct Farmer</th>
+                            <th>Farm Price</th>
+                            <th>Stock Remaining</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th style="text-align: right;">Action</th>
                         </tr>
                     </thead>
                     <tbody id="productsTableBody">
-                        <tr><td colspan="6" style="text-align:center;">Loading products...</td></tr>
+                        <tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading produce catalog...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -52,11 +55,13 @@
     </div>
 
     <script type="module">
+        import { initNavbar } from '../js/navbar.js';
+        initNavbar({ role: 'admin' });
+
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initAdminProductsPage } from '../js/admin.js';
         
         checkRoleAccess('admin');
-        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {

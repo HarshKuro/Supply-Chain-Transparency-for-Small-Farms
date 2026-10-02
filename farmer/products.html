@@ -3,108 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Products - Farmer</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <title>My Farm Produce | AgriTrace</title>
+    <link rel="stylesheet" href="../css/style.css?v=3">
+    <link rel="stylesheet" href="../css/dashboard.css?v=3">
 </head>
 <body>
-    <header>
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1><a href="#" style="color: white;">Farmer Portal</a></h1>
-            <div class="user-info">
-                <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
-            </div>
-        </div>
-    </header>
+    <header id="app-navbar" class="app-navbar"></header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <ul class="nav-links">
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="products.html" class="active">My Products</a></li>
-                <li><a href="orders.html">Orders</a></li>
-            </ul>
+            <div>
+                <div class="sidebar-header">
+                    <span class="tag">🌾 Producer Node</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html"><span>📊</span> Dashboard</a></li>
+                    <li><a href="products.html" class="active"><span>🌱</span> My Produce Catalog</a></li>
+                    <li><a href="orders.html"><span>📦</span> Inbound Orders</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <p><span class="status-dot"></span> Live Sync Active</p>
+            </div>
         </aside>
 
         <main class="main-content">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                <h2>My Products</h2>
-                <button id="openAddProductModal" class="btn">Add Product</button>
+            <!-- Top Re-positioned Action Header -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h2>🌱 My Farm Produce Catalog</h2>
+                    <p style="color: #64748b; font-size: 0.95rem;">Manage listed crops, adjust farmgate pricing, and monitor real-time stock levels.</p>
+                </div>
+                <div>
+                    <button id="openAddProductModal" class="btn">
+                        <span>+ Add New Produce</span>
+                    </button>
+                </div>
             </div>
             
+            <!-- Modern Table Container -->
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>Product Name</th>
+                            <th>Produce Name</th>
                             <th>Category</th>
-                            <th>Price</th>
-                            <th>Stock</th>
-                            <th>Status</th>
-                            <th>Actions</th>
+                            <th>Direct Farm Price</th>
+                            <th>Available Stock</th>
+                            <th>Listing Status</th>
+                            <th style="text-align: right;">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="productsTableBody">
-                        <tr><td colspan="6" style="text-align:center;">Loading products...</td></tr>
+                        <tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading produce catalog...</td></tr>
                     </tbody>
                 </table>
             </div>
         </main>
     </div>
 
-    <!-- Add/Edit Product Modal -->
+    <!-- Modern Glass Modal for Add/Edit Product -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="modalTitle">Add Product</h3>
+                <h3 id="modalTitle">Add New Produce</h3>
                 <span class="close-modal" id="closeProductModal">&times;</span>
             </div>
             <form id="productForm">
                 <input type="hidden" id="productId">
                 <div class="form-group">
-                    <label for="productName">Product Name</label>
-                    <input type="text" id="productName" required>
+                    <label for="productName">Produce Name</label>
+                    <input type="text" id="productName" placeholder="e.g. Organic Red Tomatoes" required>
                 </div>
                 <div class="form-group">
                     <label for="category">Category</label>
-                    <input type="text" id="category" required>
+                    <input type="text" id="category" placeholder="e.g. Vegetables, Fruits, Grains" required>
                 </div>
                 <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea id="description" rows="3" required></textarea>
+                    <label for="description">Harvest Description & Quality Notes</label>
+                    <textarea id="description" rows="3" placeholder="Farm-fresh, pesticide-free harvest from Nashik sector..." required></textarea>
                 </div>
-                <div style="display: flex; gap: 1rem;">
-                    <div class="form-group" style="flex: 1;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.85rem;">
+                    <div class="form-group">
                         <label for="price">Price (₹)</label>
-                        <input type="number" id="price" min="0" step="0.01" required>
+                        <input type="number" id="price" min="0" step="0.01" placeholder="40.00" required>
                     </div>
-                    <div class="form-group" style="flex: 1;">
-                        <label for="quantity">Quantity</label>
-                        <input type="number" id="quantity" min="0" required>
+                    <div class="form-group">
+                        <label for="quantity">Stock Quantity</label>
+                        <input type="number" id="quantity" min="0" placeholder="100" required>
                     </div>
-                    <div class="form-group" style="flex: 1;">
+                    <div class="form-group">
                         <label for="unit">Unit</label>
-                        <input type="text" id="unit" placeholder="kg, box, etc." required>
+                        <input type="text" id="unit" placeholder="kg, box" required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                        <input type="checkbox" id="available" style="width: auto;">
-                        Available for Sale
+                <div class="form-group" style="background: #f8fafc; padding: 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-top: 0.5rem;">
+                    <label style="display: flex; align-items: center; gap: 0.65rem; cursor: pointer; margin-bottom: 0;">
+                        <input type="checkbox" id="available" style="width: auto; height: 18px; width: 18px; accent-color: var(--primary-color);">
+                        <span style="font-weight: 600; color: #1e293b;">List as Active & Available for Buyer Orders</span>
                     </label>
                 </div>
-                <button type="submit" class="btn" style="width: 100%;">Save Product</button>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 1.25rem;">Save Produce Listing →</button>
             </form>
         </div>
     </div>
 
     <script type="module">
+        import { initNavbar } from '../js/navbar.js';
+        initNavbar({ role: 'farmer' });
+
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initProductsPage } from '../js/farmer.js';
         
         checkRoleAccess('farmer');
-        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {

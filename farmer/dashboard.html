@@ -3,64 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farmer Dashboard</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <title>Farmer Operations Center | AgriTrace</title>
+    <link rel="stylesheet" href="../css/style.css?v=3">
+    <link rel="stylesheet" href="../css/dashboard.css?v=3">
 </head>
 <body>
-    <header>
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1><a href="#" style="color: white;">Farmer Portal</a></h1>
-            <div class="user-info">
-                <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
-            </div>
-        </div>
-    </header>
+    <header id="app-navbar" class="app-navbar"></header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <ul class="nav-links">
-                <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                <li><a href="products.html">My Products</a></li>
-                <li><a href="orders.html">Orders</a></li>
-            </ul>
+            <div>
+                <div class="sidebar-header">
+                    <span class="tag">🌾 Producer Node</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html" class="active"><span>📊</span> Dashboard</a></li>
+                    <li><a href="products.html"><span>🌱</span> My Produce Catalog</a></li>
+                    <li><a href="orders.html"><span>📦</span> Inbound Orders</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <p><span class="status-dot"></span> Firestore Synced</p>
+                <p style="margin-top: 0.3rem;">Role: Verified Grower</p>
+            </div>
         </aside>
 
         <main class="main-content">
-            <h2>Welcome, <span id="welcomeName">Farmer</span></h2>
-            
-            <div class="cards-grid">
-                <div class="stat-card">
-                    <h4>Total Products</h4>
-                    <div class="value" id="statProducts">0</div>
+            <!-- Modern Hero Welcome Banner -->
+            <div class="dashboard-welcome">
+                <div>
+                    <div class="welcome-chip">🌾 Farm Operations Overview</div>
+                    <h2>Welcome back, <span id="welcomeName">Farmer</span>!</h2>
+                    <p>Track your real-time harvest inventory, fulfill pending buyer orders, and maintain direct transparent pricing with zero middleman deductions.</p>
                 </div>
-                <div class="stat-card">
-                    <h4>Available Stock (items)</h4>
-                    <div class="value" id="statStock">0</div>
-                </div>
-                <div class="stat-card">
-                    <h4>Pending Orders</h4>
-                    <div class="value" id="statPending">0</div>
-                </div>
-                <div class="stat-card">
-                    <h4>Completed Orders</h4>
-                    <div class="value" id="statCompleted">0</div>
+                <div>
+                    <a href="products.html" class="btn" style="background: #ffffff; color: #065f46 !important; font-weight: 700;">+ Manage Produce</a>
                 </div>
             </div>
             
-            <!-- Dashboard content overview could go here -->
+            <!-- Re-positioned Metric Cards Grid -->
+            <div class="cards-grid">
+                <div class="stat-card">
+                    <h4>Total Active Produce</h4>
+                    <div class="value" id="statProducts">0</div>
+                    <div class="sub-stat"><span>▲</span> Listed in catalog</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Available Farm Stock</h4>
+                    <div class="value" id="statStock">0</div>
+                    <div class="sub-stat" style="color: #3b82f6;"><span>●</span> Measured in units</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Pending Buyer Orders</h4>
+                    <div class="value" id="statPending" style="color: #f59e0b;">0</div>
+                    <div class="sub-stat" style="color: #f59e0b;"><span>⚡</span> Requires action</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Successfully Completed</h4>
+                    <div class="value" id="statCompleted" style="color: #10b981;">0</div>
+                    <div class="sub-stat"><span>✓</span> Delivered & settled</div>
+                </div>
+            </div>
+
+            <!-- Quick Action & Workflow Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+                <div style="background: white; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-sm);">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>🌱</span> Produce Quick Links
+                    </h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.25rem;">
+                        Update crop yields, modify price per kg, or mark stock availability instantly.
+                    </p>
+                    <a href="products.html" class="btn btn-sm">Go to Products Management →</a>
+                </div>
+
+                <div style="background: white; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-sm);">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>📦</span> Live Order Queue
+                    </h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.25rem;">
+                        Review confirmed orders from direct consumers awaiting verification and dispatch.
+                    </p>
+                    <a href="orders.html" class="btn btn-secondary btn-sm">View Customer Orders →</a>
+                </div>
+            </div>
         </main>
     </div>
 
     <script type="module">
+        import { initNavbar } from '../js/navbar.js';
+        initNavbar({ role: 'farmer' });
+
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initFarmerDashboard } from '../js/farmer.js';
         
-        // Protect route
         checkRoleAccess('farmer');
-        
-        // Setup UI
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {

@@ -3,73 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <title>Ecosystem Command Center | AgriTrace Admin</title>
+    <link rel="stylesheet" href="../css/style.css?v=3">
+    <link rel="stylesheet" href="../css/dashboard.css?v=3">
 </head>
 <body>
-    <header>
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1><a href="#" style="color: white;">Admin Portal</a></h1>
-            <div class="user-info">
-                <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
-            </div>
-        </div>
-    </header>
+    <header id="app-navbar" class="app-navbar"></header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <ul class="nav-links">
-                <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                <li><a href="users.html">Manage Users</a></li>
-                <li><a href="products.html">All Products</a></li>
-                <li><a href="orders.html">All Orders</a></li>
-            </ul>
+            <div>
+                <div class="sidebar-header">
+                    <span class="tag" style="color: #ef4444; background: rgba(239, 68, 68, 0.12);">⚡ Master Console</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html" class="active"><span>📊</span> Overview</a></li>
+                    <li><a href="users.html"><span>👥</span> User Directory</a></li>
+                    <li><a href="products.html"><span>🌱</span> Global Produce</a></li>
+                    <li><a href="orders.html"><span>📦</span> All Network Orders</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <p><span class="status-dot"></span> System Root Access</p>
+            </div>
         </aside>
 
         <main class="main-content">
-            <h2>Welcome, <span id="welcomeName">Admin</span></h2>
+            <!-- Modern Hero Banner -->
+            <div class="dashboard-welcome" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);">
+                <div>
+                    <div class="welcome-chip" style="background: rgba(255, 255, 255, 0.18);">⚡ Decentralized Governance</div>
+                    <h2>Welcome, <span id="welcomeName">Admin</span>!</h2>
+                    <p>Network-wide visibility across registered producers, aggregation hubs, drivers, customers, and all transactional records.</p>
+                </div>
+                <div>
+                    <a href="users.html" class="btn" style="background: #ffffff; color: #0f172a !important; font-weight: 700;">Manage Network →</a>
+                </div>
+            </div>
             
+            <!-- Metrics Grid -->
             <div class="cards-grid">
                 <div class="stat-card">
-                    <h4>Total Users</h4>
-                    <div class="value" id="statUsers">0</div>
+                    <h4>Total Network Users</h4>
+                    <div class="value" id="statUsers" style="color: #0f172a;">0</div>
+                    <div class="sub-stat"><span>👥</span> All ecosystem nodes</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Farmers</h4>
-                    <div class="value" id="statFarmers">0</div>
+                    <h4>Farmers (Growers)</h4>
+                    <div class="value" id="statFarmers" style="color: #059669;">0</div>
+                    <div class="sub-stat" style="color: #059669;"><span>🌾</span> Verified producers</div>
                 </div>
                 <div class="stat-card">
                     <h4>Customers</h4>
-                    <div class="value" id="statCustomers">0</div>
+                    <div class="value" id="statCustomers" style="color: #2563eb;">0</div>
+                    <div class="sub-stat" style="color: #2563eb;"><span>🛒</span> Direct buyers</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Drivers</h4>
-                    <div class="value" id="statDrivers">0</div>
+                    <h4>Logistics Drivers</h4>
+                    <div class="value" id="statDrivers" style="color: #d97706;">0</div>
+                    <div class="sub-stat" style="color: #d97706;"><span>🚚</span> Active fleet</div>
                 </div>
                 <div class="stat-card">
                     <h4>Wholesalers</h4>
-                    <div class="value" id="statWholesalers">0</div>
+                    <div class="value" id="statWholesalers" style="color: #7c3aed;">0</div>
+                    <div class="sub-stat" style="color: #7c3aed;"><span>🏬</span> QA verification hubs</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Total Products</h4>
-                    <div class="value" id="statProducts">0</div>
+                    <h4>Cataloged Produce</h4>
+                    <div class="value" id="statProducts" style="color: #10b981;">0</div>
+                    <div class="sub-stat" style="color: #10b981;"><span>🌱</span> Listed crops</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Total Orders</h4>
-                    <div class="value" id="statOrders">0</div>
+                    <h4>Total Orders Executed</h4>
+                    <div class="value" id="statOrders" style="color: #0284c7;">0</div>
+                    <div class="sub-stat" style="color: #0284c7;"><span>📦</span> Network transactions</div>
+                </div>
+            </div>
+
+            <!-- Quick Management Shortcuts -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div style="background: white; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-sm);">
+                    <h3 style="font-size: 1.15rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>👥</span> Role Permissions & Users
+                    </h3>
+                    <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1.25rem;">
+                        Audit registered credentials, roles, telephone contacts, and access permissions.
+                    </p>
+                    <a href="users.html" class="btn btn-sm">Inspect Users →</a>
+                </div>
+
+                <div style="background: white; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-sm);">
+                    <h3 style="font-size: 1.15rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>🌱</span> Global Produce Oversight
+                    </h3>
+                    <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1.25rem;">
+                        Monitor listed stock across all farmers, remove deprecated items, and supervise fair price caps.
+                    </p>
+                    <a href="products.html" class="btn btn-secondary btn-sm">Inspect Catalog →</a>
+                </div>
+
+                <div style="background: white; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-sm);">
+                    <h3 style="font-size: 1.15rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>📦</span> Complete Transaction Ledger
+                    </h3>
+                    <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1.25rem;">
+                        View immutable lifecycle history of every order placed within the supply chain network.
+                    </p>
+                    <a href="orders.html" class="btn btn-secondary btn-sm">Inspect Orders →</a>
                 </div>
             </div>
         </main>
     </div>
 
     <script type="module">
+        import { initNavbar } from '../js/navbar.js';
+        initNavbar({ role: 'admin' });
+
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initAdminDashboard } from '../js/admin.js';
         
         checkRoleAccess('admin');
-        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {

@@ -3,24 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seed Database</title>
+    <title>Seed Demo Database | AgriTrace</title>
+    <link rel="stylesheet" href="css/style.css?v=3">
     <style>
-        body { font-family: sans-serif; padding: 2rem; line-height: 1.6; }
+        body { 
+            background: #f8fafc;
+            padding: 2.5rem 1rem;
+        }
+        .seed-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
         .log-entry { margin-bottom: 0.5rem; }
-        .success { color: green; }
-        .error { color: red; }
+        .success { color: #10b981; font-weight: 600; }
+        .error { color: #f59e0b; }
     </style>
 </head>
 <body>
-    <h2>Seeding Database... Please wait.</h2>
-    <p>This script will create demo accounts and some sample products.</p>
-    <div id="log" style="background: #f5f5f5; padding: 1rem; border-radius: 5px; height: 300px; overflow-y: scroll; font-family: monospace;"></div>
-    
-    <div style="margin-top: 1rem;">
-        <a href="index.html" style="padding: 10px 15px; background: #2E7D32; color: white; text-decoration: none; border-radius: 4px; display: inline-block;">Go to Home</a>
+    <header id="app-navbar" class="app-navbar" style="margin-bottom: 2rem;"></header>
+    <div class="seed-card">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+            <div class="brand-icon">🌱</div>
+            <h2 style="font-size: 1.75rem; margin-bottom: 0;">AgriTrace Database Seeder</h2>
+        </div>
+        <p style="color: #64748b; margin-bottom: 1.5rem;">
+            Generating demo accounts and realistic organic produce items in your Firebase Firestore cluster.
+        </p>
+
+        <div id="log" style="background: #0f172a; color: #cbd5e1; padding: 1.5rem; border-radius: var(--radius-md); height: 350px; overflow-y: scroll; font-family: monospace; font-size: 0.88rem; line-height: 1.6; border: 1px solid #1e293b;"></div>
+        
+        <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+            <div style="display: flex; gap: 0.75rem;">
+                <a href="login.html" class="btn">Proceed to Login →</a>
+            </div>
+        </div>
     </div>
 
     <script type="module">
+        import { initNavbar } from './js/navbar.js';
+        initNavbar({ role: 'seed' });
+
         import { app, auth, db } from './js/firebase-config.js';
         import { createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
         import { collection, doc, setDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
@@ -72,9 +100,8 @@
                     }
                 } catch (e) {
                     if (e.code === 'auth/email-already-in-use') {
-                        log(`Notice: ${u.email} already exists. Attempting to log in to fetch ID...`, 'error');
+                        log(`Notice: ${u.email} already exists. Fetching account...`, 'error');
                         try {
-                            // Fallback to sign in to get the UID (so we can attach products to the farmer)
                             const { signInWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js");
                             const cred = await signInWithEmailAndPassword(auth, u.email, 'password123');
                             if (u.role === 'farmer') farmerId = cred.user.uid;
@@ -105,7 +132,7 @@
                     }
                 }
             } else {
-                log('Notice: Could not find farmer ID to attach products to. This usually happens if the farmer account already existed before running this script. You might need to add products manually via the Farmer Dashboard.', 'error');
+                log('Notice: Could not find farmer ID to attach products to.', 'error');
             }
 
             try {
@@ -113,10 +140,9 @@
             } catch (e) {}
             
             log('<br><b>--- SEEDING COMPLETE ---</b>', 'success');
-            log('<b>All accounts have the password: <code>password123</code></b>');
+            log('<b>All demo accounts password: <code>password123</code></b>');
         }
 
-        // Start seeding automatically
         seed();
     </script>
 </body>
