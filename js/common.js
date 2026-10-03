@@ -48,7 +48,7 @@ export function hideLoader() {
     }
 }
 
-// Format currency
+// Format currency (Australian Dollars)
 export function formatCurrency(amount) {
-    return `₹${parseFloat(amount).toFixed(2)}`;
+    return `$${parseFloat(amount).toFixed(2)}`;
 }

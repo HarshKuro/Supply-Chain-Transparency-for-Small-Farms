@@ -32,22 +32,22 @@
         };
 
         const users = [
-            { email: 'farmer@example.com', name: 'Ramesh (Farmer)', role: 'farmer', phone: '9876543210' },
-            { email: 'wholesaler@example.com', name: 'Suresh (Wholesaler)', role: 'wholesaler', phone: '9876543211' },
-            { email: 'driver@example.com', name: 'Raju (Driver)', role: 'driver', phone: '9876543212' },
-            { email: 'customer@example.com', name: 'Amit (Customer)', role: 'customer', phone: '9876543213' },
-            { email: 'admin@example.com', name: 'System Admin', role: 'admin', phone: '9876543214' }
+            { email: 'farmer@example.com', name: 'Jack Miller (Farmer)', role: 'farmer', phone: '0412345671' },
+            { email: 'wholesaler@example.com', name: 'Liam Wilson (Wholesaler)', role: 'wholesaler', phone: '0412345672' },
+            { email: 'driver@example.com', name: 'Lucas Brown (Driver)', role: 'driver', phone: '0412345673' },
+            { email: 'customer@example.com', name: 'Chloe Taylor (Customer)', role: 'customer', phone: '0412345674' },
+            { email: 'admin@example.com', name: 'System Admin', role: 'admin', phone: '0412345675' }
         ];
 
         const products = [
-            { name: 'Tomato', category: 'Vegetables', description: 'Fresh farm tomatoes', price: 40, quantity: 100, unit: 'kg' },
-            { name: 'Potato', category: 'Vegetables', description: 'Fresh organic potatoes', price: 30, quantity: 200, unit: 'kg' },
-            { name: 'Onion', category: 'Vegetables', description: 'Red onions', price: 50, quantity: 150, unit: 'kg' },
-            { name: 'Carrot', category: 'Vegetables', description: 'Fresh carrots', price: 60, quantity: 80, unit: 'kg' },
-            { name: 'Spinach', category: 'Vegetables', description: 'Green spinach', price: 20, quantity: 50, unit: 'kg' },
-            { name: 'Apple', category: 'Fruits', description: 'Fresh sweet apples', price: 120, quantity: 100, unit: 'kg' },
-            { name: 'Wheat', category: 'Grains', description: 'High quality wheat', price: 25, quantity: 500, unit: 'kg' },
-            { name: 'Rice', category: 'Grains', description: 'Basmati rice', price: 60, quantity: 400, unit: 'kg' }
+            { name: 'Tomato', category: 'Vegetables', description: 'Fresh farm tomatoes', price: 4.50, quantity: 100, unit: 'kg' },
+            { name: 'Potato', category: 'Vegetables', description: 'Fresh organic potatoes', price: 3.00, quantity: 200, unit: 'kg' },
+            { name: 'Onion', category: 'Vegetables', description: 'Red onions', price: 2.80, quantity: 150, unit: 'kg' },
+            { name: 'Carrot', category: 'Vegetables', description: 'Fresh carrots', price: 2.50, quantity: 80, unit: 'kg' },
+            { name: 'Spinach', category: 'Vegetables', description: 'Green spinach', price: 3.50, quantity: 50, unit: 'kg' },
+            { name: 'Apple', category: 'Fruits', description: 'Fresh sweet apples', price: 5.00, quantity: 100, unit: 'kg' },
+            { name: 'Wheat', category: 'Grains', description: 'High quality wheat', price: 1.50, quantity: 500, unit: 'kg' },
+            { name: 'Rice', category: 'Grains', description: 'Australian grown rice', price: 3.20, quantity: 400, unit: 'kg' }
         ];
 
         async function seed() {
@@ -72,15 +72,20 @@
                     }
                 } catch (e) {
                     if (e.code === 'auth/email-already-in-use') {
-                        log(`Notice: ${u.email} already exists. Attempting to log in to fetch ID...`, 'error');
+                        log(`Notice: ${u.email} already exists. Updating profile...`, 'error');
                         try {
-                            // Fallback to sign in to get the UID (so we can attach products to the farmer)
                             const { signInWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js");
                             const cred = await signInWithEmailAndPassword(auth, u.email, 'password123');
+                            await setDoc(doc(db, "users", cred.user.uid), {
+                                name: u.name,
+                                email: u.email,
+                                phone: u.phone,
+                                role: u.role
+                            }, { merge: true });
                             if (u.role === 'farmer') farmerId = cred.user.uid;
-                            log(`Successfully retrieved ID for ${u.email}.`, 'success');
+                            log(`Successfully updated profile name to ${u.name} for ${u.email}.`, 'success');
                         } catch (err) {
-                            log(`Could not log in to existing account: ${err.message}`, 'error');
+                            log(`Could not update profile for existing account: ${err.message}`, 'error');
                         }
                     } else {
                         log(`Error creating ${u.email}: ${e.message}`, 'error');
@@ -96,16 +101,16 @@
                             ...p,
                             available: true,
                             farmerId: farmerId,
-                            farmerName: 'Ramesh (Farmer)',
+                            farmerName: 'Jack Miller (Farmer)',
                             createdAt: serverTimestamp()
                         });
-                        log(`Success: Added product ${p.name}`, 'success');
+                        log(`Success: Added product ${p.name} ($${p.price.toFixed(2)} AUD)`, 'success');
                     } catch (e) {
                         log(`Error adding ${p.name}: ${e.message}`, 'error');
                     }
                 }
             } else {
-                log('Notice: Could not find farmer ID to attach products to. This usually happens if the farmer account already existed before running this script. You might need to add products manually via the Farmer Dashboard.', 'error');
+                log('Notice: Could not find farmer ID to attach products to.', 'error');
             }
 
             try {

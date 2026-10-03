@@ -3,40 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Supply Chain Transparency</title>
+    <title>Login | Supply Chain Transparency for Small Farms</title>
+    <meta name="description" content="Sign in to your stakeholder account on the Supply Chain Transparency for Small Farms platform.">
+    <link rel="canonical" href="https://2026s2n.winproject.com.au/login.html">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1><a href="index.html" style="color: white;">Supply Chain Transparency</a></h1>
-            <nav>
-                <a href="register.html">Register</a>
+            <h1>
+                <a href="index.html">
+                    <i data-lucide="sprout"></i>
+                    <span>Supply Chain Transparency</span>
+                </a>
+            </h1>
+            <nav aria-label="Auth Navigation">
+                <a href="register.html"><i data-lucide="user-plus"></i> Register</a>
             </nav>
         </div>
     </header>
 
     <main class="container">
         <div class="auth-container">
-            <h2>Login</h2>
+            <h2>Account Login</h2>
             <form id="loginForm">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="e.g. farmer@example.com" required autocomplete="email">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" required>
+                    <input type="password" id="password" placeholder="Enter your password" required autocomplete="current-password">
                 </div>
-                <button type="submit" class="btn">Login</button>
+                <button type="submit" class="btn">
+                    <i data-lucide="log-in"></i>
+                    <span>Login</span>
+                </button>
             </form>
             <div class="auth-links">
                 <p>Don't have an account? <a href="register.html">Register here</a></p>
+                <p style="margin-top: 0.65rem;"><a href="index.html">← Back to Overview</a></p>
             </div>
         </div>
     </main>
 
+    <script src="js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
     <script type="module">
         import { loginUser } from './js/auth.js';
         

@@ -3,29 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Dashboard</title>
+    <title>Customer Dashboard | Supply Chain Transparency</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
     <header>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1><a href="#" style="color: white;">Customer Portal</a></h1>
+            <h1>
+                <a href="#" style="color: white;">
+                    <i data-lucide="shopping-bag"></i>
+                    <span>Customer Portal</span>
+                </a>
+            </h1>
             <div class="user-info">
                 <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                <button id="logoutBtn" class="btn btn-secondary">
+                    <i data-lucide="log-out"></i>
+                    <span>Logout</span>
+                </button>
             </div>
         </div>
     </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
+            <h3>Customer Menu</h3>
             <ul class="nav-links">
-                <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                <li><a href="products.html">Browse Products</a></li>
-                <li><a href="cart.html">My Cart</a></li>
-                <li><a href="orders.html">My Orders</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="dashboard.html" class="active"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li><a href="products.html"><i data-lucide="shopping-bag"></i> Browse Products</a></li>
+                <li><a href="cart.html"><i data-lucide="shopping-cart"></i> My Cart</a></li>
+                <li><a href="orders.html"><i data-lucide="package"></i> My Orders</a></li>
+                <li><a href="feedback.html"><i data-lucide="star"></i> Feedback</a></li>
             </ul>
         </aside>
 
@@ -34,31 +43,34 @@
             
             <div class="cards-grid">
                 <div class="stat-card">
-                    <h4>Available Products</h4>
+                    <h4><i data-lucide="package"></i> Available Products</h4>
                     <div class="value" id="statProducts">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>My Orders</h4>
+                    <h4><i data-lucide="shopping-bag"></i> My Orders</h4>
                     <div class="value" id="statOrders">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Pending Orders</h4>
+                    <h4><i data-lucide="clock"></i> Pending Orders</h4>
                     <div class="value" id="statPending">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Delivered Orders</h4>
+                    <h4><i data-lucide="check-circle-2"></i> Delivered Orders</h4>
                     <div class="value" id="statDelivered">0</div>
                 </div>
             </div>
         </main>
     </div>
 
+    <script src="../js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
     <script type="module">
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initCustomerDashboard } from '../js/customer.js';
         
         checkRoleAccess('customer');
-        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {
@@ -66,6 +78,7 @@
                 document.getElementById('userName').textContent = user.name;
                 document.getElementById('welcomeName').textContent = user.name;
                 initCustomerDashboard(user);
+                if (window.lucide) lucide.createIcons();
             }
         });
     </script>

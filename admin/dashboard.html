@@ -3,73 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Admin Dashboard | Supply Chain Transparency</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
     <header>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1><a href="#" style="color: white;">Admin Portal</a></h1>
+            <h1>
+                <a href="#" style="color: white;">
+                    <i data-lucide="shield-check"></i>
+                    <span>Admin Portal</span>
+                </a>
+            </h1>
             <div class="user-info">
                 <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                <button id="logoutBtn" class="btn btn-secondary">
+                    <i data-lucide="log-out"></i>
+                    <span>Logout</span>
+                </button>
             </div>
         </div>
     </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
+            <h3>Admin Menu</h3>
             <ul class="nav-links">
-                <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                <li><a href="users.html">Manage Users</a></li>
-                <li><a href="products.html">All Products</a></li>
-                <li><a href="orders.html">All Orders</a></li>
+                <li><a href="dashboard.html" class="active"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li><a href="users.html"><i data-lucide="users"></i> Manage Users</a></li>
+                <li><a href="products.html"><i data-lucide="package"></i> All Products</a></li>
+                <li><a href="orders.html"><i data-lucide="shopping-bag"></i> All Orders</a></li>
             </ul>
         </aside>
 
         <main class="main-content">
-            <h2>Welcome, <span id="welcomeName">Admin</span></h2>
+            <h2>System Administration Overview</h2>
             
             <div class="cards-grid">
                 <div class="stat-card">
-                    <h4>Total Users</h4>
+                    <h4><i data-lucide="users"></i> Total Users</h4>
                     <div class="value" id="statUsers">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Farmers</h4>
+                    <h4><i data-lucide="sprout"></i> Farmers</h4>
                     <div class="value" id="statFarmers">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Customers</h4>
+                    <h4><i data-lucide="shopping-bag"></i> Customers</h4>
                     <div class="value" id="statCustomers">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Drivers</h4>
+                    <h4><i data-lucide="truck"></i> Drivers</h4>
                     <div class="value" id="statDrivers">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Wholesalers</h4>
+                    <h4><i data-lucide="store"></i> Wholesalers</h4>
                     <div class="value" id="statWholesalers">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Total Products</h4>
+                    <h4><i data-lucide="package"></i> Total Products</h4>
                     <div class="value" id="statProducts">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Total Orders</h4>
+                    <h4><i data-lucide="clipboard-list"></i> Total Orders</h4>
                     <div class="value" id="statOrders">0</div>
                 </div>
             </div>
         </main>
     </div>
 
+    <script src="../js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
     <script type="module">
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initAdminDashboard } from '../js/admin.js';
         
         checkRoleAccess('admin');
-        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {
@@ -77,6 +89,7 @@
                 document.getElementById('userName').textContent = user.name;
                 document.getElementById('welcomeName').textContent = user.name;
                 initAdminDashboard(user);
+                if (window.lucide) lucide.createIcons();
             }
         });
     </script>

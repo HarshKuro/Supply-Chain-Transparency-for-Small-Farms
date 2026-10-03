@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orders - Farmer</title>
+    <title>Inbound Orders - Farmer | Supply Chain Transparency</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
     <header>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1><a href="#" style="color: white;">Farmer Portal</a></h1>
+            <h1>
+                <a href="#" style="color: white;">
+                    <i data-lucide="sprout"></i>
+                    <span>Farmer Portal</span>
+                </a>
+            </h1>
             <div class="user-info">
                 <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                <button id="logoutBtn" class="btn btn-secondary">
+                    <i data-lucide="log-out"></i>
+                    <span>Logout</span>
+                </button>
             </div>
         </div>
     </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
+            <h3>Farmer Menu</h3>
             <ul class="nav-links">
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="products.html">My Products</a></li>
-                <li><a href="orders.html" class="active">Orders</a></li>
+                <li><a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li><a href="products.html"><i data-lucide="package"></i> My Products</a></li>
+                <li><a href="orders.html" class="active"><i data-lucide="shopping-bag"></i> Orders</a></li>
             </ul>
         </aside>
 
@@ -51,18 +60,22 @@
         </main>
     </div>
 
+    <script src="../js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
     <script type="module">
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initFarmerOrdersPage } from '../js/farmer.js';
         
         checkRoleAccess('farmer');
-        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {
             if(user) {
                 document.getElementById('userName').textContent = user.name;
                 initFarmerOrdersPage(user);
+                if (window.lucide) lucide.createIcons();
             }
         });
     </script>

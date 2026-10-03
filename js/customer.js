@@ -126,7 +126,7 @@ function renderCart() {
     
     if (cart.length === 0) {
         tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">Your cart is empty.</td></tr>';
-        document.getElementById('cartTotal').textContent = '₹0.00';
+        document.getElementById('cartTotal').textContent = '$0.00';
         placeOrderBtn.style.display = 'none';
         return;
     }

@@ -3,58 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Supply Chain Transparency</title>
+    <title>Register | Supply Chain Transparency for Small Farms</title>
+    <meta name="description" content="Create a verified account on the Supply Chain Transparency platform as a Farmer, Wholesaler, Driver, or Customer.">
+    <link rel="canonical" href="https://2026s2n.winproject.com.au/register.html">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1><a href="index.html" style="color: white;">Supply Chain Transparency</a></h1>
-            <nav>
-                <a href="login.html">Login</a>
+            <h1>
+                <a href="index.html">
+                    <i data-lucide="sprout"></i>
+                    <span>Supply Chain Transparency</span>
+                </a>
+            </h1>
+            <nav aria-label="Auth Navigation">
+                <a href="login.html"><i data-lucide="log-in"></i> Login</a>
             </nav>
         </div>
     </header>
 
     <main class="container">
         <div class="auth-container">
-            <h2>Register</h2>
+            <h2>Create an Account</h2>
             <form id="registerForm">
                 <div class="form-group">
                     <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" required>
+                    <input type="text" id="fullName" placeholder="e.g. Jack Miller" required autocomplete="name">
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="e.g. jack@farm.org.au" required autocomplete="email">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" required minlength="6">
+                    <label for="password">Password (min 6 characters)</label>
+                    <input type="password" id="password" placeholder="Create a secure password" required minlength="6" autocomplete="new-password">
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" required>
+                    <input type="tel" id="phone" placeholder="e.g. 0412 345 678" required autocomplete="tel">
                 </div>
                 <div class="form-group">
-                    <label for="role">Role</label>
+                    <label for="role">Stakeholder Role</label>
                     <select id="role" required>
                         <option value="">Select Role...</option>
-                        <option value="farmer">Farmer</option>
-                        <option value="wholesaler">Wholesaler</option>
-                        <option value="driver">Driver</option>
-                        <option value="customer">Customer</option>
+                        <option value="farmer">Farmer (Producer)</option>
+                        <option value="wholesaler">Wholesaler (Quality & Stock Auditor)</option>
+                        <option value="driver">Driver (Logistics & Transit)</option>
+                        <option value="customer">Customer (Direct Consumer)</option>
                     </select>
                 </div>
-                <button type="submit" class="btn">Register</button>
+                <button type="submit" class="btn">
+                    <i data-lucide="user-plus"></i>
+                    <span>Register</span>
+                </button>
             </form>
             <div class="auth-links">
                 <p>Already have an account? <a href="login.html">Login here</a></p>
+                <p style="margin-top: 0.65rem;"><a href="index.html">← Back to Overview</a></p>
             </div>
         </div>
     </main>
 
+    <script src="js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
     <script type="module">
         import { registerUser } from './js/auth.js';
         

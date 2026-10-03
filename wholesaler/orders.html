@@ -3,31 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orders to Verify - Wholesaler</title>
+    <title>Orders to Verify - Wholesaler | Supply Chain Transparency</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
     <header>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1><a href="#" style="color: white;">Wholesaler Portal</a></h1>
+            <h1>
+                <a href="#" style="color: white;">
+                    <i data-lucide="store"></i>
+                    <span>Wholesaler Portal</span>
+                </a>
+            </h1>
             <div class="user-info">
                 <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                <button id="logoutBtn" class="btn btn-secondary">
+                    <i data-lucide="log-out"></i>
+                    <span>Logout</span>
+                </button>
             </div>
         </div>
     </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
+            <h3>Wholesaler Menu</h3>
             <ul class="nav-links">
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="orders.html" class="active">Orders to Verify</a></li>
+                <li><a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li><a href="orders.html" class="active"><i data-lucide="clipboard-check"></i> Orders to Verify</a></li>
             </ul>
         </aside>
 
         <main class="main-content">
-            <h2>Orders to Verify</h2>
+            <h2>Orders Pending Quality & Stock Verification</h2>
             
             <div class="table-container">
                 <table>
@@ -50,18 +59,22 @@
         </main>
     </div>
 
+    <script src="../js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
     <script type="module">
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initWholesalerOrdersPage } from '../js/wholesaler.js';
         
         checkRoleAccess('wholesaler');
-        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {
             if(user) {
                 document.getElementById('userName').textContent = user.name;
                 initWholesalerOrdersPage(user);
+                if (window.lucide) lucide.createIcons();
             }
         });
     </script>

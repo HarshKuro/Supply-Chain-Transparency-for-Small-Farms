@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driver Dashboard</title>
+    <title>Driver Dashboard | Supply Chain Transparency</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
     <header>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1><a href="#" style="color: white;">Driver Portal</a></h1>
+            <h1>
+                <a href="#" style="color: white;">
+                    <i data-lucide="truck"></i>
+                    <span>Driver Portal</span>
+                </a>
+            </h1>
             <div class="user-info">
                 <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                <button id="logoutBtn" class="btn btn-secondary">
+                    <i data-lucide="log-out"></i>
+                    <span>Logout</span>
+                </button>
             </div>
         </div>
     </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
+            <h3>Driver Menu</h3>
             <ul class="nav-links">
-                <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                <li><a href="deliveries.html">Deliveries</a></li>
+                <li><a href="dashboard.html" class="active"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li><a href="deliveries.html"><i data-lucide="navigation"></i> Deliveries</a></li>
             </ul>
         </aside>
 
@@ -31,27 +40,30 @@
             
             <div class="cards-grid">
                 <div class="stat-card">
-                    <h4>Assigned Deliveries</h4>
+                    <h4><i data-lucide="clipboard-list"></i> Assigned Deliveries</h4>
                     <div class="value" id="statAssigned">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>In Transit</h4>
+                    <h4><i data-lucide="truck"></i> In Transit</h4>
                     <div class="value" id="statTransit">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Delivered</h4>
+                    <h4><i data-lucide="check-circle-2"></i> Delivered</h4>
                     <div class="value" id="statDelivered">0</div>
                 </div>
             </div>
         </main>
     </div>
 
+    <script src="../js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
     <script type="module">
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initDriverDashboard } from '../js/driver.js';
         
         checkRoleAccess('driver');
-        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {
@@ -59,6 +71,7 @@
                 document.getElementById('userName').textContent = user.name;
                 document.getElementById('welcomeName').textContent = user.name;
                 initDriverDashboard(user);
+                if (window.lucide) lucide.createIcons();
             }
         });
     </script>

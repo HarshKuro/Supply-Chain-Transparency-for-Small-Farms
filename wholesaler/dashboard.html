@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wholesaler Dashboard</title>
+    <title>Wholesaler Dashboard | Supply Chain Transparency</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
     <header>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1><a href="#" style="color: white;">Wholesaler Portal</a></h1>
+            <h1>
+                <a href="#" style="color: white;">
+                    <i data-lucide="store"></i>
+                    <span>Wholesaler Portal</span>
+                </a>
+            </h1>
             <div class="user-info">
                 <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                <button id="logoutBtn" class="btn btn-secondary">
+                    <i data-lucide="log-out"></i>
+                    <span>Logout</span>
+                </button>
             </div>
         </div>
     </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
+            <h3>Wholesaler Menu</h3>
             <ul class="nav-links">
-                <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                <li><a href="orders.html">Orders to Verify</a></li>
+                <li><a href="dashboard.html" class="active"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li><a href="orders.html"><i data-lucide="clipboard-check"></i> Orders to Verify</a></li>
             </ul>
         </aside>
 
@@ -31,27 +40,30 @@
             
             <div class="cards-grid">
                 <div class="stat-card">
-                    <h4>Orders to Verify</h4>
+                    <h4><i data-lucide="clock"></i> Orders to Verify</h4>
                     <div class="value" id="statVerify">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Verified Orders</h4>
+                    <h4><i data-lucide="check-circle-2"></i> Verified Orders</h4>
                     <div class="value" id="statVerified">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Completed Orders</h4>
+                    <h4><i data-lucide="package-check"></i> Completed Orders</h4>
                     <div class="value" id="statCompleted">0</div>
                 </div>
             </div>
         </main>
     </div>
 
+    <script src="../js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
     <script type="module">
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initWholesalerDashboard } from '../js/wholesaler.js';
         
         checkRoleAccess('wholesaler');
-        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {
@@ -59,6 +71,7 @@
                 document.getElementById('userName').textContent = user.name;
                 document.getElementById('welcomeName').textContent = user.name;
                 initWholesalerDashboard(user);
+                if (window.lucide) lucide.createIcons();
             }
         });
     </script>

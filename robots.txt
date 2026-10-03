@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /farmer/
+Disallow: /wholesaler/
+Disallow: /driver/
+Disallow: /customer/
+Disallow: /admin/
+
+Sitemap: https://2026s2n.winproject.com.au/sitemap.xml

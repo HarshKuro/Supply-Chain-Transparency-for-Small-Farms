@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farmer Dashboard</title>
+    <title>Farmer Dashboard | Supply Chain Transparency</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
     <header>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1><a href="#" style="color: white;">Farmer Portal</a></h1>
+            <h1>
+                <a href="#" style="color: white;">
+                    <i data-lucide="sprout"></i>
+                    <span>Farmer Portal</span>
+                </a>
+            </h1>
             <div class="user-info">
                 <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                <button id="logoutBtn" class="btn btn-secondary">
+                    <i data-lucide="log-out"></i>
+                    <span>Logout</span>
+                </button>
             </div>
         </div>
     </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
+            <h3>Farmer Menu</h3>
             <ul class="nav-links">
-                <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                <li><a href="products.html">My Products</a></li>
-                <li><a href="orders.html">Orders</a></li>
+                <li><a href="dashboard.html" class="active"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li><a href="products.html"><i data-lucide="package"></i> My Products</a></li>
+                <li><a href="orders.html"><i data-lucide="shopping-bag"></i> Orders</a></li>
             </ul>
         </aside>
 
@@ -32,27 +41,29 @@
             
             <div class="cards-grid">
                 <div class="stat-card">
-                    <h4>Total Products</h4>
+                    <h4><i data-lucide="package"></i> Total Products</h4>
                     <div class="value" id="statProducts">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Available Stock (items)</h4>
+                    <h4><i data-lucide="boxes"></i> Available Stock (items)</h4>
                     <div class="value" id="statStock">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Pending Orders</h4>
+                    <h4><i data-lucide="clock"></i> Pending Orders</h4>
                     <div class="value" id="statPending">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Completed Orders</h4>
+                    <h4><i data-lucide="check-circle-2"></i> Completed Orders</h4>
                     <div class="value" id="statCompleted">0</div>
                 </div>
             </div>
-            
-            <!-- Dashboard content overview could go here -->
         </main>
     </div>
 
+    <script src="../js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
     <script type="module">
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initFarmerDashboard } from '../js/farmer.js';
@@ -68,6 +79,7 @@
                 document.getElementById('userName').textContent = user.name;
                 document.getElementById('welcomeName').textContent = user.name;
                 initFarmerDashboard(user);
+                if (window.lucide) lucide.createIcons();
             }
         });
     </script>
