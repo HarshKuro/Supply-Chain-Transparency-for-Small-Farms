@@ -3,65 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fresh Farm Catalog | AgriTrace</title>
-    <link rel="stylesheet" href="../css/style.css?v=3">
-    <link rel="stylesheet" href="../css/dashboard.css?v=3">
+    <title>Browse Products - Customer</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        .product-card .price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--text-color);
+            margin: 0.5rem 0;
+        }
+        .product-card .farmer {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .product-card .desc {
+            flex-grow: 1;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        .product-card .btn {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <header id="app-navbar" class="app-navbar"></header>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1><a href="#" style="color: white;">Customer Portal</a></h1>
+            <div class="user-info">
+                <span id="cartCount" class="badge" style="background-color: white; color: var(--primary-color);">0 items</span>
+                <span id="userName">Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <span class="tag" style="color: #3b82f6; background: rgba(59, 130, 246, 0.12);">🛒 Consumer Node</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="dashboard.html"><span>📊</span> Dashboard</a></li>
-                    <li><a href="products.html" class="active"><span>🥗</span> Fresh Farm Catalog</a></li>
-                    <li><a href="cart.html"><span>🛍️</span> My Cart</a></li>
-                    <li><a href="orders.html"><span>🚚</span> Track Orders</a></li>
-                    <li><a href="feedback.html"><span>⭐</span> Quality Feedback</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-footer">
-                <p><span class="status-dot"></span> Fresh Farm Gate Direct</p>
-            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="products.html" class="active">Browse Products</a></li>
+                <li><a href="cart.html">My Cart</a></li>
+                <li><a href="orders.html">My Orders</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
         </aside>
 
         <main class="main-content">
-            <!-- Modern Action Header -->
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1.5rem;">
-                <div>
-                    <h2>🥗 Direct Farm Produce Catalog</h2>
-                    <p style="color: #64748b; font-size: 0.95rem;">Buy farm-fresh, organic harvest directly with complete origin traceability.</p>
-                </div>
-                <div style="display: flex; gap: 0.75rem;">
-                    <a href="cart.html" class="btn">
-                        <span>View My Cart</span>
-                        <span>→</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Product Grid -->
+            <h2>Available Products</h2>
             <div id="productGrid" class="product-grid">
-                <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: white; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌱</div>
-                    Loading fresh harvests from our farm network...
-                </div>
+                <div>Loading products...</div>
             </div>
         </main>
     </div>
 
     <script type="module">
-        import { initNavbar } from '../js/navbar.js';
-        initNavbar({ role: 'customer' });
-
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initCustomerProductsPage } from '../js/customer.js';
         
         checkRoleAccess('customer');
+        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {

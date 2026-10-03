@@ -3,51 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecosystem User Directory | AgriTrace Admin</title>
-    <link rel="stylesheet" href="../css/style.css?v=3">
-    <link rel="stylesheet" href="../css/dashboard.css?v=3">
+    <title>Users - Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-    <header id="app-navbar" class="app-navbar"></header>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1><a href="#" style="color: white;">Admin Portal</a></h1>
+            <div class="user-info">
+                <span id="userName">Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <span class="tag" style="color: #ef4444; background: rgba(239, 68, 68, 0.12);">⚡ Master Console</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="dashboard.html"><span>📊</span> Overview</a></li>
-                    <li><a href="users.html" class="active"><span>👥</span> User Directory</a></li>
-                    <li><a href="products.html"><span>🌱</span> Global Produce</a></li>
-                    <li><a href="orders.html"><span>📦</span> All Network Orders</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-footer">
-                <p><span class="status-dot"></span> Access Control Guard</p>
-            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="users.html" class="active">Manage Users</a></li>
+                <li><a href="products.html">All Products</a></li>
+                <li><a href="orders.html">All Orders</a></li>
+            </ul>
         </aside>
 
         <main class="main-content">
-            <div style="margin-bottom: 2rem;">
-                <h2>👥 Ecosystem User Directory & Roles</h2>
-                <p style="color: #64748b; font-size: 0.95rem;">Audit registered participant profiles across farmers, wholesalers, drivers, and consumers.</p>
-            </div>
+            <h2>Manage Users</h2>
             
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>Participant Name</th>
-                            <th>Email Address</th>
-                            <th>Phone Contact</th>
-                            <th>Assigned Role</th>
-                            <th>Registration Date</th>
-                            <th style="text-align: right;">Action</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Role</th>
+                            <th>Joined</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="usersTableBody">
-                        <tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading ecosystem users...</td></tr>
+                        <tr><td colspan="6" style="text-align:center;">Loading users...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -55,13 +52,11 @@
     </div>
 
     <script type="module">
-        import { initNavbar } from '../js/navbar.js';
-        initNavbar({ role: 'admin' });
-
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initAdminUsersPage } from '../js/admin.js';
         
         checkRoleAccess('admin');
+        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {

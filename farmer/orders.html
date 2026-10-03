@@ -3,35 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Orders | AgriTrace Farmer</title>
-    <link rel="stylesheet" href="../css/style.css?v=3">
-    <link rel="stylesheet" href="../css/dashboard.css?v=3">
+    <title>Orders - Farmer</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-    <header id="app-navbar" class="app-navbar"></header>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1><a href="#" style="color: white;">Farmer Portal</a></h1>
+            <div class="user-info">
+                <span id="userName">Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <span class="tag">🌾 Producer Node</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="dashboard.html"><span>📊</span> Dashboard</a></li>
-                    <li><a href="products.html"><span>🌱</span> My Produce Catalog</a></li>
-                    <li><a href="orders.html" class="active"><span>📦</span> Inbound Orders</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-footer">
-                <p><span class="status-dot"></span> Realtime Order Polling</p>
-            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="products.html">My Products</a></li>
+                <li><a href="orders.html" class="active">Orders</a></li>
+            </ul>
         </aside>
 
         <main class="main-content">
-            <div style="margin-bottom: 2rem;">
-                <h2>📦 Inbound Direct Customer Orders</h2>
-                <p style="color: #64748b; font-size: 0.95rem;">Review live incoming orders placed by consumers, check payment totals, and verify dispatch status.</p>
-            </div>
+            <h2>Customer Orders</h2>
             
             <div class="table-container">
                 <table>
@@ -39,15 +36,15 @@
                         <tr>
                             <th>Order ID</th>
                             <th>Customer</th>
-                            <th>Items & Quantities</th>
-                            <th>Order Total</th>
-                            <th>Current State</th>
-                            <th>Date Placed</th>
-                            <th style="text-align: right;">Action</th>
+                            <th>Products</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="ordersTableBody">
-                        <tr><td colspan="7" style="text-align:center; padding: 2rem;">Loading incoming orders...</td></tr>
+                        <tr><td colspan="7" style="text-align:center;">Loading orders...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -55,13 +52,11 @@
     </div>
 
     <script type="module">
-        import { initNavbar } from '../js/navbar.js';
-        initNavbar({ role: 'farmer' });
-
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initFarmerOrdersPage } from '../js/farmer.js';
         
         checkRoleAccess('farmer');
+        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {

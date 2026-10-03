@@ -3,106 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account | AgriTrace Supply Chain</title>
-    <link rel="stylesheet" href="css/style.css?v=3">
-    <link rel="stylesheet" href="css/auth.css?v=3">
+    <title>Register - Supply Chain Transparency</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
-    <header id="app-navbar" class="app-navbar"></header>
+    <header>
+        <div class="container">
+            <h1><a href="index.html" style="color: white;">Supply Chain Transparency</a></h1>
+            <nav>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
 
-    <main class="auth-wrapper">
-        <div class="auth-split-card">
-            <!-- Left Hero Panel -->
-            <div class="auth-hero-panel">
-                <div class="auth-hero-header">
-                    <div class="brand-pill">
-                        <span>●</span> Ecosystem Registration
-                    </div>
-                    <h2>Join the Fair Trade Revolution.</h2>
-                    <p>Register as a producer, logistics operator, wholesaler, or consumer and unlock verified end-to-end provenance.</p>
-                    
-                    <ul class="auth-perks">
-                        <li>
-                            <div class="auth-perk-icon">🌾</div>
-                            <span><strong>Farmers:</strong> Direct access to buyers with instant pricing control</span>
-                        </li>
-                        <li>
-                            <div class="auth-perk-icon">🏬</div>
-                            <span><strong>Wholesalers:</strong> Standardized digital QA inspection ledger</span>
-                        </li>
-                        <li>
-                            <div class="auth-perk-icon">🚚</div>
-                            <span><strong>Drivers:</strong> Optimized transit dispatches with instant handoff logs</span>
-                        </li>
-                        <li>
-                            <div class="auth-perk-icon">🛒</div>
-                            <span><strong>Customers:</strong> 100% farm-verified harvest freshness guarantees</span>
-                        </li>
-                    </ul>
+    <main class="container">
+        <div class="auth-container">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required>
                 </div>
-
-                <div class="auth-hero-footer">
-                    <span>Smallholder Farm Protocol</span>
-                    <span>Zero Middleman Abuse</span>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
                 </div>
-            </div>
-
-            <!-- Right Form Panel -->
-            <div class="auth-container">
-                <h2>Create Your Account</h2>
-                <p class="auth-subtitle">Select your role in the supply chain to begin</p>
-                
-                <form id="registerForm">
-                    <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" placeholder="e.g. Ramesh Kumar" required autocomplete="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="name@example.com" required autocomplete="email">
-                    </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" placeholder="Min 6 chars" required minlength="6" autocomplete="new-password">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" placeholder="9876543210" required autocomplete="tel">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="role">Select Your Role</label>
-                        <select id="role" required>
-                            <option value="">Choose an ecosystem role...</option>
-                            <option value="farmer">🌾 Farmer (Crop Producer)</option>
-                            <option value="wholesaler">🏬 Wholesaler (QA & Inventory Hub)</option>
-                            <option value="driver">🚚 Driver (Cold-Chain Transit)</option>
-                            <option value="customer">🛒 Customer (Direct Consumer)</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn">Complete Registration →</button>
-                </form>
-
-                <div class="auth-links">
-                    <p>Already have an account? <a href="login.html">Sign in here</a></p>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required minlength="6">
                 </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select id="role" required>
+                        <option value="">Select Role...</option>
+                        <option value="farmer">Farmer</option>
+                        <option value="wholesaler">Wholesaler</option>
+                        <option value="driver">Driver</option>
+                        <option value="customer">Customer</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Register</button>
+            </form>
+            <div class="auth-links">
+                <p>Already have an account? <a href="login.html">Login here</a></p>
             </div>
         </div>
     </main>
 
     <script type="module">
-        import { initNavbar } from './js/navbar.js';
-        initNavbar({ role: 'register' });
-
         import { registerUser } from './js/auth.js';
         
         document.getElementById('registerForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const fullName = document.getElementById('fullName').value.trim();
-            const email = document.getElementById('email').value.trim();
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const phone = document.getElementById('phone').value.trim();
+            const phone = document.getElementById('phone').value;
             const role = document.getElementById('role').value;
             
             await registerUser(fullName, email, password, phone, role);

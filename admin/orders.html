@@ -3,36 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Network Transactions | AgriTrace Admin</title>
-    <link rel="stylesheet" href="../css/style.css?v=3">
-    <link rel="stylesheet" href="../css/dashboard.css?v=3">
+    <title>Orders - Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-    <header id="app-navbar" class="app-navbar"></header>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1><a href="#" style="color: white;">Admin Portal</a></h1>
+            <div class="user-info">
+                <span id="userName">Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <span class="tag" style="color: #ef4444; background: rgba(239, 68, 68, 0.12);">⚡ Master Console</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="dashboard.html"><span>📊</span> Overview</a></li>
-                    <li><a href="users.html"><span>👥</span> User Directory</a></li>
-                    <li><a href="products.html"><span>🌱</span> Global Produce</a></li>
-                    <li><a href="orders.html" class="active"><span>📦</span> All Network Orders</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-footer">
-                <p><span class="status-dot"></span> Master Audit Ledger</p>
-            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="users.html">Manage Users</a></li>
+                <li><a href="products.html">All Products</a></li>
+                <li><a href="orders.html" class="active">All Orders</a></li>
+            </ul>
         </aside>
 
         <main class="main-content">
-            <div style="margin-bottom: 2rem;">
-                <h2>📦 All Ecosystem Orders & Provenance Ledger</h2>
-                <p style="color: #64748b; font-size: 0.95rem;">Audit the entire transaction history from farm listings to consumer delivery and ratings.</p>
-            </div>
+            <h2>All Orders</h2>
             
             <div class="table-container">
                 <table>
@@ -41,14 +38,14 @@
                             <th>Order ID</th>
                             <th>Customer</th>
                             <th>Farmer</th>
-                            <th>Items & Breakdown</th>
-                            <th>Total Amount</th>
-                            <th>Current State</th>
-                            <th>Date Created</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody id="ordersTableBody">
-                        <tr><td colspan="7" style="text-align:center; padding: 2rem;">Loading network transactions...</td></tr>
+                        <tr><td colspan="7" style="text-align:center;">Loading orders...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -56,13 +53,11 @@
     </div>
 
     <script type="module">
-        import { initNavbar } from '../js/navbar.js';
-        initNavbar({ role: 'admin' });
-
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initAdminOrdersPage } from '../js/admin.js';
         
         checkRoleAccess('admin');
+        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {

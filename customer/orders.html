@@ -3,55 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Orders & Live Radar | AgriTrace</title>
-    <link rel="stylesheet" href="../css/style.css?v=3">
-    <link rel="stylesheet" href="../css/dashboard.css?v=3">
+    <title>My Orders - Customer</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        .tracker {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.5rem 0;
+            position: relative;
+            font-size: 0.85rem;
+        }
+        .tracker::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #E0E0E0;
+            z-index: 1;
+        }
+        .step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+        }
+        .step .circle {
+            width: 34px;
+            height: 34px;
+            background-color: #E0E0E0;
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        .step.active .circle {
+            background-color: var(--primary-color);
+        }
+        .step.completed .circle {
+            background-color: var(--secondary-color);
+        }
+        .order-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+    </style>
 </head>
 <body>
-    <header id="app-navbar" class="app-navbar"></header>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1><a href="#" style="color: white;">Customer Portal</a></h1>
+            <div class="user-info">
+                <span id="userName">Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <span class="tag" style="color: #3b82f6; background: rgba(59, 130, 246, 0.12);">🛒 Consumer Node</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="dashboard.html"><span>📊</span> Dashboard</a></li>
-                    <li><a href="products.html"><span>🥗</span> Fresh Farm Catalog</a></li>
-                    <li><a href="cart.html"><span>🛍️</span> My Cart</a></li>
-                    <li><a href="orders.html" class="active"><span>🚚</span> Track Orders</a></li>
-                    <li><a href="feedback.html"><span>⭐</span> Quality Feedback</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-footer">
-                <p><span class="status-dot"></span> Live Telemetry Track</p>
-            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="products.html">Browse Products</a></li>
+                <li><a href="cart.html">My Cart</a></li>
+                <li><a href="orders.html" class="active">My Orders</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
         </aside>
 
         <main class="main-content">
-            <div style="margin-bottom: 2rem;">
-                <h2>🚚 My Orders & Live Provenance Radar</h2>
-                <p style="color: #64748b; font-size: 0.95rem;">Track real-time progress from harvest verification to driver transit and final handoff.</p>
-            </div>
+            <h2>My Orders</h2>
             
             <div id="ordersContainer">
-                <div style="text-align: center; padding: 3rem; background: white; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📦</div>
-                    Loading your active orders and transit trackers...
-                </div>
+                <div>Loading your orders...</div>
             </div>
         </main>
     </div>
 
     <script type="module">
-        import { initNavbar } from '../js/navbar.js';
-        initNavbar({ role: 'customer' });
-
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initCustomerOrdersPage } from '../js/customer.js';
         
         checkRoleAccess('customer');
+        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {

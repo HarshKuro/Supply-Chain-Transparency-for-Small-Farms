@@ -3,82 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driver Dispatch Terminal | AgriTrace</title>
-    <link rel="stylesheet" href="../css/style.css?v=3">
-    <link rel="stylesheet" href="../css/dashboard.css?v=3">
+    <title>Driver Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-    <header id="app-navbar" class="app-navbar"></header>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1><a href="#" style="color: white;">Driver Portal</a></h1>
+            <div class="user-info">
+                <span id="userName">Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <span class="tag" style="color: #f59e0b; background: rgba(245, 158, 11, 0.12);">🚚 Logistics Node</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="dashboard.html" class="active"><span>📊</span> Dashboard</a></li>
-                    <li><a href="deliveries.html"><span>🗺️</span> Active Deliveries</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-footer">
-                <p><span class="status-dot"></span> GPS Telemetry Online</p>
-            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="deliveries.html">Deliveries</a></li>
+            </ul>
         </aside>
 
         <main class="main-content">
-            <!-- Modern Hero Banner -->
-            <div class="dashboard-welcome" style="background: linear-gradient(135deg, #78350f 0%, #b45309 50%, #d97706 100%);">
-                <div>
-                    <div class="welcome-chip" style="background: rgba(255, 255, 255, 0.18);">🚚 Fleet Transit Terminal</div>
-                    <h2>Welcome, <span id="welcomeName">Driver</span>!</h2>
-                    <p>Claim available delivery batches, log pickup confirmations, and record authenticated customer handoffs.</p>
-                </div>
-                <div>
-                    <a href="deliveries.html" class="btn" style="background: #ffffff; color: #78350f !important; font-weight: 700;">Check Dispatches →</a>
-                </div>
-            </div>
+            <h2>Welcome, <span id="welcomeName">Driver</span></h2>
             
-            <!-- Metrics Grid -->
             <div class="cards-grid">
                 <div class="stat-card">
-                    <h4>Assigned Batches</h4>
-                    <div class="value" id="statAssigned" style="color: #f59e0b;">0</div>
-                    <div class="sub-stat" style="color: #f59e0b;"><span>📦</span> Ready for pickup</div>
+                    <h4>Assigned Deliveries</h4>
+                    <div class="value" id="statAssigned">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Active In-Transit</h4>
-                    <div class="value" id="statTransit" style="color: #3b82f6;">0</div>
-                    <div class="sub-stat" style="color: #3b82f6;"><span>🚚</span> On route to destination</div>
+                    <h4>In Transit</h4>
+                    <div class="value" id="statTransit">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4>Successfully Delivered</h4>
-                    <div class="value" id="statDelivered" style="color: #10b981;">0</div>
-                    <div class="sub-stat"><span>✓</span> Verified drop-offs</div>
+                    <h4>Delivered</h4>
+                    <div class="value" id="statDelivered">0</div>
                 </div>
-            </div>
-
-            <!-- Quick Action Card -->
-            <div style="background: white; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-sm); max-width: 600px;">
-                <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <span>🗺️</span> Delivery Queue
-                </h3>
-                <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.25rem;">
-                    Accept verified orders, advance statuses to "In Transit", and complete doorstep deliveries.
-                </p>
-                <a href="deliveries.html" class="btn btn-sm">Open Active Deliveries →</a>
             </div>
         </main>
     </div>
 
     <script type="module">
-        import { initNavbar } from '../js/navbar.js';
-        initNavbar({ role: 'driver' });
-
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initDriverDashboard } from '../js/driver.js';
         
         checkRoleAccess('driver');
+        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {

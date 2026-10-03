@@ -3,144 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Produce Feedback | AgriTrace</title>
-    <link rel="stylesheet" href="../css/style.css?v=3">
-    <link rel="stylesheet" href="../css/dashboard.css?v=3">
+    <title>Feedback - Customer</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <style>
-        .feedback-card {
-            max-width: 640px;
-            background-color: #ffffff;
-            padding: 2.5rem;
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
+        .feedback-form {
+            max-width: 600px;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-
-        .rating-wrapper {
-            background: #f8fafc;
-            padding: 1.25rem;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
         .rating {
             display: flex;
-            gap: 0.75rem;
-            direction: rtl;
-            justify-content: center;
-            margin-top: 0.5rem;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
-
         .rating input[type="radio"] {
             display: none;
         }
-
         .rating label {
             cursor: pointer;
-            font-size: 2.5rem;
-            color: #cbd5e1;
-            transition: color 0.15s ease, transform 0.15s ease;
+            font-size: 2rem;
+            color: #ccc;
         }
-
         .rating label:hover,
         .rating label:hover ~ label,
         .rating input[type="radio"]:checked ~ label {
-            color: #f59e0b;
-            transform: scale(1.1);
+            color: #FFC107;
+        }
+        .rating {
+            direction: rtl; /* reverse order so CSS ~ selector works nicely */
+            justify-content: flex-end;
         }
     </style>
 </head>
 <body>
-    <header id="app-navbar" class="app-navbar"></header>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1><a href="#" style="color: white;">Customer Portal</a></h1>
+            <div class="user-info">
+                <span id="userName">Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <span class="tag" style="color: #3b82f6; background: rgba(59, 130, 246, 0.12);">🛒 Consumer Node</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="dashboard.html"><span>📊</span> Dashboard</a></li>
-                    <li><a href="products.html"><span>🥗</span> Fresh Farm Catalog</a></li>
-                    <li><a href="cart.html"><span>🛍️</span> My Cart</a></li>
-                    <li><a href="orders.html"><span>🚚</span> Track Orders</a></li>
-                    <li><a href="feedback.html" class="active"><span>⭐</span> Quality Feedback</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-footer">
-                <p><span class="status-dot"></span> Verifiable Reviews</p>
-            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="products.html">Browse Products</a></li>
+                <li><a href="cart.html">My Cart</a></li>
+                <li><a href="orders.html">My Orders</a></li>
+                <li><a href="feedback.html" class="active">Feedback</a></li>
+            </ul>
         </aside>
 
         <main class="main-content">
-            <div style="margin-bottom: 2rem;">
-                <h2>⭐ Producer Quality Feedback</h2>
-                <p style="color: #64748b; font-size: 0.95rem;">Your ratings directly empower smallholder farmers by building immutable reputation for fair price matching.</p>
-            </div>
+            <h2>Submit Feedback</h2>
             
-            <div id="feedbackContainer" class="feedback-card">
-                <div id="feedbackMessage" style="color: #64748b; font-weight: 500; text-align: center; padding: 2rem;">
-                    Please select a delivered order from your <a href="orders.html" style="font-weight: 700;">Orders page</a> to submit feedback.
-                </div>
+            <div id="feedbackContainer" class="feedback-form">
+                <div id="feedbackMessage">Select an order to leave feedback.</div>
                 
                 <form id="feedbackForm" style="display: none;">
                     <input type="hidden" id="orderId">
-                    
-                    <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.75rem;">
-                        <div style="font-weight: 700; color: #065f46; font-size: 1rem; margin-bottom: 0.25rem;">
-                            Order Reference: <span id="displayOrderId" style="font-family: monospace;"></span>
-                        </div>
-                        <div style="color: #047857; font-size: 0.9rem;">
-                            Direct Producer: <strong id="displayFarmer"></strong>
-                        </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <strong>Order ID:</strong> <span id="displayOrderId"></span><br>
+                        <strong>Farmer:</strong> <span id="displayFarmer"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label style="text-align: center; font-size: 1rem;">Rate Produce Freshness & Service</label>
-                        <div class="rating-wrapper">
-                            <div class="rating">
-                                <input type="radio" id="star5" name="rating" value="5" required>
-                                <label for="star5" title="5 Stars - Outstanding">★</label>
-                                
-                                <input type="radio" id="star4" name="rating" value="4">
-                                <label for="star4" title="4 Stars - Very Good">★</label>
-                                
-                                <input type="radio" id="star3" name="rating" value="3">
-                                <label for="star3" title="3 Stars - Average">★</label>
-                                
-                                <input type="radio" id="star2" name="rating" value="2">
-                                <label for="star2" title="2 Stars - Subpar">★</label>
-                                
-                                <input type="radio" id="star1" name="rating" value="1">
-                                <label for="star1" title="1 Star - Poor">★</label>
-                            </div>
+                        <label>Rating (1 to 5)</label>
+                        <div class="rating">
+                            <input type="radio" id="star5" name="rating" value="5" required>
+                            <label for="star5">★</label>
+                            
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4">★</label>
+                            
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3">★</label>
+                            
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2">★</label>
+                            
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1">★</label>
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label for="comment">Your Comments & Experience</label>
-                        <textarea id="comment" rows="4" placeholder="Describe the quality of vegetables/fruits, packaging, and delivery experience..." required></textarea>
+                        <label for="comment">Comment</label>
+                        <textarea id="comment" rows="4" required placeholder="Write your experience..."></textarea>
                     </div>
-
-                    <button type="submit" class="btn" style="width: 100%; padding: 0.85rem; font-size: 1rem;">
-                        <span>Publish Verified Review</span>
-                        <span>→</span>
-                    </button>
+                    <button type="submit" class="btn">Submit Feedback</button>
                 </form>
             </div>
         </main>
     </div>
 
     <script type="module">
-        import { initNavbar } from '../js/navbar.js';
-        initNavbar({ role: 'customer' });
-
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initFeedbackPage } from '../js/customer.js';
         
         checkRoleAccess('customer');
+        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {

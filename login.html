@@ -3,130 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In | AgriTrace Supply Chain</title>
-    <link rel="stylesheet" href="css/style.css?v=3">
-    <link rel="stylesheet" href="css/auth.css?v=3">
+    <title>Login - Supply Chain Transparency</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
-    <header id="app-navbar" class="app-navbar"></header>
+    <header>
+        <div class="container">
+            <h1><a href="index.html" style="color: white;">Supply Chain Transparency</a></h1>
+            <nav>
+                <a href="register.html">Register</a>
+            </nav>
+        </div>
+    </header>
 
-    <main class="auth-wrapper">
-        <div class="auth-split-card">
-            <!-- Left Hero Panel -->
-            <div class="auth-hero-panel">
-                <div class="auth-hero-header">
-                    <div class="brand-pill">
-                        <span>●</span> Direct Fair Trade Protocol
-                    </div>
-                    <h2>Traceable Food.<br>Fair Farmer Margins.</h2>
-                    <p>Access your dedicated portal with role-verified security and real-time inventory synchronization.</p>
-                    
-                    <ul class="auth-perks">
-                        <li>
-                            <div class="auth-perk-icon">✓</div>
-                            <span>Direct farmgate-to-table pricing transparency</span>
-                        </li>
-                        <li>
-                            <div class="auth-perk-icon">✓</div>
-                            <span>Decentralized stock validation checkpoints</span>
-                        </li>
-                        <li>
-                            <div class="auth-perk-icon">✓</div>
-                            <span>Smart cold-chain vehicle assignment radar</span>
-                        </li>
-                    </ul>
+    <main class="container">
+        <div class="auth-container">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
                 </div>
-
-                <div class="auth-hero-footer">
-                    <span>Platform Status: Operational</span>
-                    <span>v2.4 LTS</span>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
                 </div>
-            </div>
-
-            <!-- Right Form Panel -->
-            <div class="auth-container">
-                <h2>Welcome Back</h2>
-                <p class="auth-subtitle">Select your account credentials to access your portal</p>
-                
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="name@example.com" required autocomplete="email">
-                    </div>
-                    <div class="form-group">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
-                            <label for="password" style="margin-bottom: 0;">Password</label>
-                            <span id="togglePassword" style="font-size: 0.8rem; color: #64748b; cursor: pointer; user-select: none;">Show</span>
-                        </div>
-                        <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
-                    </div>
-                    <button type="submit" class="btn">Sign In to Dashboard →</button>
-                </form>
-
-                <!-- 1-Click Demo Accounts Bar -->
-                <div class="demo-role-quickbar">
-                    <div class="title">⚡ Quick Demo Login Fill</div>
-                    <div class="demo-pills">
-                        <button type="button" class="demo-pill" data-email="farmer@example.com" data-pass="password123">👨‍🌾 Farmer</button>
-                        <button type="button" class="demo-pill" data-email="wholesaler@example.com" data-pass="password123">🏬 Wholesaler</button>
-                        <button type="button" class="demo-pill" data-email="driver@example.com" data-pass="password123">🚚 Driver</button>
-                        <button type="button" class="demo-pill" data-email="customer@example.com" data-pass="password123">🛒 Customer</button>
-                        <button type="button" class="demo-pill" data-email="admin@example.com" data-pass="password123">⚡ Admin</button>
-                    </div>
-                </div>
-
-                <div class="auth-links">
-                    <p>New to AgriTrace? <a href="register.html">Register an account here</a></p>
-                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <div class="auth-links">
+                <p>Don't have an account? <a href="register.html">Register here</a></p>
             </div>
         </div>
     </main>
 
     <script type="module">
-        import { initNavbar } from './js/navbar.js';
-        initNavbar({ role: 'login' });
-
         import { loginUser } from './js/auth.js';
         
-        // Handle Submit
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = document.getElementById('email').value.trim();
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             
             await loginUser(email, password);
         });
-
-        // Quick demo filler
-        document.querySelectorAll('.demo-pill').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.getElementById('email').value = btn.dataset.email;
-                document.getElementById('password').value = btn.dataset.pass;
-            });
-        });
-
-        // Check URL for demo param
-        const urlParams = new URLSearchParams(window.location.search);
-        const demoRole = urlParams.get('demo');
-        if (demoRole) {
-            const matchBtn = document.querySelector(`.demo-pill[data-email*="${demoRole}"]`);
-            if (matchBtn) matchBtn.click();
-        }
-
-        // Toggle password visibility
-        const toggleBtn = document.getElementById('togglePassword');
-        const passInput = document.getElementById('password');
-        if (toggleBtn && passInput) {
-            toggleBtn.addEventListener('click', () => {
-                if (passInput.type === 'password') {
-                    passInput.type = 'text';
-                    toggleBtn.textContent = 'Hide';
-                } else {
-                    passInput.type = 'password';
-                    toggleBtn.textContent = 'Show';
-                }
-            });
-        }
     </script>
 </body>
 </html>

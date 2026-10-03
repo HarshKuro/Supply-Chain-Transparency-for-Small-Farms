@@ -3,166 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Farm Cart | AgriTrace</title>
-    <link rel="stylesheet" href="../css/style.css?v=3">
-    <link rel="stylesheet" href="../css/dashboard.css?v=3">
-    <style>
-        .cart-layout {
-            display: grid;
-            grid-template-columns: 1fr 360px;
-            gap: 2rem;
-            align-items: flex-start;
-        }
-
-        .order-summary-card {
-            background: #ffffff;
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md);
-            position: sticky;
-            top: 90px;
-        }
-
-        .order-summary-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.25rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid var(--border-color);
-            color: #0f172a;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.85rem;
-            font-size: 0.95rem;
-            color: #475569;
-        }
-
-        .summary-row.total-row {
-            border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
-            margin-top: 1rem;
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: #0f172a;
-        }
-
-        @media (max-width: 900px) {
-            .cart-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>My Cart - Customer</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-    <header id="app-navbar" class="app-navbar"></header>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1><a href="#" style="color: white;">Customer Portal</a></h1>
+            <div class="user-info">
+                <span id="userName">Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
 
     <div class="dashboard-container">
         <aside class="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <span class="tag" style="color: #3b82f6; background: rgba(59, 130, 246, 0.12);">🛒 Consumer Node</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="dashboard.html"><span>📊</span> Dashboard</a></li>
-                    <li><a href="products.html"><span>🥗</span> Fresh Farm Catalog</a></li>
-                    <li><a href="cart.html" class="active"><span>🛍️</span> My Cart</a></li>
-                    <li><a href="orders.html"><span>🚚</span> Track Orders</a></li>
-                    <li><a href="feedback.html"><span>⭐</span> Quality Feedback</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-footer">
-                <p><span class="status-dot"></span> Secure Escrow Handoff</p>
-            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="products.html">Browse Products</a></li>
+                <li><a href="cart.html" class="active">My Cart</a></li>
+                <li><a href="orders.html">My Orders</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
         </aside>
 
         <main class="main-content">
-            <div style="margin-bottom: 2rem;">
-                <h2>🛍️ Review & Confirm Order</h2>
-                <p style="color: #64748b; font-size: 0.95rem;">Verify your produce selections and direct farmgate price breakdown.</p>
+            <h2>My Cart</h2>
+            
+            <div class="table-container" style="margin-bottom: 2rem;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Farmer</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartTableBody">
+                        <!-- Cart items will go here -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="4" style="text-align: right; font-size: 1.2rem;">Total:</th>
+                            <th colspan="2" id="cartTotal" style="font-size: 1.2rem; color: var(--primary-color);">₹0.00</th>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
 
-            <!-- Re-positioned Modern Split Cart Layout -->
-            <div class="cart-layout">
-                <!-- Left Items Table Container -->
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Produce Item</th>
-                                <th>Farm Origin</th>
-                                <th>Unit Price</th>
-                                <th>Quantity</th>
-                                <th>Subtotal</th>
-                                <th style="text-align: right;">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cartTableBody">
-                            <tr><td colspan="6" style="text-align:center; padding: 2rem;">Your cart is empty. <a href="products.html">Browse farm produce</a></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Right Sticky Summary Card -->
-                <div class="order-summary-card">
-                    <h3>Order Summary</h3>
-                    <div class="summary-row">
-                        <span>Items Subtotal:</span>
-                        <span id="cartSubtotal" style="font-weight: 600;">₹0.00</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Direct Farmer Margin:</span>
-                        <span style="color: #10b981; font-weight: 600;">100% Guaranteed</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Intermediary Markups:</span>
-                        <span style="color: #10b981; font-weight: 600;">₹0.00 (Zero)</span>
-                    </div>
-                    
-                    <div class="summary-row total-row">
-                        <span>Grand Total:</span>
-                        <span id="cartTotal" style="color: #059669;">₹0.00</span>
-                    </div>
-
-                    <button id="placeOrderBtn" class="btn" style="width: 100%; margin-top: 1.5rem; font-size: 1.05rem; padding: 0.85rem; display: none;">
-                        <span>Confirm & Place Order</span>
-                        <span>→</span>
-                    </button>
-
-                    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #f1f5f9; font-size: 0.8rem; color: #64748b; line-height: 1.5;">
-                        🔒 All orders trigger an immutable origin record verified by the cooperative wholesaler and tracked live via driver dispatch.
-                    </div>
-                </div>
+            <div style="text-align: right;">
+                <button id="placeOrderBtn" class="btn" style="font-size: 1.2rem; padding: 0.75rem 2rem; display: none;">Place Order</button>
             </div>
         </main>
     </div>
 
+    <!-- Order Place Confirmation Modal (if needed) -->
+    
     <script type="module">
-        import { initNavbar } from '../js/navbar.js';
-        initNavbar({ role: 'customer' });
-
         import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
         import { initCartPage } from '../js/customer.js';
         
         checkRoleAccess('customer');
+        
         document.getElementById('logoutBtn').addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {
             if(user) {
                 document.getElementById('userName').textContent = user.name;
                 initCartPage(user);
-
-                // Sync subtotal with cartTotal observer
-                const totalEl = document.getElementById('cartTotal');
-                const subEl = document.getElementById('cartSubtotal');
-                if (totalEl && subEl) {
-                    const observer = new MutationObserver(() => {
-                        subEl.textContent = totalEl.textContent;
-                    });
-                    observer.observe(totalEl, { childList: true, characterData: true, subtree: true });
-                }
             }
         });
     </script>

@@ -3,763 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriTrace | Supply Chain Transparency for Small Farms</title>
-    <link rel="stylesheet" href="css/style.css?v=3">
+    <title>Supply Chain Transparency for Small Farms</title>
+    <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Landing Page Custom Styling */
-        body {
-            background-color: #f8fafc;
-            overflow-x: hidden;
-        }
-
-        /* Ambient Glow Background */
-        .ambient-glow {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 1200px;
-            height: 600px;
-            background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 80%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Hero Section - Asymmetric 2-Column */
-        .hero-section {
-            padding: 4rem 0 5rem;
-            display: grid;
-            grid-template-columns: 1.15fr 1fr;
-            gap: 3.5rem;
-            align-items: center;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.25);
-            padding: 0.4rem 1rem;
-            border-radius: var(--radius-full);
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #047857;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-badge .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: #10b981;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #10b981;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.4); opacity: 0.6; }
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.15;
-            color: #0f172a;
-            margin-bottom: 1.25rem;
-        }
-
-        .hero-title .gradient-text {
-            background: linear-gradient(135deg, #059669 0%, #10b981 50%, #0284c7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-desc {
-            font-size: 1.15rem;
-            color: #475569;
-            line-height: 1.7;
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background-color: var(--card-bg);
             margin-bottom: 2rem;
-            max-width: 580px;
         }
-
-        .hero-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
-        }
-
-        .hero-stats-row {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        .hero-stat-item .num {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #0f172a;
-            font-family: var(--font-heading);
-        }
-
-        .hero-stat-item .lbl {
-            font-size: 0.8rem;
-            color: #64748b;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        /* Interactive Simulator Card */
-        .simulator-card {
-            background: #ffffff;
-            border-radius: var(--radius-xl);
-            padding: 2rem;
-            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(226, 232, 240, 0.8);
-            position: relative;
-        }
-
-        .sim-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .sim-tag {
-            font-size: 0.75rem;
-            font-weight: 700;
-            background: #f1f5f9;
-            color: #475569;
-            padding: 0.25rem 0.6rem;
-            border-radius: var(--radius-full);
-        }
-
-        .sim-pipeline {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-            position: relative;
-        }
-
-        .sim-node {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.85rem 1rem;
-            background: #f8fafc;
-            border-radius: var(--radius-md);
-            border: 1px solid #e2e8f0;
-            transition: all 0.2s ease;
-        }
-
-        .sim-node.active {
-            background: #ecfdf5;
-            border-color: #a7f3d0;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
-        }
-
-        .sim-node-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            box-shadow: var(--shadow-sm);
-            flex-shrink: 0;
-        }
-
-        .sim-node.active .sim-node-icon {
-            background: #10b981;
-            color: white;
-        }
-
-        .sim-node-info {
-            flex: 1;
-        }
-
-        .sim-node-info .title {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #0f172a;
-        }
-
-        .sim-node-info .meta {
-            font-size: 0.8rem;
-            color: #64748b;
-        }
-
-        .sim-telemetry {
-            margin-top: 1.25rem;
-            padding: 1rem;
-            background: #0f172a;
-            border-radius: var(--radius-md);
-            color: #94a3b8;
-            font-family: monospace;
-            font-size: 0.8rem;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .sim-telemetry span {
-            color: #34d399;
-            font-weight: 600;
-        }
-
-        /* Horizontal Interactive Workflow Pipeline */
-        .pipeline-section {
-            padding: 5rem 0;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3.5rem;
-        }
-
-        .section-header .sub {
-            color: var(--primary-color);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header h2 {
+        .hero h2 {
             font-size: 2.5rem;
-            font-weight: 800;
-            color: #0f172a;
-            letter-spacing: -0.02em;
-        }
-
-        .pipeline-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            position: relative;
-        }
-
-        .pipeline-card {
-            background: #ffffff;
-            border-radius: var(--radius-lg);
-            padding: 1.75rem 1.5rem;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pipeline-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-xl);
-            border-color: #cbd5e1;
-        }
-
-        .step-num {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #f1f5f9;
-            color: #0f172a;
-            font-weight: 800;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: var(--primary-color);
             margin-bottom: 1rem;
         }
-
-        .pipeline-card:hover .step-num {
-            background: #10b981;
-            color: white;
-        }
-
-        .pipeline-card h4 {
-            font-size: 1.15rem;
-            margin-bottom: 0.5rem;
-            color: #0f172a;
-        }
-
-        .pipeline-card p {
-            font-size: 0.88rem;
-            color: #64748b;
-            line-height: 1.5;
-        }
-
-        /* Bento Grid Showcase */
-        .bento-section {
-            padding: 5rem 0;
-            background: #f1f5f9;
-            border-radius: 32px;
-            margin: 2rem 0;
-        }
-
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 1.5rem;
-        }
-
-        .bento-card {
-            background: #ffffff;
-            border-radius: var(--radius-xl);
-            padding: 2.25rem;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .bento-col-8 { grid-column: span 8; }
-        .bento-col-4 { grid-column: span 4; }
-        .bento-col-6 { grid-column: span 6; }
-
-        .bento-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            background: #ecfdf5;
-            color: #059669;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .bento-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.6rem;
-            color: #0f172a;
-        }
-
-        .bento-card p {
-            color: #64748b;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Role Portals Grid */
-        .portals-section {
-            padding: 5rem 0;
-        }
-
-        .roles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .role-portal-card {
-            background: #ffffff;
-            border-radius: var(--radius-lg);
-            padding: 1.75rem;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-            text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .role-portal-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-            border-color: #10b981;
-        }
-
-        .role-portal-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 18px;
-            background: #f8fafc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .role-portal-card h4 {
+        .hero p {
             font-size: 1.2rem;
-            color: #0f172a;
-            margin-bottom: 0.4rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
         }
-
-        .role-portal-card p {
-            font-size: 0.85rem;
-            color: #64748b;
-            margin-bottom: 1.25rem;
-            flex-grow: 1;
+        .hero .btn {
+            margin: 0 0.5rem;
         }
-
-        .role-portal-card .btn {
-            width: 100%;
+        
+        .section {
+            padding: 2rem 1rem;
+            text-align: center;
         }
-
-        /* Modern Footer */
-        footer.modern-footer {
-            background: #0f172a;
-            color: #94a3b8;
-            padding: 4rem 0 2rem;
-            margin-top: 4rem;
+        .section h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
         }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-brand h3 {
-            color: white;
-            font-size: 1.4rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-links h5 {
-            color: white;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links ul {
-            list-style: none;
+        .workflow {
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.2rem;
+            font-weight: 500;
         }
-
-        .footer-links a {
-            color: #94a3b8;
-            font-size: 0.9rem;
+        .workflow-arrow {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
         }
-
-        .footer-links a:hover {
-            color: #10b981;
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
         }
-
-        .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid #1e293b;
-            text-align: center;
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 960px) {
-            .hero-section {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-            .hero-title {
-                font-size: 2.75rem;
-            }
-            .bento-col-8, .bento-col-4, .bento-col-6 {
-                grid-column: span 12;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
+        .feature-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            width: 250px;
+            border-top: 4px solid var(--primary-color);
         }
     </style>
 </head>
 <body>
-    <div class="ambient-glow"></div>
+    <header>
+        <div class="container">
+            <h1>Supply Chain Transparency</h1>
+            <nav>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </nav>
+        </div>
+    </header>
 
-    <!-- Unified Navbar Component -->
-    <header id="app-navbar" class="app-navbar"></header>
-
-    <main class="container">
-        <!-- Asymmetric 2-Column Hero Section -->
-        <section class="hero-section">
-            <div>
-                <div class="hero-badge">
-                    <span class="pulse-dot"></span>
-                    <span>Decentralized Transparency v2.4</span>
-                </div>
-                <h1 class="hero-title">
-                    From Soil to Table with <span class="gradient-text">Complete Digital Trust.</span>
-                </h1>
-                <p class="hero-desc">
-                    Empowering smallholder farmers with an immutable, transparent digital supply chain. Eliminating predatory middleman markups while guaranteeing authenticated freshness for consumers.
-                </p>
-                <div class="hero-actions">
-                    <a href="login.html" class="btn" style="padding: 0.85rem 1.8rem; font-size: 1.05rem;">
-                        <span>Launch App Portal</span>
-                        <span>→</span>
-                    </a>
-                    <a href="seed.html" class="btn btn-secondary" style="padding: 0.85rem 1.5rem; font-size: 1.05rem;">
-                        <span>⚡ Seed Demo Data</span>
-                    </a>
-                </div>
-                <div class="hero-stats-row">
-                    <div class="hero-stat-item">
-                        <div class="num">100%</div>
-                        <div class="lbl">Direct Fair Margin</div>
-                    </div>
-                    <div class="hero-stat-item">
-                        <div class="num">0 hrs</div>
-                        <div class="lbl">Middleman Lag</div>
-                    </div>
-                    <div class="hero-stat-item">
-                        <div class="num">5 Roles</div>
-                        <div class="lbl">Full Traceability</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Interactive Simulator Card -->
-            <div class="simulator-card">
-                <div class="sim-header">
-                    <div>
-                        <strong style="color: #0f172a; font-size: 1.1rem;">Live Traceability Visualizer</strong>
-                        <div style="font-size: 0.8rem; color: #64748b;">Batch #AGR-7821 • Organic Alphonso</div>
-                    </div>
-                    <span class="sim-tag">● Live Simulation</span>
-                </div>
-
-                <div class="sim-pipeline">
-                    <div class="sim-node">
-                        <div class="sim-node-icon">🌾</div>
-                        <div class="sim-node-info">
-                            <div class="title">1. Farm Origin Logged</div>
-                            <div class="meta">Ramesh Kumar • Nashik Sector 4</div>
-                        </div>
-                        <span class="badge verified">Verified</span>
-                    </div>
-
-                    <div class="sim-node">
-                        <div class="sim-node-icon">📦</div>
-                        <div class="sim-node-info">
-                            <div class="title">2. Wholesaler Audit & QA</div>
-                            <div class="meta">Suresh Agro Hub • Grade A Certified</div>
-                        </div>
-                        <span class="badge verified">Approved</span>
-                    </div>
-
-                    <div class="sim-node active">
-                        <div class="sim-node-icon">🚚</div>
-                        <div class="sim-node-info">
-                            <div class="title">3. Smart Cold-Chain Transit</div>
-                            <div class="meta">Driver Raju • Van #MH-12-8840</div>
-                        </div>
-                        <span class="badge in-transit">In Transit</span>
-                    </div>
-
-                    <div class="sim-node">
-                        <div class="sim-node-icon">🏡</div>
-                        <div class="sim-node-info">
-                            <div class="title">4. Consumer Delivery & Rating</div>
-                            <div class="meta">Amit Sharma • Direct Verification</div>
-                        </div>
-                        <span class="badge pending">Queued</span>
-                    </div>
-                </div>
-
-                <div class="sim-telemetry">
-                    <div>Status: <span>Active Telemetry</span></div>
-                    <div>Integrity: <span>Hash #9a8f4c2</span></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Horizontal Pipeline Step Section -->
-        <section id="pipeline" class="pipeline-section">
-            <div class="section-header">
-                <div class="sub">How The Architecture Works</div>
-                <h2>End-to-End Lifecycle Verification</h2>
-            </div>
-
-            <div class="pipeline-grid">
-                <div class="pipeline-card">
-                    <div class="step-num">01</div>
-                    <h4>Product Minting</h4>
-                    <p>Farmers list organic produce with batch details, harvest date, and direct farmgate price.</p>
-                </div>
-                <div class="pipeline-card">
-                    <div class="step-num">02</div>
-                    <h4>Instant Order</h4>
-                    <p>Customers browse real-time inventory and place orders with transparent price breakdowns.</p>
-                </div>
-                <div class="pipeline-card">
-                    <div class="step-num">03</div>
-                    <h4>Stock Verification</h4>
-                    <p>Wholesalers verify inventory physical quality and confirm readiness for cold dispatch.</p>
-                </div>
-                <div class="pipeline-card">
-                    <div class="step-num">04</div>
-                    <h4>Driver Dispatch</h4>
-                    <p>Drivers accept routes, update GPS milestones, and handle secure contact-free handoffs.</p>
-                </div>
-                <div class="pipeline-card">
-                    <div class="step-num">05</div>
-                    <h4>Customer Review</h4>
-                    <p>Delivered batches receive immutable feedback scores that build farmers' credibility.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Bento Grid Showcase -->
-        <section id="features" class="bento-section">
+    <main>
+        <section class="hero">
             <div class="container">
-                <div class="section-header">
-                    <div class="sub">Next-Gen Capabilities</div>
-                    <h2>Engineered for Radical Transparency</h2>
-                </div>
-
-                <div class="bento-grid">
-                    <div class="bento-card bento-col-8">
-                        <div>
-                            <div class="bento-icon">📊</div>
-                            <h3>Direct Producer-to-Consumer Economics</h3>
-                            <p>Eliminate 40-60% margin loss typical of traditional mandi intermediaries. Every rupee paid by the consumer is transparently mapped between the grower, transporter, and hub.</p>
-                        </div>
-                        <div style="margin-top: 2rem; display: flex; gap: 1rem;">
-                            <span class="badge delivered">No Hidden Cut</span>
-                            <span class="badge confirmed">Instant Settlement</span>
-                            <span class="badge verified">Audit Ready</span>
-                        </div>
-                    </div>
-
-                    <div class="bento-card bento-col-4">
-                        <div>
-                            <div class="bento-icon">🔒</div>
-                            <h3>Role-Guarded Security</h3>
-                            <p>Fine-grained role access control ensuring farmers, wholesalers, drivers, and customers only modify authorized stages.</p>
-                        </div>
-                        <div style="margin-top: 1.5rem;">
-                            <span class="badge verified">Firebase Security Rules</span>
-                        </div>
-                    </div>
-
-                    <div class="bento-card bento-col-4">
-                        <div>
-                            <div class="bento-icon">⚡</div>
-                            <h3>Real-Time Order Radar</h3>
-                            <p>Live order state progression with status badges, immediate driver alerts, and customer notifications.</p>
-                        </div>
-                        <div style="margin-top: 1.5rem;">
-                            <span class="badge in-transit">Live Sync</span>
-                        </div>
-                    </div>
-
-                    <div class="bento-card bento-col-8">
-                        <div>
-                            <div class="bento-icon">⭐</div>
-                            <h3>Decentralized Reputation Engine</h3>
-                            <p>Consumers evaluate produce freshness directly at the farm level. Quality ratings directly inform fair pricing recommendations and boost small farm discoverability.</p>
-                        </div>
-                        <div style="margin-top: 2rem; display: flex; gap: 1rem;">
-                            <span class="badge delivered">5-Star Verified Loop</span>
-                            <span class="badge pending">Customer Feedback Portal</span>
-                        </div>
-                    </div>
+                <h2>Supply Chain Transparency for Small Farms</h2>
+                <p>Enhancing Fair Trade Through Digital Traceability. Connect farmers, wholesalers, drivers, and customers through one simple digital workflow.</p>
+                <div>
+                    <a href="login.html" class="btn">Login</a>
+                    <a href="register.html" class="btn btn-secondary">Register</a>
                 </div>
             </div>
         </section>
 
-        <!-- Role Portals Hub -->
-        <section id="portals" class="portals-section">
-            <div class="section-header">
-                <div class="sub">Access Portals</div>
-                <h2>Explore Every Role in the Ecosystem</h2>
+        <section class="section">
+            <div class="container">
+                <h3>How It Works</h3>
+                <div class="workflow">
+                    <div>Farmer Lists Product</div>
+                    <div class="workflow-arrow">↓</div>
+                    <div>Customer Orders</div>
+                    <div class="workflow-arrow">↓</div>
+                    <div>Stock Verified</div>
+                    <div class="workflow-arrow">↓</div>
+                    <div>Driver Assigned</div>
+                    <div class="workflow-arrow">↓</div>
+                    <div>Delivery</div>
+                    <div class="workflow-arrow">↓</div>
+                    <div>Customer Feedback</div>
+                </div>
             </div>
+        </section>
 
-            <div class="roles-grid">
-                <div class="role-portal-card">
-                    <div class="role-portal-icon">👨‍🌾</div>
-                    <h4>Farmer</h4>
-                    <p>Publish crops, set prices, track stock levels, and accept incoming bulk orders.</p>
-                    <a href="login.html?demo=farmer" class="btn btn-sm">Enter Portal</a>
-                </div>
-
-                <div class="role-portal-card">
-                    <div class="role-portal-icon">🏬</div>
-                    <h4>Wholesaler</h4>
-                    <p>Inspect incoming batches, verify produce standards, and sanction delivery runs.</p>
-                    <a href="login.html?demo=wholesaler" class="btn btn-sm">Enter Portal</a>
-                </div>
-
-                <div class="role-portal-card">
-                    <div class="role-portal-icon">🚚</div>
-                    <h4>Driver</h4>
-                    <p>Claim assigned delivery batches, mark pick-ups, and update transit milestones.</p>
-                    <a href="login.html?demo=driver" class="btn btn-sm">Enter Portal</a>
-                </div>
-
-                <div class="role-portal-card">
-                    <div class="role-portal-icon">🛒</div>
-                    <h4>Customer</h4>
-                    <p>Browse fresh farm catalogs, build orders, monitor deliveries, and review quality.</p>
-                    <a href="login.html?demo=customer" class="btn btn-sm">Enter Portal</a>
-                </div>
-
-                <div class="role-portal-card">
-                    <div class="role-portal-icon">⚡</div>
-                    <h4>Admin</h4>
-                    <p>Ecosystem overview, user rights management, order dispute audit, and metrics.</p>
-                    <a href="login.html?demo=admin" class="btn btn-sm">Enter Portal</a>
+        <section class="section" style="background-color: var(--card-bg);">
+            <div class="container">
+                <h3>Features</h3>
+                <div class="features">
+                    <div class="feature-card">Product Management</div>
+                    <div class="feature-card">Order Tracking</div>
+                    <div class="feature-card">Inventory Management</div>
+                    <div class="feature-card">Delivery Status</div>
+                    <div class="feature-card">Role-Based Access</div>
+                    <div class="feature-card">Customer Feedback</div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Modern Dark Footer -->
-    <footer class="modern-footer">
+    <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="brand-badge" style="color: white; margin-bottom: 1rem;">
-                        <div class="brand-icon">🌱</div>
-                        <span>AgriTrace</span>
-                    </div>
-                    <p style="max-width: 450px; font-size: 0.95rem; line-height: 1.6;">
-                        Supply Chain Transparency for Smallholder Farms. An academic and practical open-standard architecture establishing fair trade through verifiable digital traceability.
-                    </p>
-                </div>
-                <div class="footer-links">
-                    <h5>Quick Portals</h5>
-                    <ul>
-                        <li><a href="login.html">Sign In</a></li>
-                        <li><a href="register.html">Register New Account</a></li>
-                        <li><a href="seed.html">Seed Demo Accounts</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h5>Technology</h5>
-                    <ul>
-                        <li><a href="#">Firebase Firestore</a></li>
-                        <li><a href="#">Role-Based Access Control</a></li>
-                        <li><a href="#">Micro-Telemetry Architecture</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 AgriTrace • Supply Chain Transparency for Small Farms. All rights reserved.</p>
-            </div>
+            <p>&copy; 2026 Supply Chain Transparency for Small Farms. Academic Project.</p>
         </div>
     </footer>
-
-    <script type="module">
-        import { initNavbar } from './js/navbar.js';
-        initNavbar({ role: 'public' });
-    </script>
 </body>
 </html>
