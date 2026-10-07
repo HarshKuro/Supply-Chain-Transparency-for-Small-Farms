@@ -1,59 +1,33 @@
-# Supply Chain Transparency for Small Farms
-**Enhancing Fair Trade Through Digital Traceability**
+# Supply Chain Transparency for Small Farms | AgriTrace
+**Enhancing Fair Trade Through Digital Traceability & Transparent Custody**
 
 ## Project Overview
-This is a simple web-based supply chain management platform connecting Farmers, Wholesalers, Drivers, Customers, and Administrators. It tracks agricultural products from listing to delivery and feedback.
+AgriTrace is a modern, responsive web application connecting Australian small family farms, accredited wholesalers, cold-chain transport drivers, and consumers through a transparent, auditable digital workflow. The platform eliminates predatory supermarket duopoly markups (+36% farmer margin gain) while enforcing strict regulatory accreditation and quality auditing.
 
-## Features
-- **Product Management:** Farmers can list and manage their produce.
-- **Order Tracking:** Customers place orders and track their status.
-- **Inventory Management:** Stock automatically decreases when orders are placed.
-- **Delivery Status:** Drivers update order status across the delivery lifecycle.
-- **Role-Based Access:** Dedicated dashboards for Farmer, Wholesaler, Driver, Customer, and Admin.
-- **Customer Feedback:** Customers can rate and comment on delivered orders.
+## Key Stakeholder Portals & Features
+- **🌾 Farmer Portal (`farmer/`):** List fresh Australian harvests with AUD pricing, manage inventory, and confirm incoming orders.
+- **🏢 Wholesaler Portal (`wholesaler/`):** Quality audit and stock verification. *Requires Administrator accreditation approval before auditing farm batches.*
+- **🚚 Logistics Driver Portal (`driver/`):** Cold-chain distribution, pickup confirmation, transit checkpoint updates, and proof-of-delivery handover.
+- **🛒 Customer Marketplace (`customer/`):** Browse fresh regional Australian produce, fair trade checkout in AUD, 7-stage live order transparency tracking, and direct farmer reviews.
+- **🛡️ Administrator Governance (`admin/`):** Macro-oversight of platform transactions in AUD, user management, and dedicated **Wholesaler Approvals Hub (`admin/approvals.html`)**.
 
-## Technology Stack
-- **Frontend:** HTML5, CSS3, Vanilla JavaScript
-- **Backend:** Firebase Authentication, Cloud Firestore
-- **Tools:** VS Code, Live Server
+## Integrated Documentation & Manuals
+- **🗺️ Site Map (`sitemap.html`):** Complete navigable directory of all public pages, stakeholder portals, and tools.
+- **📖 User Manual (`user-manual.html`):** Comprehensive role-by-role guide for all 5 stakeholders with step-by-step instructions.
+- **💻 Installation Manual (`installation-manual.html`):** Technical guide for Firebase project creation, Firestore security rules deployment, and local hosting.
+- **📊 Evaluation Report (`evaluation-report.html` & `admin/evaluation.html`):** In-depth financial evaluation detailing development CAPEX ($75,400 AUD), recurring cloud OPEX ($1,790 AUD/mo), scaling tiers, and small farm ROI (7.5 months payback).
 
-## Folder Structure
-```text
-├── index.html
-├── login.html
-├── register.html
-├── README.md
-├── FIREBASE_SETUP.md
-├── TESTING.md
-├── firestore.rules
-├── css/
-│   ├── style.css
-│   ├── auth.css
-│   └── dashboard.css
-├── js/
-│   ├── firebase-config.js
-│   ├── auth.js
-│   ├── common.js
-│   ├── farmer.js
-│   ├── wholesaler.js
-│   ├── driver.js
-│   ├── customer.js
-│   └── admin.js
-├── farmer/
-├── wholesaler/
-├── driver/
-├── customer/
-└── admin/
-```
+## Quick Demo Credentials (Password: `password123`)
+- **Admin:** `admin@example.com` (AgriTrace Administrator, Canberra ACT)
+- **Farmer:** `farmer@example.com` (Jack Miller, Yarra Valley Harvests VIC)
+- **Wholesaler (Approved):** `wholesaler@example.com` (Liam Wilson, Sydney Central Markets NSW)
+- **Wholesaler (Pending Approval):** `wholesaler.pending@example.com` (Matilda Evans, Melbourne Produce Hub VIC)
+- **Driver:** `driver@example.com` (Lucas Brown, Outback Cold Logistics)
+- **Customer:** `customer@example.com` (Chloe Taylor, Melbourne VIC)
 
 ## Running Locally
-1. Install **VS Code**.
-2. Install the **Live Server** extension in VS Code.
-3. Open the project folder in VS Code.
-4. Right-click on `index.html` and select **"Open with Live Server"**.
-
-## Firebase Setup
-To connect this project to your own database, you must set up Firebase. See [FIREBASE_SETUP.md](./FIREBASE_SETUP.md) for detailed instructions.
-
-## Deployment
-This project consists entirely of static files (HTML, CSS, JS). You can easily deploy it using **GitHub Pages**, **Vercel**, or **Firebase Hosting**.
+1. Run `run.bat` (automatically detects Python or Node.js HTTP server), or:
+2. Run `python -m http.server 8000`, or `npx http-server -p 8000`, or VS Code Live Server.
+3. Open `http://localhost:8000/` in your browser.
+4. To initialize or refresh Australian demo data, visit `http://localhost:8000/seed.html`.
+5. To execute the automated 22-test integration suite, visit `http://localhost:8000/test_runner.html`.

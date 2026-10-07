@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Site Map | Supply Chain Transparency for Small Farms</title>
+    <meta name="description" content="Navigable system architecture map and directory for the Supply Chain Transparency for Small Farms platform.">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .sitemap-hero {
+            background: linear-gradient(135deg, #1B4D20 0%, #2E7D32 50%, #388E3C 100%);
+            color: white;
+            padding: 3.5rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .sitemap-hero h1 {
+            color: #FFFFFF !important;
+            font-size: 2.35rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+        .sitemap-hero p {
+            color: #E8F5E9;
+            max-width: 680px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        .search-box {
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 0.85rem 1.25rem 0.85rem 2.85rem;
+            border-radius: var(--radius-full);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            color: var(--text-color);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s ease;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: #A5D6A7;
+            background: #FFFFFF;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+            width: 20px;
+            height: 20px;
+        }
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.75rem;
+            padding: 2.5rem 1rem 4rem;
+        }
+        .sitemap-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .sitemap-section:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+        .section-header h2 {
+            font-size: 1.15rem;
+            color: var(--text-color);
+            margin: 0;
+            font-weight: 700;
+        }
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        .sitemap-link-card {
+            display: flex;
+            flex-direction: column;
+            padding: 0.65rem 0.85rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid transparent;
+            text-decoration: none;
+            color: inherit;
+            background: #F9FAFB;
+            transition: all 0.15s ease;
+        }
+        .sitemap-link-card:hover {
+            background: #F0FDF4;
+            border-color: #86EFAC;
+            text-decoration: none;
+            transform: translateX(4px);
+        }
+        .link-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-bottom: 0.2rem;
+        }
+        .link-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .link-desc {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        .role-tag {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .tag-public { background: #E5E7EB; color: #374151; }
+        .tag-farmer { background: #DCFCE7; color: #166534; }
+        .tag-wholesaler { background: #FEF3C7; color: #92400E; }
+        .tag-driver { background: #E0E7FF; color: #3730A3; }
+        .tag-customer { background: #FCE7F3; color: #9D174D; }
+        .tag-admin { background: #FEE2E2; color: #991B1B; }
+        .tag-tool { background: #EDE9FE; color: #5B21B6; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <i data-lucide="sprout"></i>
+                    <span>Supply Chain Transparency</span>
+                </a>
+            </div>
+            <nav aria-label="Main Navigation">
+                <a href="index.html"><i data-lucide="home"></i> Home</a>
+                <a href="sitemap.html" style="font-weight: 700; border-bottom: 2px solid white;"><i data-lucide="map"></i> Site Map</a>
+                <a href="user-manual.html"><i data-lucide="book-open"></i> User Manual</a>
+                <a href="installation-manual.html"><i data-lucide="terminal"></i> Installation</a>
+                <a href="evaluation-report.html"><i data-lucide="bar-chart-3"></i> Evaluation Report</a>
+                <a href="admin/dashboard.html"><i data-lucide="shield-check"></i> Admin Portal</a>
+                <a href="login.html"><i data-lucide="log-in"></i> Login</a>
+                <a href="register.html" class="btn btn-secondary btn-sm" style="color: var(--text-color) !important; background: white;"><i data-lucide="user-plus"></i> Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="sitemap-hero">
+            <div class="container">
+                <h1>Platform Site Map & Architectural Directory</h1>
+                <p>Complete navigable index of all public overviews, stakeholder portals, administrative compliance hubs, and technical documentation.</p>
+                <div class="search-box">
+                    <i data-lucide="search"></i>
+                    <input type="text" id="sitemapFilter" placeholder="Filter pages by role, feature, or keyword (e.g., wholesaler, admin, tracking)...">
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="sitemap-grid" id="sitemapGrid">
+                
+                <!-- 1. Public & Documentation -->
+                <div class="sitemap-section" data-keywords="home overview public sitemap documentation manual installation expenses costs evaluation">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #E8F5E9; color: var(--primary-color);">
+                            <i data-lucide="book-open"></i>
+                        </div>
+                        <div>
+                            <h2>Public & System Documentation</h2>
+                            <small style="color: var(--text-muted);">Open Access & Architecture Guides</small>
+                        </div>
+                    </div>
+                    <ul class="links-list">
+                        <li>
+                            <a href="index.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="home"></i> Platform Overview</span>
+                                    <span class="role-tag tag-public">Public</span>
+                                </div>
+                                <span class="link-desc">Landing overview, system workflow, core capabilities, and stakeholder introduction.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="sitemap.html" class="sitemap-link-card" style="border-left: 3px solid var(--primary-color);">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="map"></i> Interactive Site Map</span>
+                                    <span class="role-tag tag-public">Directory</span>
+                                </div>
+                                <span class="link-desc">Comprehensive system hierarchy and quick navigation directory.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="user-manual.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="book-marked"></i> User Manual</span>
+                                    <span class="role-tag tag-public">Guide</span>
+                                </div>
+                                <span class="link-desc">Step-by-step role guides for Farmers, Wholesalers, Drivers, Customers, and Administrators.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="installation-manual.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="terminal"></i> Installation Manual</span>
+                                    <span class="role-tag tag-public">DevOps</span>
+                                </div>
+                                <span class="link-desc">Environment requirements, Firebase deployment, Firestore security rules, and local setup.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="evaluation-report.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="bar-chart-3"></i> Evaluation Report (Expenses)</span>
+                                    <span class="role-tag tag-public">Financial</span>
+                                </div>
+                                <span class="link-desc">Detailed CAPEX/OPEX expense analysis in AUD, small-farm economic ROI, and feasibility model.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="login.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="log-in"></i> Stakeholder Login</span>
+                                    <span class="role-tag tag-public">Auth</span>
+                                </div>
+                                <span class="link-desc">Universal authentication portal with 1-click test credentials for all 5 roles.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="register.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="user-plus"></i> Stakeholder Registration</span>
+                                    <span class="role-tag tag-public">Auth</span>
+                                </div>
+                                <span class="link-desc">Register as Farmer, Wholesaler (requires approval), Driver, or Consumer.</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 2. Admin Portal -->
+                <div class="sitemap-section" data-keywords="admin administrator governance approvals approval wholesaler accreditation users products orders oversight audit">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #FEE2E2; color: #DC2626;">
+                            <i data-lucide="shield-check"></i>
+                        </div>
+                        <div>
+                            <h2>Administrator Governance</h2>
+                            <small style="color: var(--text-muted);">Central Authority & Accreditation</small>
+                        </div>
+                    </div>
+                    <ul class="links-list">
+                        <li>
+                            <a href="admin/dashboard.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="layout-dashboard"></i> Admin Executive Dashboard</span>
+                                    <span class="role-tag tag-admin">Admin</span>
+                                </div>
+                                <span class="link-desc">National system statistics, gross volume in AUD, and pending approval notifications.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin/approvals.html" class="sitemap-link-card" style="border-left: 3px solid #D97706;">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="check-square"></i> Wholesaler Approvals Hub</span>
+                                    <span class="role-tag tag-admin">Core Workflow</span>
+                                </div>
+                                <span class="link-desc">Review pending wholesaler applications, grant compliance accreditation, or revoke rights.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin/users.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="users"></i> Stakeholder User Registry</span>
+                                    <span class="role-tag tag-admin">Admin</span>
+                                </div>
+                                <span class="link-desc">Manage all platform accounts, filter by role, inspect phone numbers and joined dates.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin/products.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="package"></i> System Products Audit</span>
+                                    <span class="role-tag tag-admin">Admin</span>
+                                </div>
+                                <span class="link-desc">Inspect all active harvests, unit prices in AUD, and stock status across Australia.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin/orders.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="shopping-bag"></i> All Orders Audit</span>
+                                    <span class="role-tag tag-admin">Admin</span>
+                                </div>
+                                <span class="link-desc">End-to-end transparent lifecycle audit across every customer transaction.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin/evaluation.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="bar-chart-3"></i> Financial Evaluation</span>
+                                    <span class="role-tag tag-admin">Admin</span>
+                                </div>
+                                <span class="link-desc">Integrated financial expenses, infrastructure costs, and cooperative ROI modeling.</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 3. Farmer Portal -->
+                <div class="sitemap-section" data-keywords="farmer producer harvest products orders dispatch confirm pricing inventory">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #DCFCE7; color: #166534;">
+                            <i data-lucide="sprout"></i>
+                        </div>
+                        <div>
+                            <h2>Farmer Portal</h2>
+                            <small style="color: var(--text-muted);">Agricultural Producers</small>
+                        </div>
+                    </div>
+                    <ul class="links-list">
+                        <li>
+                            <a href="farmer/dashboard.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="layout-dashboard"></i> Farmer Dashboard</span>
+                                    <span class="role-tag tag-farmer">Farmer</span>
+                                </div>
+                                <span class="link-desc">Harvest metrics, active stock overview, pending order alerts, and quick actions.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="farmer/products.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="package"></i> My Harvest Products</span>
+                                    <span class="role-tag tag-farmer">Farmer</span>
+                                </div>
+                                <span class="link-desc">List fresh harvests, set prices in AUD per kg/unit, update quantities and descriptions.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="farmer/orders.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="shopping-bag"></i> Customer Orders Received</span>
+                                    <span class="role-tag tag-farmer">Farmer</span>
+                                </div>
+                                <span class="link-desc">Confirm new incoming orders and prepare harvest crates for wholesaler verification.</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 4. Wholesaler Portal -->
+                <div class="sitemap-section" data-keywords="wholesaler approval verify verification stock quality audit accreditation">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #FEF3C7; color: #92400E;">
+                            <i data-lucide="store"></i>
+                        </div>
+                        <div>
+                            <h2>Wholesaler Portal</h2>
+                            <small style="color: var(--text-muted);">Stock & Quality Accreditation</small>
+                        </div>
+                    </div>
+                    <ul class="links-list">
+                        <li>
+                            <a href="wholesaler/dashboard.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="layout-dashboard"></i> Wholesaler Dashboard</span>
+                                    <span class="role-tag tag-wholesaler">Wholesaler</span>
+                                </div>
+                                <span class="link-desc">Accreditation status, orders awaiting quality inspection, and verification metrics.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="wholesaler/orders.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="clipboard-check"></i> Orders to Verify</span>
+                                    <span class="role-tag tag-wholesaler">Wholesaler</span>
+                                </div>
+                                <span class="link-desc">Inspect confirmed farm batches and verify stock (enabled upon Admin approval).</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 5. Logistics Driver Portal -->
+                <div class="sitemap-section" data-keywords="driver logistics transport deliveries transit delivery route cold chain">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #E0E7FF; color: #3730A3;">
+                            <i data-lucide="truck"></i>
+                        </div>
+                        <div>
+                            <h2>Logistics & Driver Portal</h2>
+                            <small style="color: var(--text-muted);">Cold-Chain Distribution</small>
+                        </div>
+                    </div>
+                    <ul class="links-list">
+                        <li>
+                            <a href="driver/dashboard.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="layout-dashboard"></i> Driver Dashboard</span>
+                                    <span class="role-tag tag-driver">Driver</span>
+                                </div>
+                                <span class="link-desc">Assigned deliveries count, in-transit telemetry, and completed handover logs.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="driver/deliveries.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="navigation"></i> Active Deliveries</span>
+                                    <span class="role-tag tag-driver">Driver</span>
+                                </div>
+                                <span class="link-desc">Accept verified farm shipments, mark pickup, update transit status, and confirm delivery.</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 6. Customer Portal -->
+                <div class="sitemap-section" data-keywords="customer consumer marketplace cart checkout orders tracking feedback reviews">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #FCE7F3; color: #9D174D;">
+                            <i data-lucide="shopping-bag"></i>
+                        </div>
+                        <div>
+                            <h2>Customer Marketplace</h2>
+                            <small style="color: var(--text-muted);">Direct Farm Consumers</small>
+                        </div>
+                    </div>
+                    <ul class="links-list">
+                        <li>
+                            <a href="customer/dashboard.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="layout-dashboard"></i> Customer Dashboard</span>
+                                    <span class="role-tag tag-customer">Customer</span>
+                                </div>
+                                <span class="link-desc">Summary of active purchases, past orders, and recent farmer feedback.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="customer/products.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="store"></i> Browse Fresh Produce</span>
+                                    <span class="role-tag tag-customer">Customer</span>
+                                </div>
+                                <span class="link-desc">Explore Australian farm harvests, view direct pricing in AUD, and add items to cart.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="customer/cart.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="shopping-cart"></i> Cart & Checkout</span>
+                                    <span class="role-tag tag-customer">Customer</span>
+                                </div>
+                                <span class="link-desc">Review selected items, enter Australian delivery address, and place fair trade order.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="customer/orders.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="package"></i> Order Transparency Timeline</span>
+                                    <span class="role-tag tag-customer">Customer</span>
+                                </div>
+                                <span class="link-desc">Live chain of custody: Farmer Harvest → Wholesaler Audit → Driver Transit → Table.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="customer/feedback.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="star"></i> Farmer Feedback & Reviews</span>
+                                    <span class="role-tag tag-customer">Customer</span>
+                                </div>
+                                <span class="link-desc">Submit 5-star ratings and transparency reviews directly to the Australian producer.</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 7. Utilities & Developer Suite -->
+                <div class="sitemap-section" data-keywords="seed database tests testing runner utilities dev data demo">
+                    <div class="section-header">
+                        <div class="section-icon" style="background: #EDE9FE; color: #5B21B6;">
+                            <i data-lucide="wrench"></i>
+                        </div>
+                        <div>
+                            <h2>Utilities & Evaluation</h2>
+                            <small style="color: var(--text-muted);">Development & Seeding</small>
+                        </div>
+                    </div>
+                    <ul class="links-list">
+                        <li>
+                            <a href="seed.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="database"></i> Australian Database Seeder</span>
+                                    <span class="role-tag tag-tool">Tool</span>
+                                </div>
+                                <span class="link-desc">Seed Firestore with Australian farms, products, demo accounts, and orders.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="test_runner.html" class="sitemap-link-card">
+                                <div class="link-title-row">
+                                    <span class="link-title"><i data-lucide="check-circle"></i> Automated Test Runner</span>
+                                    <span class="role-tag tag-tool">Testing</span>
+                                </div>
+                                <span class="link-desc">Run complete suite of 22 unit, integration, and security verification tests.</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer style="background-color: var(--card-bg); border-top: 1px solid var(--border-color); padding: 2.5rem 1rem 1.5rem; text-align: center;">
+        <div class="container">
+            <p style="margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600; color: var(--primary-color);">
+                Supply Chain Transparency for Small Farms | AgriTrace
+            </p>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted);">
+                &copy; 2026 Supply Chain Transparency for Small Farms. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+
+        // Real-time filter
+        document.getElementById('sitemapFilter').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const sections = document.querySelectorAll('.sitemap-section');
+            
+            sections.forEach(sec => {
+                const keywords = sec.getAttribute('data-keywords') || '';
+                const text = sec.innerText.toLowerCase();
+                if (!query || keywords.includes(query) || text.includes(query)) {
+                    sec.style.display = 'flex';
+                } else {
+                    sec.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

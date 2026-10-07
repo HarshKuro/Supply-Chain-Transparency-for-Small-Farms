@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register | Supply Chain Transparency for Small Farms</title>
     <meta name="description" content="Create a verified account on the Supply Chain Transparency platform as a Farmer, Wholesaler, Driver, or Customer.">
-    <link rel="canonical" href="https://2026s2n.winproject.com.au/register.html">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>
+            <div class="logo">
                 <a href="index.html">
                     <i data-lucide="sprout"></i>
                     <span>Supply Chain Transparency</span>
                 </a>
-            </h1>
+            </div>
             <nav aria-label="Auth Navigation">
+                <a href="sitemap.html"><i data-lucide="map"></i> Site Map</a>
+                <a href="user-manual.html"><i data-lucide="book-open"></i> User Manual</a>
                 <a href="login.html"><i data-lucide="log-in"></i> Login</a>
             </nav>
         </div>
@@ -26,7 +27,7 @@
 
     <main class="container">
         <div class="auth-container">
-            <h2>Create an Account</h2>
+            <h1>Create an Account</h1>
             <form id="registerForm">
                 <div class="form-group">
                     <label for="fullName">Full Name</label>
@@ -49,10 +50,13 @@
                     <select id="role" required>
                         <option value="">Select Role...</option>
                         <option value="farmer">Farmer (Producer)</option>
-                        <option value="wholesaler">Wholesaler (Quality & Stock Auditor)</option>
+                        <option value="wholesaler">Wholesaler (Requires Admin Approval)</option>
                         <option value="driver">Driver (Logistics & Transit)</option>
                         <option value="customer">Customer (Direct Consumer)</option>
                     </select>
+                    <small id="roleNotice" style="display: none; color: #B45309; margin-top: 0.35rem; font-size: 0.8rem; line-height: 1.4;">
+                        ℹ️ <strong>Wholesaler Notice:</strong> For regulatory compliance, new Wholesaler accounts require Administrator verification before auditing orders.
+                    </small>
                 </div>
                 <button type="submit" class="btn">
                     <i data-lucide="user-plus"></i>
@@ -61,7 +65,11 @@
             </form>
             <div class="auth-links">
                 <p>Already have an account? <a href="login.html">Login here</a></p>
-                <p style="margin-top: 0.65rem;"><a href="index.html">← Back to Overview</a></p>
+                <p style="margin-top: 0.65rem;">
+                    <a href="index.html">← Back to Overview</a> | 
+                    <a href="sitemap.html">Site Map</a> | 
+                    <a href="user-manual.html">Manual</a>
+                </p>
             </div>
         </div>
     </main>
@@ -73,6 +81,13 @@
     <script type="module">
         import { registerUser } from './js/auth.js';
         
+        document.getElementById('role').addEventListener('change', (e) => {
+            const notice = document.getElementById('roleNotice');
+            if (notice) {
+                notice.style.display = e.target.value === 'wholesaler' ? 'block' : 'none';
+            }
+        });
+
         document.getElementById('registerForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const fullName = document.getElementById('fullName').value;

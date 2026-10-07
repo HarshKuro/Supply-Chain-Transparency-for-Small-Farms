@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Manual & Stakeholder Guide | Supply Chain Transparency</title>
+    <meta name="description" content="Official User Manual for the Supply Chain Transparency platform. Step-by-step instructions for Farmers, Wholesalers, Drivers, Customers, and Administrators.">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .manual-hero {
+            background: linear-gradient(135deg, #1B4D20 0%, #2E7D32 50%, #388E3C 100%);
+            color: white;
+            padding: 3.5rem 1rem;
+            text-align: center;
+        }
+        .manual-hero h1 {
+            color: #FFFFFF !important;
+            font-size: 2.35rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+        .manual-hero p {
+            color: #E8F5E9;
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        .manual-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2.5rem;
+            padding: 2.5rem 1rem 4rem;
+        }
+        @media (max-width: 860px) {
+            .manual-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        .manual-toc {
+            position: sticky;
+            top: 80px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            height: fit-content;
+            box-shadow: var(--shadow-sm);
+        }
+        .manual-toc h3 {
+            font-size: 1.05rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+        .toc-list a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 0.65rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: var(--radius-sm);
+            transition: all 0.15s ease;
+        }
+        .toc-list a:hover {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            text-decoration: none;
+            transform: translateX(4px);
+        }
+        .manual-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .manual-section {
+            margin-bottom: 3.5rem;
+            scroll-margin-top: 90px;
+        }
+        .manual-section:last-child {
+            margin-bottom: 0;
+        }
+        .manual-section h2 {
+            font-size: 1.65rem;
+            color: var(--primary-color);
+            margin-bottom: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.65rem;
+        }
+        .manual-section h3 {
+            font-size: 1.25rem;
+            margin: 1.5rem 0 0.65rem;
+            color: var(--text-color);
+        }
+        .step-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin: 1.25rem 0;
+        }
+        .step-card {
+            background: #F9FAFB;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            border-top: 4px solid var(--primary-color);
+        }
+        .step-card.amber-top { border-top-color: #D97706; }
+        .step-card.blue-top { border-top-color: #2563EB; }
+        .step-card.purple-top { border-top-color: #7C3AED; }
+        .step-card.red-top { border-top-color: #DC2626; }
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .step-card h4 {
+            margin: 0.25rem 0 0.5rem;
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+        .step-card p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .callout {
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-md);
+            margin: 1.25rem 0;
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
+        .callout-info {
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            color: #1E40AF;
+        }
+        .callout-warning {
+            background: #FFFBEB;
+            border: 1px solid #FCD34D;
+            color: #92400E;
+        }
+        .callout-success {
+            background: #ECFDF5;
+            border: 1px solid #A7F3D0;
+            color: #065F46;
+        }
+        .callout i {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <i data-lucide="sprout"></i>
+                    <span>Supply Chain Transparency</span>
+                </a>
+            </div>
+            <nav aria-label="Main Navigation">
+                <a href="index.html"><i data-lucide="home"></i> Home</a>
+                <a href="sitemap.html"><i data-lucide="map"></i> Site Map</a>
+                <a href="user-manual.html" style="font-weight: 700; border-bottom: 2px solid white;"><i data-lucide="book-open"></i> User Manual</a>
+                <a href="installation-manual.html"><i data-lucide="terminal"></i> Installation</a>
+                <a href="evaluation-report.html"><i data-lucide="bar-chart-3"></i> Evaluation Report</a>
+                <a href="admin/dashboard.html"><i data-lucide="shield-check"></i> Admin Portal</a>
+                <a href="login.html"><i data-lucide="log-in"></i> Login</a>
+                <a href="register.html" class="btn btn-secondary btn-sm" style="color: var(--text-color) !important; background: white;"><i data-lucide="user-plus"></i> Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="manual-hero">
+            <div class="container">
+                <h1>Platform User Manual & Operational Guide</h1>
+                <p>Complete stakeholder guide for Farmers, Wholesalers, Logistics Drivers, Direct Customers, and System Administrators.</p>
+            </div>
+        </section>
+
+        <div class="container manual-layout">
+            <!-- Sidebar Table of Contents -->
+            <aside class="manual-toc">
+                <h3>Table of Contents</h3>
+                <ul class="toc-list">
+                    <li><a href="#overview"><i data-lucide="info"></i> 1. System Overview</a></li>
+                    <li><a href="#farmer-guide"><i data-lucide="sprout"></i> 2. Farmer Guide</a></li>
+                    <li><a href="#wholesaler-guide"><i data-lucide="store"></i> 3. Wholesaler Guide</a></li>
+                    <li><a href="#wholesaler-approval"><i data-lucide="check-square"></i> 4. Wholesaler Approval</a></li>
+                    <li><a href="#driver-guide"><i data-lucide="truck"></i> 5. Driver Logistics</a></li>
+                    <li><a href="#customer-guide"><i data-lucide="shopping-bag"></i> 6. Customer Guide</a></li>
+                    <li><a href="#admin-guide"><i data-lucide="shield-check"></i> 7. Admin Governance</a></li>
+                    <li><a href="#quick-demo"><i data-lucide="sparkles"></i> 8. Quick Demo Access</a></li>
+                    <li><a href="#faq"><i data-lucide="help-circle"></i> 9. Common FAQs</a></li>
+                </ul>
+
+                <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color);">
+                    <small style="color: var(--text-muted); display: block; margin-bottom: 0.5rem;">Need setup help?</small>
+                    <a href="installation-manual.html" class="btn btn-secondary btn-sm" style="width: 100%;">
+                        <i data-lucide="terminal"></i> Installation Manual
+                    </a>
+                </div>
+            </aside>
+
+            <!-- Manual Body -->
+            <article class="manual-content">
+                
+                <!-- Section 1 -->
+                <section id="overview" class="manual-section">
+                    <h2><i data-lucide="sprout"></i> 1. System Overview & The 5 Roles</h2>
+                    <p>
+                        The <strong>Supply Chain Transparency for Small Farms (AgriTrace)</strong> platform is engineered to eliminate opaque agricultural markups and empower small Australian family farms. By linking producers directly with customers through a verifiable digital custody chain, every stakeholder has transparent oversight:
+                    </p>
+                    <ul>
+                        <li><strong>Farmer (Producer):</strong> Lists harvest batches, specifies AUD pricing per kg/unit, and confirms dispatch.</li>
+                        <li><strong>Wholesaler (Quality Auditor):</strong> Audits produce quality and verifies physical stock. <em>Must be approved by Administrator before verifying shipments.</em></li>
+                        <li><strong>Driver (Transit Logistics):</strong> Transports batches between rural Australian regional farms and suburban/urban destinations.</li>
+                        <li><strong>Customer (Consumer):</strong> Purchases direct-from-farm goods in AUD and tracks real-time chain of custody.</li>
+                        <li><strong>Administrator (Governance):</strong> Audits platform integrity, manages stakeholders, and approves wholesaler accreditations.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 2 -->
+                <section id="farmer-guide" class="manual-section">
+                    <h2><i data-lucide="sprout"></i> 2. Farmer Guide (Producers)</h2>
+                    <p>Farmers can easily publish fresh harvests, monitor stock, and confirm incoming customer orders.</p>
+                    
+                    <div class="step-cards">
+                        <div class="step-card">
+                            <span class="step-num">1</span>
+                            <h4>Add Fresh Harvest</h4>
+                            <p>Navigate to <em>My Products</em>. Enter product name (e.g., Yarra Valley Strawberries), category, price in AUD, available quantity, and unit (kg, punnet, box).</p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">2</span>
+                            <h4>Review Stock</h4>
+                            <p>Stock automatically updates when consumers order. You can toggle product availability or adjust inventory anytime from the products table.</p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">3</span>
+                            <h4>Confirm Order</h4>
+                            <p>When an order arrives in <em>Orders</em>, click <strong>Confirm Order</strong>. This advances state to "Confirmed" so accredited wholesalers can audit the batch.</p>
+                        </div>
+                    </div>
+
+                    <div class="callout callout-info">
+                        <i data-lucide="lightbulb"></i>
+                        <div>
+                            <strong>Best Practice for Farmers:</strong> Include regional harvest location details in product descriptions (e.g., "Mildura Sunraysia Region", "Coldstream Yarra Valley") to build buyer trust.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3 -->
+                <section id="wholesaler-guide" class="manual-section">
+                    <h2><i data-lucide="store"></i> 3. Wholesaler Guide (Quality Auditors)</h2>
+                    <p>
+                        Wholesalers bridge the gap between rural producers and metropolitan distribution by certifying that produce matches quality standards and physical quantities.
+                    </p>
+
+                    <div class="step-cards">
+                        <div class="step-card amber-top">
+                            <span class="step-num" style="background: #D97706;">1</span>
+                            <h4>Registration & Approval</h4>
+                            <p>When you register as a Wholesaler, your account is initially placed in <strong>Pending Review</strong> status pending Admin accreditation.</p>
+                        </div>
+                        <div class="step-card amber-top">
+                            <span class="step-num" style="background: #D97706;">2</span>
+                            <h4>Inspect Confirmed Orders</h4>
+                            <p>Go to <em>Orders to Verify</em>. Review the items, farmer details, destination, and produce quantities.</p>
+                        </div>
+                        <div class="step-card amber-top">
+                            <span class="step-num" style="background: #D97706;">3</span>
+                            <h4>Verify Stock</h4>
+                            <p>Once accredited by an Admin, click <strong>Verify Stock</strong>. This updates order status to "Verified" and notifies available logistics drivers.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4 -->
+                <section id="wholesaler-approval" class="manual-section">
+                    <h2><i data-lucide="check-square"></i> 4. Wholesaler Approval Workflow</h2>
+                    <p>
+                        <strong>Regulatory Compliance Requirement:</strong> Unlike open consumers, wholesalers act as trust custodians. To prevent unauthorized verification, all wholesaler accounts must be reviewed and approved by an Administrator.
+                    </p>
+
+                    <div class="callout callout-warning">
+                        <i data-lucide="alert-triangle"></i>
+                        <div>
+                            <strong>Pending Wholesalers:</strong> Unapproved wholesalers who log in will see a persistent banner: <em>"Account Pending Administrator Approval"</em>. The "Verify Stock" button is disabled until an Admin grants accreditation.
+                        </div>
+                    </div>
+
+                    <div class="callout callout-success">
+                        <i data-lucide="shield-check"></i>
+                        <div>
+                            <strong>How Admin Approves:</strong> An Administrator navigates to <strong>Admin Portal → Wholesaler Approvals</strong> (or Manage Users), locates the applicant, and clicks <strong>Approve Wholesaler</strong>. Access is unlocked immediately without page reload!
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 5 -->
+                <section id="driver-guide" class="manual-section">
+                    <h2><i data-lucide="truck"></i> 5. Logistics & Driver Guide</h2>
+                    <p>Logistics operators ensure cold-chain integrity and record physical custody transfers.</p>
+
+                    <div class="step-cards">
+                        <div class="step-card blue-top">
+                            <span class="step-num" style="background: #2563EB;">1</span>
+                            <h4>Accept Verified Shipment</h4>
+                            <p>Navigate to <em>Deliveries</em>. Filter for "Verified" orders and click <strong>Accept Delivery</strong> to assign yourself as driver.</p>
+                        </div>
+                        <div class="step-card blue-top">
+                            <span class="step-num" style="background: #2563EB;">2</span>
+                            <h4>Pick Up Produce</h4>
+                            <p>Collect harvest crates from the farm or depot, then click <strong>Mark Picked Up</strong>.</p>
+                        </div>
+                        <div class="step-card blue-top">
+                            <span class="step-num" style="background: #2563EB;">3</span>
+                            <h4>In Transit & Handover</h4>
+                            <p>Update status to <strong>In Transit</strong> during highway distribution, and click <strong>Complete Delivery</strong> upon doorstep delivery.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 6 -->
+                <section id="customer-guide" class="manual-section">
+                    <h2><i data-lucide="shopping-bag"></i> 6. Customer Guide (Direct Consumers)</h2>
+                    <p>Customers enjoy fresh Australian harvest produce with full traceability of who grew it, who verified it, and who delivered it.</p>
+
+                    <div class="step-cards">
+                        <div class="step-card purple-top">
+                            <span class="step-num" style="background: #7C3AED;">1</span>
+                            <h4>Browse Market</h4>
+                            <p>Explore <em>Browse Products</em>. View fresh Australian fruits, vegetables, and grains with farm origin names and AUD pricing.</p>
+                        </div>
+                        <div class="step-card purple-top">
+                            <span class="step-num" style="background: #7C3AED;">2</span>
+                            <h4>Checkout & Delivery</h4>
+                            <p>View <em>My Cart</em>, review total in AUD, enter your Australian delivery address and contact phone number, and place order.</p>
+                        </div>
+                        <div class="step-card purple-top">
+                            <span class="step-num" style="background: #7C3AED;">3</span>
+                            <h4>Live Tracking & Review</h4>
+                            <p>Track order state transitions from farm to door in <em>My Orders</em>. Leave 5-star feedback and reviews in <em>Feedback</em> once delivered.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 7 -->
+                <section id="admin-guide" class="manual-section">
+                    <h2><i data-lucide="shield-check"></i> 7. Administrator Governance Guide</h2>
+                    <p>
+                        The Admin Portal provides macro-oversight of users, inventory, order volume in AUD, and regulatory accreditations.
+                    </p>
+
+                    <div class="step-cards">
+                        <div class="step-card red-top">
+                            <span class="step-num" style="background: #DC2626;">1</span>
+                            <h4>Wholesaler Approvals</h4>
+                            <p>Go to <strong>Wholesaler Approvals</strong>. Instantly approve new applicants or revoke accreditation for non-compliant wholesalers.</p>
+                        </div>
+                        <div class="step-card red-top">
+                            <span class="step-num" style="background: #DC2626;">2</span>
+                            <h4>User & Product Audits</h4>
+                            <p>Audit stakeholders across all Australian states in <em>Manage Users</em>, and inspect active harvest catalogs in <em>All Products</em>.</p>
+                        </div>
+                        <div class="step-card red-top">
+                            <span class="step-num" style="background: #DC2626;">3</span>
+                            <h4>Financial Evaluation</h4>
+                            <p>Inspect project expenditure, cloud hosting costs, and farmer margin benefits in the integrated <em>Financial Evaluation</em> section.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 8 -->
+                <section id="quick-demo" class="manual-section">
+                    <h2><i data-lucide="sparkles"></i> 8. Quick 1-Click Demo Accounts</h2>
+                    <p>For academic evaluation and testing, predefined demo accounts are provided with password <code>password123</code>:</p>
+
+                    <div style="overflow-x: auto; margin-top: 1rem;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                            <thead>
+                                <tr style="background: #F3F4F6; text-align: left;">
+                                    <th style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);">Role</th>
+                                    <th style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);">Email</th>
+                                    <th style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);">Password</th>
+                                    <th style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);">Status / Context</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><strong>🛡️ Admin</strong></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><code>admin@example.com</code></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><code>password123</code></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);">Full system administrator access</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><strong>🌾 Farmer</strong></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><code>farmer@example.com</code></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><code>password123</code></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);">Jack Miller (Yarra Valley Harvests VIC)</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><strong>🏢 Wholesaler (Approved)</strong></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><code>wholesaler@example.com</code></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><code>password123</code></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><span class="badge delivered">Accredited</span> Can verify orders</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><strong>⏳ Wholesaler (Pending)</strong></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><code>wholesaler.pending@example.com</code></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><code>password123</code></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><span class="badge in-transit">Pending Approval</span> Tests admin approval flow</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><strong>🚚 Driver</strong></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><code>driver@example.com</code></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><code>password123</code></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);">Lucas Brown (Cold Logistics Transport)</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><strong>🛒 Customer</strong></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><code>customer@example.com</code></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);"><code>password123</code></td>
+                                    <td style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);">Chloe Taylor (Carlton, Melbourne VIC)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Section 9 -->
+                <section id="faq" class="manual-section">
+                    <h2><i data-lucide="help-circle"></i> 9. Frequently Asked Questions</h2>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                        <details style="background: #F9FAFB; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                            <summary style="font-weight: 600; cursor: pointer; color: var(--primary-color);">Why can't my wholesaler account verify orders immediately?</summary>
+                            <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-color); line-height: 1.5;">
+                                To guarantee food safety and fair certification compliance, wholesalers require Administrator verification. An administrator must approve your application via the <strong>Admin Portal → Wholesaler Approvals</strong> before verification permissions are unlocked.
+                            </p>
+                        </details>
+                        <details style="background: #F9FAFB; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                            <summary style="font-weight: 600; cursor: pointer; color: var(--primary-color);">In what currency are platform transactions processed?</summary>
+                            <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-color); line-height: 1.5;">
+                                All produce pricing, order totals, and platform volume are measured and presented in Australian Dollars ($ AUD).
+                            </p>
+                        </details>
+                        <details style="background: #F9FAFB; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                            <summary style="font-weight: 600; cursor: pointer; color: var(--primary-color);">How does inventory stay synchronized?</summary>
+                            <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-color); line-height: 1.5;">
+                                When a customer places an order, Cloud Firestore automatically decrements product quantity in real-time. If stock hits zero, the product is automatically marked as unavailable.
+                            </p>
+                        </details>
+                    </div>
+                </section>
+
+            </article>
+        </div>
+    </main>
+
+    <footer style="background-color: var(--card-bg); border-top: 1px solid var(--border-color); padding: 2.5rem 1rem 1.5rem; text-align: center;">
+        <div class="container">
+            <p style="margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600; color: var(--primary-color);">
+                Supply Chain Transparency for Small Farms | AgriTrace
+            </p>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted);">
+                &copy; 2026 Supply Chain Transparency for Small Farms. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
+</body>
+</html>

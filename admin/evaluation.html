@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Evaluation & Project Expenses - Admin | Supply Chain Transparency</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        .metric-banner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        .eval-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .eval-section h3 {
+            margin: 0 0 1rem 0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        .fin-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin-top: 0.75rem;
+        }
+        .fin-table th {
+            background: #F8FAFC;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            font-weight: 700;
+        }
+        .fin-table td {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+        .fin-table tr.total-row {
+            background: #F0FDF4;
+            font-weight: 700;
+            color: #166534;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>
+                <a href="dashboard.html" style="color: white; display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                    <i data-lucide="shield-check"></i>
+                    <span>AgriTrace Admin Portal</span>
+                </a>
+            </h1>
+            <div class="user-info">
+                <span id="userName">Loading Admin...</span>
+                <button id="logoutBtn" class="btn btn-logout">
+                    <i data-lucide="log-out"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h3>Admin Menu</h3>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li><a href="approvals.html"><i data-lucide="check-square"></i> Wholesaler Approvals</a></li>
+                <li><a href="users.html"><i data-lucide="users"></i> Manage Users</a></li>
+                <li><a href="products.html"><i data-lucide="package"></i> All Products</a></li>
+                <li><a href="orders.html"><i data-lucide="shopping-bag"></i> All Orders</a></li>
+                <li><a href="evaluation.html" class="active"><i data-lucide="bar-chart-3"></i> Financial Evaluation</a></li>
+            </ul>
+
+            <h3 style="margin-top: 1.5rem;">Documentation</h3>
+            <ul class="nav-links">
+                <li><a href="../sitemap.html"><i data-lucide="map"></i> Site Map</a></li>
+                <li><a href="../user-manual.html"><i data-lucide="book-open"></i> User Manual</a></li>
+                <li><a href="../installation-manual.html"><i data-lucide="terminal"></i> Installation Manual</a></li>
+                <li><a href="../evaluation-report.html"><i data-lucide="dollar-sign"></i> Full Report (Public)</a></li>
+                <li><a href="../index.html"><i data-lucide="globe"></i> Public Overview</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h2 style="margin: 0 0 0.25rem 0;">Project Financial Evaluation & Expenses</h2>
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">
+                        Commercial expenditure analysis (AUD), infrastructure modeling, and small farm cooperative return-on-investment.
+                    </p>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <a href="../evaluation-report.html" target="_blank" class="btn btn-secondary btn-sm">
+                        <i data-lucide="external-link"></i> Open Printable View
+                    </a>
+                </div>
+            </div>
+
+            <!-- Top Metric Banner -->
+            <div class="metric-banner">
+                <div class="stat-card" style="border-top: 4px solid #2563EB;">
+                    <h4><i data-lucide="dollar-sign" style="color: #2563EB;"></i> Development CAPEX</h4>
+                    <div class="value" style="color: #1D4ED8;">$75,400 AUD</div>
+                    <small style="color: var(--text-muted);">One-time build cost</small>
+                </div>
+                <div class="stat-card" style="border-top: 4px solid #D97706;">
+                    <h4><i data-lucide="server" style="color: #D97706;"></i> Monthly OPEX</h4>
+                    <div class="value" style="color: #B45309;">$1,790 AUD/mo</div>
+                    <small style="color: var(--text-muted);">$21,480 AUD annually</small>
+                </div>
+                <div class="stat-card" style="border-top: 4px solid #059669;">
+                    <h4><i data-lucide="trending-up" style="color: #059669;"></i> Farmer Margin Uplift</h4>
+                    <div class="value" style="color: #047857;">+36% Gain</div>
+                    <small style="color: var(--text-muted);">vs Supermarket duopoly</small>
+                </div>
+                <div class="stat-card" style="border-top: 4px solid #7C3AED;">
+                    <h4><i data-lucide="clock" style="color: #7C3AED;"></i> Payback Period</h4>
+                    <div class="value" style="color: #6D28D9;">7.5 Months</div>
+                    <small style="color: var(--text-muted);">15-Farm cooperative model</small>
+                </div>
+            </div>
+
+            <!-- Section 1: CAPEX -->
+            <div class="eval-section">
+                <h3><i data-lucide="layers"></i> 1. Capital Expenditure (CAPEX) — Initial Software Engineering</h3>
+                <div class="table-container">
+                    <table class="fin-table">
+                        <thead>
+                            <tr>
+                                <th>Engineering Scope</th>
+                                <th>Specialization</th>
+                                <th>Hours</th>
+                                <th>Rate (AUD)</th>
+                                <th>Total (AUD)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Discovery, Agricultural Supply Chain Mapping & Wireframes</td>
+                                <td>Senior UX Architect</td>
+                                <td>80 hrs</td>
+                                <td>$110/hr</td>
+                                <td>$8,800</td>
+                            </tr>
+                            <tr>
+                                <td>5 Stakeholder Portals (Farmer, Wholesaler, Driver, Customer, Admin)</td>
+                                <td>UI/UX Design Lead</td>
+                                <td>120 hrs</td>
+                                <td>$120/hr</td>
+                                <td>$14,400</td>
+                            </tr>
+                            <tr>
+                                <td>Frontend Application Engineering (HTML5/CSS3/ES Modules)</td>
+                                <td>Senior Frontend Developer</td>
+                                <td>140 hrs</td>
+                                <td>$125/hr</td>
+                                <td>$17,500</td>
+                            </tr>
+                            <tr>
+                                <td>Cloud Database & Real-Time Sync (Firebase Auth & Firestore)</td>
+                                <td>Cloud Architecture Lead</td>
+                                <td>110 hrs</td>
+                                <td>$135/hr</td>
+                                <td>$14,850</td>
+                            </tr>
+                            <tr>
+                                <td>Chain-of-Custody Tracking & Logistics Handover Engine</td>
+                                <td>Full-Stack Developer</td>
+                                <td>70 hrs</td>
+                                <td>$130/hr</td>
+                                <td>$9,100</td>
+                            </tr>
+                            <tr>
+                                <td>QA Automated Verification & Security Penetration Testing</td>
+                                <td>Security & QA Specialist</td>
+                                <td>60 hrs</td>
+                                <td>$115/hr</td>
+                                <td>$6,900</td>
+                            </tr>
+                            <tr>
+                                <td>Deployment Pipelines, Seeding & System Manuals</td>
+                                <td>DevOps Engineer</td>
+                                <td>35 hrs</td>
+                                <td>$110/hr</td>
+                                <td>$3,850</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td colspan="4"><strong>TOTAL DEVELOPMENT CAPEX</strong></td>
+                                <td><strong>$75,400 AUD</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 2: OPEX -->
+            <div class="eval-section">
+                <h3><i data-lucide="server"></i> 2. Operational Expenditure (OPEX) — Monthly Cloud & Support</h3>
+                <div class="table-container">
+                    <table class="fin-table">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Cloud Provider</th>
+                                <th>Monthly Cost (AUD)</th>
+                                <th>Annual Cost (AUD)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cloud NoSQL Database & Real-Time Listeners</td>
+                                <td>Google Cloud Firestore (Sydney)</td>
+                                <td>$85 AUD</td>
+                                <td>$1,020 AUD</td>
+                            </tr>
+                            <tr>
+                                <td>Stakeholder Authentication & Tokens</td>
+                                <td>Firebase Authentication</td>
+                                <td>$25 AUD</td>
+                                <td>$300 AUD</td>
+                            </tr>
+                            <tr>
+                                <td>Transactional SMS & Dispatch Notifications</td>
+                                <td>Twilio Australia SMS</td>
+                                <td>$120 AUD</td>
+                                <td>$1,440 AUD</td>
+                            </tr>
+                            <tr>
+                                <td>Serverless Event Functions & Webhooks</td>
+                                <td>Cloud Functions</td>
+                                <td>$45 AUD</td>
+                                <td>$540 AUD</td>
+                            </tr>
+                            <tr>
+                                <td>System Maintenance, Security & Backups</td>
+                                <td>Managed SLA Support</td>
+                                <td>$650 AUD</td>
+                                <td>$7,800 AUD</td>
+                            </tr>
+                            <tr>
+                                <td>Farmer Onboarding & Accreditation Helpdesk</td>
+                                <td>Cooperative Operations</td>
+                                <td>$850 AUD</td>
+                                <td>$10,200 AUD</td>
+                            </tr>
+                            <tr>
+                                <td>Managed SSL, Edge CDN & Domain</td>
+                                <td>Cloudflare Enterprise Edge</td>
+                                <td>$15 AUD</td>
+                                <td>$180 AUD</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td colspan="2"><strong>TOTAL RECURRING OPEX</strong></td>
+                                <td><strong>$1,790 AUD / mo</strong></td>
+                                <td><strong>$21,480 AUD / yr</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 3: Strategic Feasibility -->
+            <div class="eval-section">
+                <h3><i data-lucide="award"></i> 3. Strategic Feasibility for Australian Small Farms</h3>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-color);">
+                    By replacing predatory middlemen markups (typically 45% - 52%) with transparent direct-to-consumer and wholesale distribution, participating Australian farmers retain an estimated <strong>$43,200 AUD in extra income</strong> per orchard annually. For a small cooperative of 15 farms, the entire platform investment is fully recovered in just <strong>7.5 months</strong>.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
+    <script type="module">
+        import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
+        
+        checkRoleAccess('admin');
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) logoutBtn.addEventListener('click', logoutUser);
+        
+        getCurrentUserData((user) => {
+            if(user) {
+                const userNameEl = document.getElementById('userName');
+                if (userNameEl) userNameEl.textContent = user.name;
+                if (window.lucide) lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>

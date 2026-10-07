@@ -11,14 +11,14 @@
     <header>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <h1>
-                <a href="#" style="color: white;">
+                <a href="dashboard.html" style="color: white; display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
                     <i data-lucide="shield-check"></i>
-                    <span>Admin Portal</span>
+                    <span>AgriTrace Admin Portal</span>
                 </a>
             </h1>
             <div class="user-info">
-                <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">
+                <span id="userName">Loading Admin...</span>
+                <button id="logoutBtn" class="btn btn-logout">
                     <i data-lucide="log-out"></i>
                     <span>Logout</span>
                 </button>
@@ -31,43 +31,122 @@
             <h3>Admin Menu</h3>
             <ul class="nav-links">
                 <li><a href="dashboard.html" class="active"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li><a href="approvals.html"><i data-lucide="check-square"></i> Wholesaler Approvals</a></li>
                 <li><a href="users.html"><i data-lucide="users"></i> Manage Users</a></li>
                 <li><a href="products.html"><i data-lucide="package"></i> All Products</a></li>
                 <li><a href="orders.html"><i data-lucide="shopping-bag"></i> All Orders</a></li>
+                <li><a href="evaluation.html"><i data-lucide="bar-chart-3"></i> Financial Evaluation</a></li>
+            </ul>
+
+            <h3 style="margin-top: 1.5rem;">Documentation</h3>
+            <ul class="nav-links">
+                <li><a href="../sitemap.html"><i data-lucide="map"></i> Site Map</a></li>
+                <li><a href="../user-manual.html"><i data-lucide="book-open"></i> User Manual</a></li>
+                <li><a href="../installation-manual.html"><i data-lucide="terminal"></i> Installation Manual</a></li>
+                <li><a href="../evaluation-report.html"><i data-lucide="dollar-sign"></i> Expenses Report</a></li>
+                <li><a href="../index.html"><i data-lucide="globe"></i> Public Overview</a></li>
             </ul>
         </aside>
 
         <main class="main-content">
-            <h2>System Administration Overview</h2>
-            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h2 style="margin: 0 0 0.25rem 0;">System Administration Overview</h2>
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">
+                        Logged in as: <strong id="welcomeName" style="color: var(--primary-color);">Administrator</strong> (Australia Central Oversight)
+                    </p>
+                </div>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <a href="approvals.html" class="btn btn-sm" style="background: #D97706; color: white !important;">
+                        <i data-lucide="check-square"></i> Wholesaler Approvals
+                    </a>
+                    <a href="evaluation.html" class="btn btn-secondary btn-sm">
+                        <i data-lucide="bar-chart-3"></i> Evaluation Report
+                    </a>
+                </div>
+            </div>
+
+            <!-- Dynamic Alert for Pending Approvals -->
+            <div id="pendingApprovalAlert" style="display: none;"></div>
+
             <div class="cards-grid">
-                <div class="stat-card">
-                    <h4><i data-lucide="users"></i> Total Users</h4>
+                <div class="stat-card" style="border-top: 4px solid var(--primary-color);">
+                    <h4><i data-lucide="users"></i> Total Stakeholders</h4>
                     <div class="value" id="statUsers">0</div>
                 </div>
+                <div class="stat-card" style="border-top: 4px solid #D97706; background: #FFFBEB;">
+                    <h4 style="color: #92400E;"><i data-lucide="clock" style="color: #D97706;"></i> Pending Approvals</h4>
+                    <div class="value" id="statPendingWholesalers" style="color: #B45309;">0</div>
+                </div>
+                <div class="stat-card" style="border-top: 4px solid #059669;">
+                    <h4><i data-lucide="store" style="color: #059669;"></i> Accredited Wholesalers</h4>
+                    <div class="value" id="statApprovedWholesalers" style="color: #059669;">0</div>
+                </div>
                 <div class="stat-card">
-                    <h4><i data-lucide="sprout"></i> Farmers</h4>
+                    <h4><i data-lucide="sprout"></i> Australian Farmers</h4>
                     <div class="value" id="statFarmers">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4><i data-lucide="shopping-bag"></i> Customers</h4>
+                    <h4><i data-lucide="shopping-bag"></i> Direct Consumers</h4>
                     <div class="value" id="statCustomers">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4><i data-lucide="truck"></i> Drivers</h4>
+                    <h4><i data-lucide="truck"></i> Logistics Drivers</h4>
                     <div class="value" id="statDrivers">0</div>
                 </div>
                 <div class="stat-card">
-                    <h4><i data-lucide="store"></i> Wholesalers</h4>
-                    <div class="value" id="statWholesalers">0</div>
-                </div>
-                <div class="stat-card">
-                    <h4><i data-lucide="package"></i> Total Products</h4>
+                    <h4><i data-lucide="package"></i> Active Harvests</h4>
                     <div class="value" id="statProducts">0</div>
                 </div>
                 <div class="stat-card">
                     <h4><i data-lucide="clipboard-list"></i> Total Orders</h4>
                     <div class="value" id="statOrders">0</div>
+                </div>
+                <div class="stat-card" style="background: #F0FDF4; border: 1px solid #BBF7D0;">
+                    <h4 style="color: #166534;"><i data-lucide="dollar-sign" style="color: #166534;"></i> Traceable Volume</h4>
+                    <div class="value" id="statRevenue" style="font-size: 1.45rem; color: #15803D;">$0.00 AUD</div>
+                </div>
+            </div>
+
+            <!-- Quick Management Hub -->
+            <div style="margin-top: 2rem;">
+                <h3 style="margin-bottom: 1rem; color: var(--text-color); font-size: 1.15rem;">Administrative Governance Hub</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+                        <h4 style="margin: 0 0 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; color: #B45309;">
+                            <i data-lucide="check-square" style="color: #D97706;"></i> Wholesaler Accreditation
+                        </h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1rem;">
+                            Enforce regulatory compliance. Authorize or revoke wholesaler auditing rights before they verify farm batches.
+                        </p>
+                        <a href="approvals.html" class="btn btn-sm" style="width: 100%; background: #D97706; color: white !important;">
+                            Manage Wholesaler Approvals →
+                        </a>
+                    </div>
+
+                    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+                        <h4 style="margin: 0 0 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; color: var(--primary-color);">
+                            <i data-lucide="users"></i> Stakeholder Management
+                        </h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1rem;">
+                            View complete registry of Australian farmers, wholesalers, transport drivers, and consumers.
+                        </p>
+                        <a href="users.html" class="btn btn-secondary btn-sm" style="width: 100%;">
+                            Manage User Registry →
+                        </a>
+                    </div>
+
+                    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+                        <h4 style="margin: 0 0 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; color: #2563EB;">
+                            <i data-lucide="bar-chart-3" style="color: #2563EB;"></i> Project Evaluation Report
+                        </h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1rem;">
+                            Detailed CAPEX/OPEX expenditure analysis, infrastructure costs in AUD, and small-farm ROI projections.
+                        </p>
+                        <a href="evaluation.html" class="btn btn-secondary btn-sm" style="width: 100%;">
+                            Inspect Financial Evaluation →
+                        </a>
+                    </div>
                 </div>
             </div>
         </main>
@@ -82,12 +161,15 @@
         import { initAdminDashboard } from '../js/admin.js';
         
         checkRoleAccess('admin');
-        document.getElementById('logoutBtn').addEventListener('click', logoutUser);
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) logoutBtn.addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {
             if(user) {
-                document.getElementById('userName').textContent = user.name;
-                document.getElementById('welcomeName').textContent = user.name;
+                const userNameEl = document.getElementById('userName');
+                if (userNameEl) userNameEl.textContent = user.name;
+                const welcomeNameEl = document.getElementById('welcomeName');
+                if (welcomeNameEl) welcomeNameEl.textContent = user.name;
                 initAdminDashboard(user);
                 if (window.lucide) lucide.createIcons();
             }

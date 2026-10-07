@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Supply Chain Transparency for Small Farms</title>
     <meta name="description" content="Sign in to your stakeholder account on the Supply Chain Transparency for Small Farms platform.">
-    <link rel="canonical" href="https://2026s2n.winproject.com.au/login.html">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>
+            <div class="logo">
                 <a href="index.html">
                     <i data-lucide="sprout"></i>
                     <span>Supply Chain Transparency</span>
                 </a>
-            </h1>
+            </div>
             <nav aria-label="Auth Navigation">
+                <a href="sitemap.html"><i data-lucide="map"></i> Site Map</a>
+                <a href="user-manual.html"><i data-lucide="book-open"></i> User Manual</a>
                 <a href="register.html"><i data-lucide="user-plus"></i> Register</a>
             </nav>
         </div>
@@ -26,7 +27,7 @@
 
     <main class="container">
         <div class="auth-container">
-            <h2>Account Login</h2>
+            <h1>Account Login</h1>
             <form id="loginForm">
                 <div class="form-group">
                     <label for="email">Email Address</label>
@@ -41,9 +42,40 @@
                     <span>Login</span>
                 </button>
             </form>
+
+            <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed var(--border-color); text-align: left;">
+                <p style="font-size: 0.85rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;">
+                    <i data-lucide="sparkles" style="width: 14px; height: 14px; vertical-align: middle;"></i> 1-Click Demo Logins (Password: password123)
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem;">
+                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="admin@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
+                        🛡️ Admin Portal
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="farmer@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
+                        🌾 Jack (Farmer)
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="wholesaler@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
+                        🏢 Liam (Wholesaler - Approved)
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="wholesaler.pending@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
+                        ⏳ Matilda (Wholesaler - Pending)
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="driver@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
+                        🚚 Lucas (Driver)
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="customer@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
+                        🛒 Chloe (Customer)
+                    </button>
+                </div>
+            </div>
+
             <div class="auth-links">
                 <p>Don't have an account? <a href="register.html">Register here</a></p>
-                <p style="margin-top: 0.65rem;"><a href="index.html">← Back to Overview</a></p>
+                <p style="margin-top: 0.65rem;">
+                    <a href="index.html">← Back to Overview</a> | 
+                    <a href="sitemap.html">Site Map</a> | 
+                    <a href="installation-manual.html">Installation</a>
+                </p>
             </div>
         </div>
     </main>
@@ -55,6 +87,14 @@
     <script type="module">
         import { loginUser } from './js/auth.js';
         
+        document.querySelectorAll('.demo-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.getElementById('email').value = btn.getAttribute('data-email');
+                document.getElementById('password').value = 'password123';
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            });
+        });
+
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;

@@ -10,6 +10,7 @@
     border: 1px solid var(--border-color);
 }
 
+.auth-container h1,
 .auth-container h2 {
     text-align: center;
     color: var(--primary-color);

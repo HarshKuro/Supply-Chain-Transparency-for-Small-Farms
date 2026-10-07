@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary SEO Metadata -->
-    <title>Supply Chain Transparency for Small Farms | Digital Food Traceability Platform</title>
-    <meta name="description" content="Supply Chain Transparency for Small Farms is an open academic platform enhancing fair trade through digital traceability, connecting farmers, wholesalers, drivers, and customers.">
+    <title>Supply Chain Transparency for Small Farms | AgriTrace</title>
+    <meta name="description" content="Enhancing Fair Trade Through Digital Traceability. Connect farmers, wholesalers, drivers, and customers through one transparent, auditable digital workflow.">
     <meta name="keywords" content="supply chain transparency, small farms, food traceability, agricultural transparency, fair trade, local produce logistics">
     <meta name="author" content="Academic Project Team">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://2026s2n.winproject.com.au/">
 
     <!-- Open Graph / Social Metadata -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://2026s2n.winproject.com.au/">
-    <meta property="og:title" content="Supply Chain Transparency for Small Farms | Digital Food Traceability">
-    <meta property="og:description" content="Enhancing Fair Trade Through Digital Traceability. Connecting farmers, wholesalers, drivers, and customers through one simple digital workflow.">
+    <meta property="og:title" content="Supply Chain Transparency for Small Farms | AgriTrace">
+    <meta property="og:description" content="Enhancing Fair Trade Through Digital Traceability. Connect farmers, wholesalers, drivers, and customers through one transparent, auditable digital workflow.">
     <meta property="og:site_name" content="Supply Chain Transparency for Small Farms">
 
     <!-- Stylesheets -->
@@ -141,15 +139,20 @@
 <body>
     <header>
         <div class="container">
-            <h1>
+            <div class="logo">
                 <a href="index.html">
                     <i data-lucide="sprout"></i>
                     <span>Supply Chain Transparency</span>
                 </a>
-            </h1>
+            </div>
             <nav aria-label="Main Navigation">
+                <a href="sitemap.html"><i data-lucide="map"></i> Site Map</a>
+                <a href="user-manual.html"><i data-lucide="book-open"></i> User Manual</a>
+                <a href="installation-manual.html"><i data-lucide="terminal"></i> Installation</a>
+                <a href="evaluation-report.html"><i data-lucide="bar-chart-3"></i> Evaluation Report</a>
+                <a href="admin/dashboard.html"><i data-lucide="shield-check"></i> Admin Portal</a>
                 <a href="login.html"><i data-lucide="log-in"></i> Login</a>
-                <a href="register.html"><i data-lucide="user-plus"></i> Register</a>
+                <a href="register.html" class="btn btn-secondary btn-sm" style="color: var(--text-color) !important; background: white;"><i data-lucide="user-plus"></i> Register</a>
             </nav>
         </div>
     </header>
@@ -159,10 +162,12 @@
         <section class="hero" aria-labelledby="hero-title">
             <div class="container">
                 <h1 id="hero-title">Supply Chain Transparency for Small Farms</h1>
-                <p>Enhancing Fair Trade Through Digital Traceability. Connect farmers, wholesalers, drivers, and customers through one transparent, auditable digital workflow.</p>
-                <div>
-                    <a href="login.html" class="btn"><i data-lucide="log-in"></i> Login</a>
-                    <a href="register.html" class="btn btn-secondary"><i data-lucide="user-plus"></i> Register</a>
+                <p>Enhancing Fair Trade Through Digital Traceability. Connect Australian farmers, wholesalers, drivers, and customers through one transparent, auditable digital workflow with strict administrator oversight.</p>
+                <div style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+                    <a href="login.html" class="btn"><i data-lucide="log-in"></i> Stakeholder Login</a>
+                    <a href="register.html" class="btn btn-secondary"><i data-lucide="user-plus"></i> Register Account</a>
+                    <a href="user-manual.html" class="btn btn-secondary"><i data-lucide="book-open"></i> User Manual</a>
+                    <a href="evaluation-report.html" class="btn btn-secondary"><i data-lucide="bar-chart-3"></i> Evaluation Report</a>
                 </div>
             </div>
         </section>
@@ -212,22 +217,66 @@
                     </div>
                     <div class="feature-card">
                         <i data-lucide="shield-check"></i>
-                        <span>Role-Based Access</span>
-                        <span class="feature-desc">Dedicated portals for Farmer, Wholesaler, Driver, Customer, and Admin.</span>
+                        <span>Admin Governance</span>
+                        <span class="feature-desc">Central oversight of all agricultural transactions, users, and compliance.</span>
+                    </div>
+                    <div class="feature-card">
+                        <i data-lucide="check-square"></i>
+                        <span>Wholesaler Accreditation</span>
+                        <span class="feature-desc">Wholesalers must undergo Administrator approval before auditing farm batches.</span>
+                    </div>
+                    <div class="feature-card">
+                        <i data-lucide="dollar-sign"></i>
+                        <span>Financial Evaluation</span>
+                        <span class="feature-desc">Comprehensive CAPEX/OPEX cost analysis & farmer margin benefit modeling.</span>
                     </div>
                     <div class="feature-card">
                         <i data-lucide="star"></i>
                         <span>Customer Feedback</span>
-                        <span class="feature-desc">Post-delivery rating and reviews stored immutably in Firestore.</span>
+                        <span class="feature-desc">Post-delivery rating and reviews stored transparently in Firestore.</span>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Supply Chain Transparency for Small Farms. Academic Project Hosted at <a href="https://2026s2n.winproject.com.au/">2026s2n.winproject.com.au</a>.</p>
+    <footer style="background-color: var(--card-bg); border-top: 1px solid var(--border-color); padding: 3rem 1rem 1.5rem; margin-top: 3rem;">
+        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 2rem; text-align: left;">
+            <div>
+                <h4 style="color: var(--primary-color); margin-bottom: 0.85rem; font-size: 1rem;"><i data-lucide="sprout"></i> AgriTrace Platform</h4>
+                <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;">Digital supply chain transparency connecting Australian small farms directly with certified wholesalers, logistics drivers, and consumers.</p>
+            </div>
+            <div>
+                <h4 style="color: var(--primary-color); margin-bottom: 0.85rem; font-size: 1rem;"><i data-lucide="book-open"></i> Documentation</h4>
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.875rem; line-height: 2;">
+                    <li><a href="sitemap.html" style="color: var(--text-color);"><i data-lucide="map" style="width: 14px; height: 14px; vertical-align: middle;"></i> Site Map</a></li>
+                    <li><a href="user-manual.html" style="color: var(--text-color);"><i data-lucide="book-marked" style="width: 14px; height: 14px; vertical-align: middle;"></i> User Manual</a></li>
+                    <li><a href="installation-manual.html" style="color: var(--text-color);"><i data-lucide="terminal" style="width: 14px; height: 14px; vertical-align: middle;"></i> Installation Manual</a></li>
+                    <li><a href="evaluation-report.html" style="color: var(--text-color);"><i data-lucide="bar-chart-3" style="width: 14px; height: 14px; vertical-align: middle;"></i> Evaluation Report (Expenses)</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: var(--primary-color); margin-bottom: 0.85rem; font-size: 1rem;"><i data-lucide="users"></i> Stakeholder Portals</h4>
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.875rem; line-height: 2;">
+                    <li><a href="admin/dashboard.html" style="color: var(--text-color);"><i data-lucide="shield-check" style="width: 14px; height: 14px; vertical-align: middle;"></i> Admin Portal</a></li>
+                    <li><a href="farmer/dashboard.html" style="color: var(--text-color);"><i data-lucide="sprout" style="width: 14px; height: 14px; vertical-align: middle;"></i> Farmer Portal</a></li>
+                    <li><a href="wholesaler/dashboard.html" style="color: var(--text-color);"><i data-lucide="store" style="width: 14px; height: 14px; vertical-align: middle;"></i> Wholesaler Portal</a></li>
+                    <li><a href="driver/dashboard.html" style="color: var(--text-color);"><i data-lucide="truck" style="width: 14px; height: 14px; vertical-align: middle;"></i> Driver Logistics</a></li>
+                    <li><a href="customer/dashboard.html" style="color: var(--text-color);"><i data-lucide="shopping-bag" style="width: 14px; height: 14px; vertical-align: middle;"></i> Customer Market</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: var(--primary-color); margin-bottom: 0.85rem; font-size: 1rem;"><i data-lucide="wrench"></i> Utilities & Testing</h4>
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.875rem; line-height: 2;">
+                    <li><a href="seed.html" style="color: var(--text-color);"><i data-lucide="database" style="width: 14px; height: 14px; vertical-align: middle;"></i> Seed Australian Database</a></li>
+                    <li><a href="test_runner.html" style="color: var(--text-color);"><i data-lucide="check-circle" style="width: 14px; height: 14px; vertical-align: middle;"></i> Automated Test Runner</a></li>
+                    <li><a href="login.html" style="color: var(--text-color);"><i data-lucide="log-in" style="width: 14px; height: 14px; vertical-align: middle;"></i> Account Login</a></li>
+                    <li><a href="register.html" style="color: var(--text-color);"><i data-lucide="user-plus" style="width: 14px; height: 14px; vertical-align: middle;"></i> Register Account</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container" style="border-top: 1px solid var(--border-color); padding-top: 1.25rem; text-align: center;">
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted);">&copy; 2026 Supply Chain Transparency for Small Farms. All rights reserved.</p>
         </div>
     </footer>
 

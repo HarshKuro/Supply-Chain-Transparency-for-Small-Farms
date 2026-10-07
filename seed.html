@@ -3,21 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seed Database</title>
+    <title>Australian Database Seeder | Supply Chain Transparency</title>
+    <link rel="stylesheet" href="css/style.css">
     <style>
-        body { font-family: sans-serif; padding: 2rem; line-height: 1.6; }
-        .log-entry { margin-bottom: 0.5rem; }
-        .success { color: green; }
-        .error { color: red; }
+        body { background-color: var(--bg-color); padding: 2rem 1rem; }
+        .seed-card {
+            max-width: 860px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+        }
+        .log-box {
+            background: #0F172A;
+            color: #E2E8F0;
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            height: 380px;
+            overflow-y: scroll;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin: 1.5rem 0;
+            border: 1px solid #334155;
+        }
+        .log-entry { margin-bottom: 0.35rem; }
+        .log-entry.success { color: #4ADE80; font-weight: 600; }
+        .log-entry.error { color: #F87171; }
+        .log-entry.info { color: #38BDF8; }
+        .log-entry.highlight { color: #FDE047; font-weight: bold; }
     </style>
 </head>
 <body>
-    <h2>Seeding Database... Please wait.</h2>
-    <p>This script will create demo accounts and some sample products.</p>
-    <div id="log" style="background: #f5f5f5; padding: 1rem; border-radius: 5px; height: 300px; overflow-y: scroll; font-family: monospace;"></div>
-    
-    <div style="margin-top: 1rem;">
-        <a href="index.html" style="padding: 10px 15px; background: #2E7D32; color: white; text-decoration: none; border-radius: 4px; display: inline-block;">Go to Home</a>
+    <div class="seed-card">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <h1 style="color: var(--primary-color); font-size: 1.75rem; margin: 0 0 0.25rem 0;">
+                    🇦🇺 Seeding Australian Database
+                </h1>
+                <p style="color: var(--text-muted); margin: 0; font-size: 0.95rem;">
+                    Configuring authentic Australian regional harvests, approved & pending wholesalers, drivers, orders, and admin credentials.
+                </p>
+            </div>
+            <a href="index.html" class="btn btn-secondary btn-sm">
+                ← Back to Home
+            </a>
+        </div>
+
+        <div class="log-box" id="log"></div>
+
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <a href="login.html" class="btn">
+                    Go to Login Portal →
+                </a>
+                <a href="admin/dashboard.html" class="btn btn-secondary">
+                    Admin Portal
+                </a>
+                <a href="sitemap.html" class="btn btn-secondary">
+                    Site Map
+                </a>
+            </div>
+            <small style="color: var(--text-muted);">All accounts use password: <code>password123</code></small>
+        </div>
     </div>
 
     <script type="module">
@@ -32,47 +82,186 @@
         };
 
         const users = [
-            { email: 'farmer@example.com', name: 'Jack Miller (Farmer)', role: 'farmer', phone: '0412345671' },
-            { email: 'wholesaler@example.com', name: 'Liam Wilson (Wholesaler)', role: 'wholesaler', phone: '0412345672' },
-            { email: 'driver@example.com', name: 'Lucas Brown (Driver)', role: 'driver', phone: '0412345673' },
-            { email: 'customer@example.com', name: 'Chloe Taylor (Customer)', role: 'customer', phone: '0412345674' },
-            { email: 'admin@example.com', name: 'System Admin', role: 'admin', phone: '0412345675' }
+            { 
+                email: 'admin@example.com', 
+                name: 'AgriTrace Administrator (Canberra ACT)', 
+                role: 'admin', 
+                phone: '0412 345 675',
+                approved: true,
+                approvalStatus: 'approved'
+            },
+            { 
+                email: 'farmer@example.com', 
+                name: 'Jack Miller (Yarra Valley Harvests VIC)', 
+                role: 'farmer', 
+                phone: '0412 345 671',
+                farmLocation: 'Coldstream, Yarra Valley VIC',
+                approved: true,
+                approvalStatus: 'approved'
+            },
+            { 
+                email: 'wholesaler@example.com', 
+                name: 'Liam Wilson (Sydney Central Produce Markets Pty Ltd)', 
+                role: 'wholesaler', 
+                phone: '0412 345 672',
+                businessLocation: 'Flemington Markets, Sydney NSW',
+                approved: true, // Accredited
+                approvalStatus: 'approved'
+            },
+            { 
+                email: 'wholesaler.pending@example.com', 
+                name: 'Matilda Evans (Melbourne Wholesale Hub Pty Ltd)', 
+                role: 'wholesaler', 
+                phone: '0412 888 999',
+                businessLocation: 'Epping Wholesale Facility, Melbourne VIC',
+                approved: false, // Pending review to test admin approval!
+                approvalStatus: 'pending'
+            },
+            { 
+                email: 'driver@example.com', 
+                name: 'Lucas Brown (Outback Cold Logistics & Transport)', 
+                role: 'driver', 
+                phone: '0412 345 673',
+                vehicle: 'Refrigerated Hino 300 (NSW-TRK-882)',
+                approved: true,
+                approvalStatus: 'approved'
+            },
+            { 
+                email: 'customer@example.com', 
+                name: 'Chloe Taylor (Carlton, Melbourne VIC)', 
+                role: 'customer', 
+                phone: '0412 345 674',
+                deliveryAddress: '42 Elgin Street, Carlton VIC 3053',
+                approved: true,
+                approvalStatus: 'approved'
+            }
         ];
 
         const products = [
-            { name: 'Tomato', category: 'Vegetables', description: 'Fresh farm tomatoes', price: 4.50, quantity: 100, unit: 'kg' },
-            { name: 'Potato', category: 'Vegetables', description: 'Fresh organic potatoes', price: 3.00, quantity: 200, unit: 'kg' },
-            { name: 'Onion', category: 'Vegetables', description: 'Red onions', price: 2.80, quantity: 150, unit: 'kg' },
-            { name: 'Carrot', category: 'Vegetables', description: 'Fresh carrots', price: 2.50, quantity: 80, unit: 'kg' },
-            { name: 'Spinach', category: 'Vegetables', description: 'Green spinach', price: 3.50, quantity: 50, unit: 'kg' },
-            { name: 'Apple', category: 'Fruits', description: 'Fresh sweet apples', price: 5.00, quantity: 100, unit: 'kg' },
-            { name: 'Wheat', category: 'Grains', description: 'High quality wheat', price: 1.50, quantity: 500, unit: 'kg' },
-            { name: 'Rice', category: 'Grains', description: 'Australian grown rice', price: 3.20, quantity: 400, unit: 'kg' }
+            { 
+                name: 'Goulburn Valley Royal Gala Apples', 
+                category: 'Fruits', 
+                description: 'Crisp, sweet hand-picked Gala apples grown in sun-drenched Goulburn Valley orchards, Victoria.', 
+                price: 4.80, 
+                quantity: 180, 
+                unit: 'kg',
+                origin: 'Goulburn Valley VIC'
+            },
+            { 
+                name: 'Mildura Sunraysia Sweet Navel Oranges', 
+                category: 'Fruits', 
+                description: 'Juicy, sun-ripened citrus harvested along the Murray River Basin, Mildura VIC.', 
+                price: 3.50, 
+                quantity: 220, 
+                unit: 'kg',
+                origin: 'Mildura VIC'
+            },
+            { 
+                name: 'Queensland Bowen Special Mangoes', 
+                category: 'Fruits', 
+                description: 'Aromatic, sweet tropical Kensington Pride mangoes straight from Bowen, North Queensland.', 
+                price: 8.50, 
+                quantity: 90, 
+                unit: 'kg',
+                origin: 'Bowen QLD'
+            },
+            { 
+                name: 'Yarra Valley Organic Strawberries', 
+                category: 'Fruits', 
+                description: 'Certified chemical-free ripe strawberries picked fresh in Coldstream, Yarra Valley VIC.', 
+                price: 6.20, 
+                quantity: 120, 
+                unit: 'punnet',
+                origin: 'Yarra Valley VIC'
+            },
+            { 
+                name: 'Lockyer Valley Crisp Green Broccoli', 
+                category: 'Vegetables', 
+                description: 'Fresh nutrient-rich broccoli heads harvested daily from Lockyer Valley growers, Queensland.', 
+                price: 3.90, 
+                quantity: 140, 
+                unit: 'kg',
+                origin: 'Lockyer Valley QLD'
+            },
+            { 
+                name: 'Tasmanian Dutch Cream Potatoes', 
+                category: 'Vegetables', 
+                description: 'Buttery, rich heirloom potatoes cultivated in deep red volcanic soils, Cradle Coast Tasmania.', 
+                price: 4.20, 
+                quantity: 260, 
+                unit: 'kg',
+                origin: 'Cradle Coast TAS'
+            },
+            { 
+                name: 'Adelaide Hills Creamy Hass Avocados', 
+                category: 'Vegetables', 
+                description: 'Gourmet ripened Hass avocados nurtured in cool temperate Adelaide Hills groves, South Australia.', 
+                price: 7.50, 
+                quantity: 110, 
+                unit: 'kg',
+                origin: 'Adelaide Hills SA'
+            },
+            { 
+                name: 'Riverina Certified Jasmine Long-Grain Rice', 
+                category: 'Grains', 
+                description: 'Australian river-fed premium aromatic long-grain rice grown in the Murrumbidgee Irrigation Area NSW.', 
+                price: 3.80, 
+                quantity: 450, 
+                unit: 'kg',
+                origin: 'Riverina NSW'
+            },
+            { 
+                name: 'Barossa Valley Seedless Crimson Grapes', 
+                category: 'Fruits', 
+                description: 'Sweet, crisp table grapes nurtured under South Australian sun in the historic Barossa Valley.', 
+                price: 5.90, 
+                quantity: 130, 
+                unit: 'kg',
+                origin: 'Barossa Valley SA'
+            },
+            { 
+                name: 'Stanthorpe Crisp Celery Bunches', 
+                category: 'Vegetables', 
+                description: 'Highland crunchy celery bunches grown in Granite Belt temperate climate, Stanthorpe QLD.', 
+                price: 2.90, 
+                quantity: 85, 
+                unit: 'bunch',
+                origin: 'Granite Belt QLD'
+            }
         ];
 
         async function seed() {
             let farmerId = null;
+            let customerId = null;
+            let approvedWholesalerId = null;
+            let driverId = null;
 
-            log('--- Starting User Creation ---');
+            log('--- 🇦🇺 INITIALIZING AUSTRALIAN STAKEHOLDER ACCOUNTS ---', 'highlight');
             for (const u of users) {
                 try {
-                    log(`Attempting to create: ${u.email}`);
+                    log(`Creating stakeholder: ${u.name} (${u.role})...`, 'info');
                     const cred = await createUserWithEmailAndPassword(auth, u.email, 'password123');
                     await setDoc(doc(db, "users", cred.user.uid), {
                         name: u.name,
                         email: u.email,
                         phone: u.phone,
                         role: u.role,
+                        approved: u.approved,
+                        approvalStatus: u.approvalStatus,
+                        farmLocation: u.farmLocation || null,
+                        businessLocation: u.businessLocation || null,
+                        vehicle: u.vehicle || null,
                         createdAt: serverTimestamp()
                     });
-                    log(`Success: Created ${u.role} account.`, 'success');
+                    log(`✔ Created ${u.role}: ${u.email} [Status: ${u.approvalStatus}]`, 'success');
                     
-                    if (u.role === 'farmer') {
-                        farmerId = cred.user.uid;
-                    }
+                    if (u.role === 'farmer') farmerId = cred.user.uid;
+                    if (u.role === 'customer') customerId = cred.user.uid;
+                    if (u.role === 'wholesaler' && u.approved) approvedWholesalerId = cred.user.uid;
+                    if (u.role === 'driver') driverId = cred.user.uid;
                 } catch (e) {
                     if (e.code === 'auth/email-already-in-use') {
-                        log(`Notice: ${u.email} already exists. Updating profile...`, 'error');
+                        log(`Notice: ${u.email} exists in Auth. Updating Firestore profile...`, 'info');
                         try {
                             const { signInWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js");
                             const cred = await signInWithEmailAndPassword(auth, u.email, 'password123');
@@ -80,20 +269,30 @@
                                 name: u.name,
                                 email: u.email,
                                 phone: u.phone,
-                                role: u.role
+                                role: u.role,
+                                approved: u.approved,
+                                approvalStatus: u.approvalStatus,
+                                farmLocation: u.farmLocation || null,
+                                businessLocation: u.businessLocation || null,
+                                vehicle: u.vehicle || null
                             }, { merge: true });
+                            
                             if (u.role === 'farmer') farmerId = cred.user.uid;
-                            log(`Successfully updated profile name to ${u.name} for ${u.email}.`, 'success');
+                            if (u.role === 'customer') customerId = cred.user.uid;
+                            if (u.role === 'wholesaler' && u.approved) approvedWholesalerId = cred.user.uid;
+                            if (u.role === 'driver') driverId = cred.user.uid;
+
+                            log(`✔ Updated profile for ${u.name} [Status: ${u.approvalStatus}]`, 'success');
                         } catch (err) {
-                            log(`Could not update profile for existing account: ${err.message}`, 'error');
+                            log(`Could not update existing user: ${err.message}`, 'error');
                         }
                     } else {
-                        log(`Error creating ${u.email}: ${e.message}`, 'error');
+                        log(`Error with ${u.email}: ${e.message}`, 'error');
                     }
                 }
             }
 
-            log('<br>--- Starting Product Creation ---');
+            log('<br>--- 🌾 SEEDING AUSTRALIAN FRESH HARVEST CATALOG ---', 'highlight');
             if (farmerId) {
                 for (const p of products) {
                     try {
@@ -101,27 +300,129 @@
                             ...p,
                             available: true,
                             farmerId: farmerId,
-                            farmerName: 'Jack Miller (Farmer)',
+                            farmerName: 'Jack Miller (Yarra Valley Harvests VIC)',
                             createdAt: serverTimestamp()
                         });
-                        log(`Success: Added product ${p.name} ($${p.price.toFixed(2)} AUD)`, 'success');
+                        log(`✔ Added: ${p.name} ($${p.price.toFixed(2)} AUD / ${p.unit}) [${p.origin}]`, 'success');
                     } catch (e) {
                         log(`Error adding ${p.name}: ${e.message}`, 'error');
                     }
                 }
             } else {
-                log('Notice: Could not find farmer ID to attach products to.', 'error');
+                log('Notice: Farmer ID not resolved; skipping product creation.', 'error');
+            }
+
+            log('<br>--- 📦 SEEDING REALISTIC AUSTRALIAN SUPPLY CHAIN ORDERS ---', 'highlight');
+            if (farmerId && customerId) {
+                const sampleOrders = [
+                    {
+                        customerName: 'Chloe Taylor (Melbourne VIC)',
+                        customerId: customerId,
+                        farmerName: 'Jack Miller (Yarra Valley Harvests VIC)',
+                        farmerId: farmerId,
+                        deliveryAddress: '42 Elgin Street, Carlton VIC 3053',
+                        phone: '0412 345 674',
+                        items: [
+                            { productName: 'Goulburn Valley Royal Gala Apples', quantity: 3, price: 4.80, unit: 'kg' },
+                            { productName: 'Yarra Valley Organic Strawberries', quantity: 2, price: 6.20, unit: 'punnet' }
+                        ],
+                        totalAmount: 26.80,
+                        status: 'Confirmed', // Awaiting wholesaler verification
+                        createdAt: serverTimestamp()
+                    },
+                    {
+                        customerName: 'Chloe Taylor (Melbourne VIC)',
+                        customerId: customerId,
+                        farmerName: 'Jack Miller (Yarra Valley Harvests VIC)',
+                        farmerId: farmerId,
+                        deliveryAddress: '42 Elgin Street, Carlton VIC 3053',
+                        phone: '0412 345 674',
+                        wholesalerId: approvedWholesalerId || 'demo-wholesaler',
+                        items: [
+                            { productName: 'Mildura Sunraysia Sweet Navel Oranges', quantity: 4, price: 3.50, unit: 'kg' },
+                            { productName: 'Tasmanian Dutch Cream Potatoes', quantity: 5, price: 4.20, unit: 'kg' }
+                        ],
+                        totalAmount: 35.00,
+                        status: 'Verified', // Verified by wholesaler, ready for driver
+                        createdAt: serverTimestamp()
+                    },
+                    {
+                        customerName: 'Noah Smith (Surry Hills, Sydney NSW)',
+                        customerId: customerId,
+                        farmerName: 'Jack Miller (Yarra Valley Harvests VIC)',
+                        farmerId: farmerId,
+                        deliveryAddress: '18 Riley Street, Surry Hills NSW 2010',
+                        phone: '0419 223 344',
+                        wholesalerId: approvedWholesalerId || 'demo-wholesaler',
+                        driverId: driverId || 'demo-driver',
+                        items: [
+                            { productName: 'Queensland Bowen Special Mangoes', quantity: 3, price: 8.50, unit: 'kg' },
+                            { productName: 'Riverina Certified Jasmine Long-Grain Rice', quantity: 2, price: 3.80, unit: 'kg' }
+                        ],
+                        totalAmount: 33.10,
+                        status: 'In Transit', // With driver on route
+                        createdAt: serverTimestamp()
+                    },
+                    {
+                        customerName: 'Chloe Taylor (Melbourne VIC)',
+                        customerId: customerId,
+                        farmerName: 'Jack Miller (Yarra Valley Harvests VIC)',
+                        farmerId: farmerId,
+                        deliveryAddress: '42 Elgin Street, Carlton VIC 3053',
+                        phone: '0412 345 674',
+                        wholesalerId: approvedWholesalerId || 'demo-wholesaler',
+                        driverId: driverId || 'demo-driver',
+                        items: [
+                            { productName: 'Barossa Valley Seedless Crimson Grapes', quantity: 3, price: 5.90, unit: 'kg' },
+                            { productName: 'Lockyer Valley Crisp Green Broccoli', quantity: 2, price: 3.90, unit: 'kg' }
+                        ],
+                        totalAmount: 25.50,
+                        status: 'Delivered', // Complete
+                        createdAt: serverTimestamp()
+                    }
+                ];
+
+                for (const o of sampleOrders) {
+                    try {
+                        const orderRef = await addDoc(collection(db, "orders"), o);
+                        log(`✔ Seeded Order [${o.status}]: ${o.customerName} → $${o.totalAmount.toFixed(2)} AUD`, 'success');
+
+                        if (o.status === 'Delivered') {
+                            await addDoc(collection(db, "feedback"), {
+                                orderId: orderRef.id,
+                                customerId: customerId,
+                                customerName: o.customerName,
+                                farmerId: farmerId,
+                                farmerName: o.farmerName,
+                                rating: 5,
+                                comment: 'Exceptional Australian produce! Crisp, fresh, and full transparency from Yarra Valley to Melbourne.',
+                                createdAt: serverTimestamp()
+                            });
+                            log(`  ↳ Added 5-star customer feedback for delivered order`, 'info');
+                        }
+                    } catch (err) {
+                        log(`Error adding order: ${err.message}`, 'error');
+                    }
+                }
             }
 
             try {
                 await signOut(auth);
             } catch (e) {}
-            
-            log('<br><b>--- SEEDING COMPLETE ---</b>', 'success');
-            log('<b>All accounts have the password: <code>password123</code></b>');
+
+            log('<br><b>🇦🇺 =================================================== 🇦🇺</b>', 'highlight');
+            log('<b>AUSTRALIAN SEEDING COMPLETED SUCCESSFULLY!</b>', 'success');
+            log('<b>Stakeholder Accounts Available (Password: <code>password123</code>):</b>');
+            log('• 🛡️ <b>Admin:</b> admin@example.com');
+            log('• 🌾 <b>Farmer:</b> farmer@example.com (Jack Miller, Yarra Valley VIC)');
+            log('• 🏢 <b>Wholesaler (Approved):</b> wholesaler@example.com (Liam Wilson, Flemington NSW)');
+            log('• ⏳ <b>Wholesaler (Pending Approval):</b> wholesaler.pending@example.com (Matilda Evans, Epping VIC)');
+            log('• 🚚 <b>Driver:</b> driver@example.com (Lucas Brown, Cold Transport)');
+            log('• 🛒 <b>Customer:</b> customer@example.com (Chloe Taylor, Melbourne VIC)');
+            log('<b>🇦🇺 =================================================== 🇦🇺</b>', 'highlight');
         }
 
-        // Start seeding automatically
+        // Run seeding
         seed();
     </script>
 </body>

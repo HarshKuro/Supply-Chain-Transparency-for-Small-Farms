@@ -11,14 +11,14 @@
     <header>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <h1>
-                <a href="#" style="color: white;">
+                <a href="dashboard.html" style="color: white; display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
                     <i data-lucide="shield-check"></i>
-                    <span>Admin Portal</span>
+                    <span>AgriTrace Admin Portal</span>
                 </a>
             </h1>
             <div class="user-info">
-                <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">
+                <span id="userName">Loading Admin...</span>
+                <button id="logoutBtn" class="btn btn-logout">
                     <i data-lucide="log-out"></i>
                     <span>Logout</span>
                 </button>
@@ -31,29 +31,47 @@
             <h3>Admin Menu</h3>
             <ul class="nav-links">
                 <li><a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li><a href="approvals.html"><i data-lucide="check-square"></i> Wholesaler Approvals</a></li>
                 <li><a href="users.html"><i data-lucide="users"></i> Manage Users</a></li>
                 <li><a href="products.html" class="active"><i data-lucide="package"></i> All Products</a></li>
                 <li><a href="orders.html"><i data-lucide="shopping-bag"></i> All Orders</a></li>
+                <li><a href="evaluation.html"><i data-lucide="bar-chart-3"></i> Financial Evaluation</a></li>
+            </ul>
+
+            <h3 style="margin-top: 1.5rem;">Documentation</h3>
+            <ul class="nav-links">
+                <li><a href="../sitemap.html"><i data-lucide="map"></i> Site Map</a></li>
+                <li><a href="../user-manual.html"><i data-lucide="book-open"></i> User Manual</a></li>
+                <li><a href="../installation-manual.html"><i data-lucide="terminal"></i> Installation Manual</a></li>
+                <li><a href="../evaluation-report.html"><i data-lucide="dollar-sign"></i> Expenses Report</a></li>
+                <li><a href="../index.html"><i data-lucide="globe"></i> Public Overview</a></li>
             </ul>
         </aside>
 
         <main class="main-content">
-            <h2>All System Products</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h2 style="margin: 0 0 0.25rem 0;">All System Agricultural Products</h2>
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">
+                        Inspect active harvests, farmer pricing in AUD, and stock levels across Australia.
+                    </p>
+                </div>
+            </div>
             
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
                             <th>Product Name</th>
-                            <th>Farmer</th>
-                            <th>Price</th>
-                            <th>Stock</th>
+                            <th>Farmer / Region</th>
+                            <th>Price (AUD)</th>
+                            <th>Available Stock</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="productsTableBody">
-                        <tr><td colspan="6" style="text-align:center;">Loading products...</td></tr>
+                        <tr><td colspan="6" style="text-align:center; padding: 1.5rem;">Loading products...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -69,11 +87,13 @@
         import { initAdminProductsPage } from '../js/admin.js';
         
         checkRoleAccess('admin');
-        document.getElementById('logoutBtn').addEventListener('click', logoutUser);
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) logoutBtn.addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {
             if(user) {
-                document.getElementById('userName').textContent = user.name;
+                const userNameEl = document.getElementById('userName');
+                if (userNameEl) userNameEl.textContent = user.name;
                 initAdminProductsPage(user);
                 if (window.lucide) lucide.createIcons();
             }

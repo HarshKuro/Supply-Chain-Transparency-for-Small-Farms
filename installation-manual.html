@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation & Deployment Manual | Supply Chain Transparency</title>
+    <meta name="description" content="Technical installation, Firebase configuration, database seeding, and production deployment manual for the Supply Chain Transparency platform.">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .install-hero {
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            color: white;
+            padding: 3.5rem 1rem;
+            text-align: center;
+        }
+        .install-hero h1 {
+            color: #FFFFFF !important;
+            font-size: 2.35rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+        .install-hero p {
+            color: #94A3B8;
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        .install-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2.5rem;
+            padding: 2.5rem 1rem 4rem;
+        }
+        @media (max-width: 860px) {
+            .install-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        .install-toc {
+            position: sticky;
+            top: 80px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            height: fit-content;
+            box-shadow: var(--shadow-sm);
+        }
+        .install-toc h3 {
+            font-size: 1.05rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+        .toc-list a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 0.65rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: var(--radius-sm);
+            transition: all 0.15s ease;
+        }
+        .toc-list a:hover {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            text-decoration: none;
+            transform: translateX(4px);
+        }
+        .install-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .install-section {
+            margin-bottom: 3.5rem;
+            scroll-margin-top: 90px;
+        }
+        .install-section:last-child {
+            margin-bottom: 0;
+        }
+        .install-section h2 {
+            font-size: 1.5rem;
+            color: #0F172A;
+            margin-bottom: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.65rem;
+        }
+        .install-section h3 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.65rem;
+            color: var(--text-color);
+        }
+        .code-box {
+            background: #0F172A;
+            color: #E2E8F0;
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+            overflow-x: auto;
+            position: relative;
+            border: 1px solid #334155;
+        }
+        .code-box .comment { color: #64748B; }
+        .code-box .keyword { color: #38BDF8; }
+        .code-box .string { color: #A7F3D0; }
+        .code-box .cmd { color: #FDE047; font-weight: bold; }
+        .step-badge {
+            background: #2563EB;
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+        }
+        .tech-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: #F1F5F9;
+            border: 1px solid #CBD5E1;
+            padding: 0.3rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.825rem;
+            font-weight: 600;
+            color: #334155;
+            margin: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <i data-lucide="sprout"></i>
+                    <span>Supply Chain Transparency</span>
+                </a>
+            </div>
+            <nav aria-label="Main Navigation">
+                <a href="index.html"><i data-lucide="home"></i> Home</a>
+                <a href="sitemap.html"><i data-lucide="map"></i> Site Map</a>
+                <a href="user-manual.html"><i data-lucide="book-open"></i> User Manual</a>
+                <a href="installation-manual.html" style="font-weight: 700; border-bottom: 2px solid white;"><i data-lucide="terminal"></i> Installation</a>
+                <a href="evaluation-report.html"><i data-lucide="bar-chart-3"></i> Evaluation Report</a>
+                <a href="admin/dashboard.html"><i data-lucide="shield-check"></i> Admin Portal</a>
+                <a href="login.html"><i data-lucide="log-in"></i> Login</a>
+                <a href="register.html" class="btn btn-secondary btn-sm" style="color: var(--text-color) !important; background: white;"><i data-lucide="user-plus"></i> Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="install-hero">
+            <div class="container">
+                <h1>Technical Installation & Deployment Manual</h1>
+                <p>Complete deployment guide: architectural prerequisites, Firebase configuration, Firestore security rules, Australian data seeding, and local execution.</p>
+            </div>
+        </section>
+
+        <div class="container install-layout">
+            <!-- Sidebar TOC -->
+            <aside class="install-toc">
+                <h3>Setup Guide</h3>
+                <ul class="toc-list">
+                    <li><a href="#arch"><i data-lucide="layers"></i> 1. Architecture Overview</a></li>
+                    <li><a href="#prereq"><i data-lucide="check-square"></i> 2. Prerequisites</a></li>
+                    <li><a href="#firebase"><i data-lucide="flame"></i> 3. Firebase Setup</a></li>
+                    <li><a href="#config"><i data-lucide="settings"></i> 4. Configuration</a></li>
+                    <li><a href="#rules"><i data-lucide="shield"></i> 5. Firestore Rules</a></li>
+                    <li><a href="#seeding"><i data-lucide="database"></i> 6. Seeding Australian Data</a></li>
+                    <li><a href="#running"><i data-lucide="play-circle"></i> 7. Running Locally</a></li>
+                    <li><a href="#deploy"><i data-lucide="upload-cloud"></i> 8. Production Deployment</a></li>
+                    <li><a href="#testing"><i data-lucide="check-circle"></i> 9. Test Verification</a></li>
+                </ul>
+
+                <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color);">
+                    <a href="evaluation-report.html" class="btn btn-secondary btn-sm" style="width: 100%;">
+                        <i data-lucide="dollar-sign"></i> View Expense Report
+                    </a>
+                </div>
+            </aside>
+
+            <!-- Main Documentation Body -->
+            <article class="install-content">
+                
+                <!-- 1. Architecture -->
+                <section id="arch" class="install-section">
+                    <h2><i data-lucide="layers"></i> 1. Architectural Stack Overview</h2>
+                    <p>AgriTrace is built upon an ultra-fast, serverless, modular architecture that requires zero heavy build toolchains:</p>
+                    <div style="margin: 1rem 0;">
+                        <span class="tech-pill">🌐 HTML5 Semantic UI</span>
+                        <span class="tech-pill">🎨 Vanilla CSS3 Design System</span>
+                        <span class="tech-pill">⚡ Native JavaScript ES Modules</span>
+                        <span class="tech-pill">🔥 Firebase Authentication v10.8</span>
+                        <span class="tech-pill">📦 Cloud Firestore Real-time NoSQL</span>
+                        <span class="tech-pill">🛡️ Role-Based Security Rules</span>
+                        <span class="tech-pill">🇦🇺 Australian Context & AUD Pricing</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+                        Because all application logic runs via standard browser ES Modules, there are no complex Webpack, Vite, or bundle dependencies required to run or evaluate the platform locally.
+                    </p>
+                </section>
+
+                <!-- 2. Prerequisites -->
+                <section id="prereq" class="install-section">
+                    <h2><i data-lucide="check-square"></i> 2. System Requirements & Prerequisites</h2>
+                    <ul>
+                        <li><strong>Modern Web Browser:</strong> Google Chrome, Mozilla Firefox, Microsoft Edge, or Apple Safari (supporting ES Modules and CSS Grid).</li>
+                        <li><strong>Local HTTP Server (any of the following):</strong>
+                            <ul>
+                                <li>Python 3.9+ (included in most environments)</li>
+                                <li>Node.js 18+ (with <code>npx</code>)</li>
+                                <li>VS Code with the <strong>Live Server</strong> extension</li>
+                            </ul>
+                        </li>
+                        <li><strong>Google Firebase Account:</strong> Free Spark or Blaze plan for Cloud Firestore and Authentication.</li>
+                    </ul>
+                </section>
+
+                <!-- 3. Firebase Setup -->
+                <section id="firebase" class="install-section">
+                    <h2><i data-lucide="flame"></i> 3. Firebase Project Setup</h2>
+                    <p>Follow these steps in the <a href="https://console.firebase.google.com/" target="_blank" rel="noopener">Firebase Console</a>:</p>
+                    <ol style="margin-left: 1.25rem; line-height: 1.8;">
+                        <li>Click <strong>Add Project</strong>, enter a name (e.g., <code>agritrace-australia</code>), and complete creation.</li>
+                        <li>Navigate to <strong>Build → Authentication</strong>. Click <em>Get Started</em> and enable <strong>Email/Password</strong> sign-in provider.</li>
+                        <li>Navigate to <strong>Build → Firestore Database</strong>. Click <em>Create Database</em>, choose <strong>Production mode</strong>, and select a regional location (recommended: <code>australia-southeast1</code> Sydney).</li>
+                        <li>In Project Settings, register a Web App (<code>&lt;/&gt;</code>) to obtain your Firebase credentials.</li>
+                    </ol>
+                </section>
+
+                <!-- 4. Configuration -->
+                <section id="config" class="install-section">
+                    <h2><i data-lucide="settings"></i> 4. Project Configuration</h2>
+                    <p>Open <a href="file:///c:/Users/harsh/OneDrive/Documents/Pritam-projects/Supply%20Chain%20Transparency%20for%20Small%20Farms/js/firebase-config.js"><code>js/firebase-config.js</code></a> and verify your Firebase configuration object:</p>
+                    <div class="code-box">
+<span class="keyword">import</span> { initializeApp } <span class="keyword">from</span> <span class="string">"https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"</span>;
+<span class="keyword">import</span> { getAuth } <span class="keyword">from</span> <span class="string">"https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"</span>;
+<span class="keyword">import</span> { getFirestore } <span class="keyword">from</span> <span class="string">"https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js"</span>;
+
+<span class="keyword">const</span> firebaseConfig = {
+    apiKey: <span class="string">"YOUR_API_KEY"</span>,
+    authDomain: <span class="string">"YOUR_PROJECT.firebaseapp.com"</span>,
+    projectId: <span class="string">"YOUR_PROJECT_ID"</span>,
+    storageBucket: <span class="string">"YOUR_PROJECT.appspot.com"</span>,
+    messagingSenderId: <span class="string">"SENDER_ID"</span>,
+    appId: <span class="string">"APP_ID"</span>
+};
+
+<span class="keyword">export const</span> app = initializeApp(firebaseConfig);
+<span class="keyword">export const</span> auth = getAuth(app);
+<span class="keyword">export const</span> db = getFirestore(app);
+                    </div>
+                </section>
+
+                <!-- 5. Security Rules -->
+                <section id="rules" class="install-section">
+                    <h2><i data-lucide="shield"></i> 5. Firestore Security Rules Deployment</h2>
+                    <p>To enforce role-based access control and admin authorization, copy the contents of <code>firestore.rules</code> into the Firebase Console Rules editor:</p>
+                    <div class="code-box">
+<span class="keyword">rules_version</span> = <span class="string">'2'</span>;
+<span class="keyword">service</span> cloud.firestore {
+  <span class="keyword">match</span> /databases/{database}/documents {
+    <span class="keyword">function</span> isAdmin() {
+      <span class="keyword">return</span> get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == <span class="string">'admin'</span>;
+    }
+    <span class="keyword">function</span> getRole() {
+      <span class="keyword">return</span> get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+    <span class="comment">// Users Collection: Admin can approve/update any user</span>
+    <span class="keyword">match</span> /users/{userId} {
+      <span class="keyword">allow</span> read: <span class="keyword">if</span> request.auth != <span class="keyword">null</span>;
+      <span class="keyword">allow</span> create: <span class="keyword">if</span> request.auth != <span class="keyword">null</span> && request.auth.uid == userId;
+      <span class="keyword">allow</span> update, delete: <span class="keyword">if</span> request.auth.uid == userId || isAdmin();
+    }
+    <span class="comment">// Products & Orders Collections</span>
+    <span class="keyword">match</span> /products/{productId} {
+      <span class="keyword">allow</span> read: <span class="keyword">if</span> request.auth != <span class="keyword">null</span>;
+      <span class="keyword">allow</span> create, update, delete: <span class="keyword">if</span> getRole() == <span class="string">'farmer'</span> || isAdmin() || getRole() == <span class="string">'customer'</span>;
+    }
+    <span class="keyword">match</span> /orders/{orderId} {
+      <span class="keyword">allow</span> read: <span class="keyword">if</span> request.auth != <span class="keyword">null</span>;
+      <span class="keyword">allow</span> create, update: <span class="keyword">if</span> request.auth != <span class="keyword">null</span>;
+      <span class="keyword">allow</span> delete: <span class="keyword">if</span> isAdmin();
+    }
+  }
+}
+                    </div>
+                </section>
+
+                <!-- 6. Seeding Data -->
+                <section id="seeding" class="install-section">
+                    <h2><i data-lucide="database"></i> 6. Seeding Australian Database</h2>
+                    <p>The platform includes a dedicated graphical database seeder in <code>seed.html</code>:</p>
+                    <ol style="margin-left: 1.25rem; line-height: 1.8;">
+                        <li>Start your local server (see Step 7 below).</li>
+                        <li>Navigate to <a href="seed.html"><code>http://localhost:8000/seed.html</code></a>.</li>
+                        <li>The script automatically initializes:
+                            <ul>
+                                <li><strong>Admin Account:</strong> <code>admin@example.com</code></li>
+                                <li><strong>Australian Farmer:</strong> Jack Miller (Yarra Valley Harvests VIC)</li>
+                                <li><strong>Accredited Wholesaler:</strong> Liam Wilson (Sydney Central Markets NSW)</li>
+                                <li><strong>Pending Wholesaler:</strong> Matilda Evans (Melbourne Hub VIC) - for testing admin approvals</li>
+                                <li><strong>Transport Driver:</strong> Lucas Brown (Outback Cold Logistics)</li>
+                                <li><strong>Customer:</strong> Chloe Taylor (Melbourne VIC)</li>
+                                <li><strong>Produce Catalog:</strong> Fresh Australian Gala apples, Mildura oranges, Bowen mangoes, Yarra Valley strawberries, Riverina rice in AUD.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- 7. Running Locally -->
+                <section id="running" class="install-section">
+                    <h2><i data-lucide="play-circle"></i> 7. Running Locally</h2>
+                    <p>You can run the platform locally using any of these simple methods:</p>
+
+                    <h3>Method A: Windows Run Batch File (Recommended)</h3>
+                    <p>Double click <code>run.bat</code> in the project root folder. It automatically detects Python or Node.js and starts the server on port 8000.</p>
+
+                    <h3>Method B: Python Built-in HTTP Server</h3>
+                    <div class="code-box">
+<span class="cmd">python</span> -m http.server 8000
+                    </div>
+
+                    <h3>Method C: Node.js HTTP Server</h3>
+                    <div class="code-box">
+<span class="cmd">npx</span> http-server -p 8000 -c-1
+                    </div>
+
+                    <h3>Method D: Visual Studio Code</h3>
+                    <p>Right-click <code>index.html</code> inside VS Code and choose <strong>"Open with Live Server"</strong>.</p>
+                </section>
+
+                <!-- 8. Production Deployment -->
+                <section id="deploy" class="install-section">
+                    <h2><i data-lucide="upload-cloud"></i> 8. Production Deployment Options</h2>
+                    <p>Because AgriTrace is 100% static client-side with cloud backends, it can be deployed on any static hosting provider:</p>
+                    <ul>
+                        <li><strong>Firebase Hosting:</strong>
+                            <div class="code-box">
+<span class="cmd">npm install -g firebase-tools</span>
+<span class="cmd">firebase login</span>
+<span class="cmd">firebase init hosting</span>
+<span class="cmd">firebase deploy</span>
+                            </div>
+                        </li>
+                        <li><strong>GitHub Pages / Netlify / Vercel:</strong> Simply connect your Git repository and set the root directory as the publish directory.</li>
+                    </ul>
+                </section>
+
+                <!-- 9. Testing -->
+                <section id="testing" class="install-section">
+                    <h2><i data-lucide="check-circle"></i> 9. Automated Testing & Verification</h2>
+                    <p>To verify installation integrity, open the automated test suite:</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="test_runner.html" class="btn" style="background: #2563EB;">
+                            <i data-lucide="check-circle"></i> Launch Automated Test Runner
+                        </a>
+                    </div>
+                </section>
+
+            </article>
+        </div>
+    </main>
+
+    <footer style="background-color: var(--card-bg); border-top: 1px solid var(--border-color); padding: 2.5rem 1rem 1.5rem; text-align: center;">
+        <div class="container">
+            <p style="margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600; color: var(--primary-color);">
+                Supply Chain Transparency for Small Farms | AgriTrace
+            </p>
+            <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted);">
+                &copy; 2026 Supply Chain Transparency for Small Farms. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
+</body>
+</html>

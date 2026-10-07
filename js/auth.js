@@ -30,16 +30,23 @@ export async function registerUser(fullName, email, password, phone, role) {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
+        const isWholesaler = role === 'wholesaler';
         // Save additional user info in Firestore
         await setDoc(doc(db, "users", user.uid), {
             name: fullName,
             email: email,
             phone: phone,
             role: role,
+            approved: !isWholesaler,
+            approvalStatus: isWholesaler ? 'pending' : 'approved',
             createdAt: serverTimestamp()
         });
 
-        showAlert("Registration successful!", "success");
+        if (isWholesaler) {
+            showAlert("Registration submitted! Wholesaler accounts require administrator approval.", "success");
+        } else {
+            showAlert("Registration successful!", "success");
+        }
         // Redirect to dashboard
         window.location.href = getBaseUrl() + roleRoutes[role];
     } catch (error) {

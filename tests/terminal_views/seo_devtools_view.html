@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chrome DevTools - SEO & Open Graph DOM Inspection</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #202124;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #d1d5db;
+            padding: 24px;
+            display: flex;
+            justify-content: center;
+        }
+        .devtools-window {
+            width: 1180px;
+            background: #242424;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 1px #333;
+            overflow: hidden;
+            border: 1px solid #3c4043;
+        }
+        .devtools-header {
+            background: #292a2d;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid #3c4043;
+            font-size: 12.5px;
+            user-select: none;
+        }
+        .devtools-tabs {
+            display: flex;
+            gap: 16px;
+            height: 100%;
+            align-items: center;
+        }
+        .tab-item {
+            color: #9aa0a6;
+            padding: 0 4px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+        }
+        .tab-item.active {
+            color: #8ab4f8;
+            border-bottom: 2px solid #8ab4f8;
+        }
+        .inspect-badge {
+            background: #1e3a8a;
+            color: #93c5fd;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .devtools-body {
+            padding: 20px 24px;
+            font-family: 'Cascadia Code', Consolas, 'Courier New', monospace;
+            font-size: 13.5px;
+            line-height: 1.6;
+            background: #1e1e1e;
+            color: #d4d4d4;
+        }
+        .dom-line {
+            display: flex;
+            align-items: flex-start;
+        }
+        .tag { color: #569cd6; }
+        .attr { color: #9cdcfe; }
+        .val { color: #ce9178; }
+        .text { color: #d4d4d4; }
+        .comment { color: #6a9955; font-style: italic; }
+        .highlight-row {
+            background: rgba(14, 99, 156, 0.22);
+            border-left: 3px solid #007acc;
+            padding-left: 8px;
+            margin: 2px 0 2px -11px;
+        }
+        .audit-pill {
+            background: #064e3b;
+            color: #6ee7b7;
+            border: 1px solid #059669;
+            font-size: 11px;
+            padding: 1px 6px;
+            border-radius: 3px;
+            margin-left: 12px;
+            font-family: sans-serif;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="devtools-window">
+        <div class="devtools-header">
+            <div class="devtools-tabs">
+                <span class="tab-item active">Elements</span>
+                <span class="tab-item">Console</span>
+                <span class="tab-item">Sources</span>
+                <span class="tab-item">Network</span>
+                <span class="tab-item">Performance</span>
+                <span class="tab-item">Lighthouse</span>
+            </div>
+            <div>
+                <span class="inspect-badge">SEO Target: AgriTrace Local / Staging</span>
+            </div>
+        </div>
+        <div class="devtools-body">
+            <div>&lt;<span class="tag">html</span> <span class="attr">lang</span>=<span class="val">"en"</span>&gt;</div>
+            <div>&nbsp;&nbsp;&lt;<span class="tag">head</span>&gt;</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">meta</span> <span class="attr">charset</span>=<span class="val">"UTF-8"</span>&gt;</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">meta</span> <span class="attr">name</span>=<span class="val">"viewport"</span> <span class="attr">content</span>=<span class="val">"width=device-width, initial-scale=1.0"</span>&gt;</div>
+            <br>
+            <div class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Primary SEO Metadata --&gt;</div>
+            <div class="highlight-row">&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">title</span>&gt;<span class="text">Supply Chain Transparency for Small Farms | AgriTrace</span>&lt;/<span class="tag">title</span>&gt; <span class="audit-pill">Optimal: 53 chars</span></div>
+            <div class="highlight-row">&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">meta</span> <span class="attr">name</span>=<span class="val">"description"</span> <span class="attr">content</span>=<span class="val">"Enhancing Fair Trade Through Digital Traceability. Connect farmers, wholesalers, drivers, and customers through one transparent, auditable digital workflow."</span>&gt; <span class="audit-pill">Optimal: 156 chars</span></div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">meta</span> <span class="attr">name</span>=<span class="val">"keywords"</span> <span class="attr">content</span>=<span class="val">"supply chain transparency, small farms, food traceability, fair trade, agricultural logistics"</span>&gt;</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">meta</span> <span class="attr">name</span>=<span class="val">"robots"</span> <span class="attr">content</span>=<span class="val">"index, follow"</span>&gt;</div>
+            <br>
+            <div class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Open Graph / Social Sharing Protocol --&gt;</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">meta</span> <span class="attr">property</span>=<span class="val">"og:type"</span> <span class="attr">content</span>=<span class="val">"website"</span>&gt;</div>
+            <div class="highlight-row">&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">meta</span> <span class="attr">property</span>=<span class="val">"og:title"</span> <span class="attr">content</span>=<span class="val">"Supply Chain Transparency for Small Farms | AgriTrace"</span>&gt; <span class="audit-pill">OG Title Verified</span></div>
+            <div class="highlight-row">&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">meta</span> <span class="attr">property</span>=<span class="val">"og:description"</span> <span class="attr">content</span>=<span class="val">"Enhancing Fair Trade Through Digital Traceability. Connect farmers, wholesalers, drivers, and customers through one transparent, auditable digital workflow."</span>&gt;</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">meta</span> <span class="attr">property</span>=<span class="val">"og:site_name"</span> <span class="attr">content</span>=<span class="val">"Supply Chain Transparency for Small Farms"</span>&gt;</div>
+            <br>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"css/style.css?v=20261003"</span>&gt;</div>
+            <div>&nbsp;&nbsp;&lt;/<span class="tag">head</span>&gt;</div>
+            <div>&nbsp;&nbsp;&lt;<span class="tag">body</span>&gt;</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">header</span>&gt; ... &lt;/<span class="tag">header</span>&gt;</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">main</span>&gt;</div>
+            <div class="highlight-row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="tag">h1</span> <span class="attr">id</span>=<span class="val">"hero-title"</span>&gt;<span class="text">Supply Chain Transparency for Small Farms</span>&lt;/<span class="tag">h1</span>&gt; <span class="audit-pill">Single H1 Hierarchy Confirmed</span></div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="tag">main</span>&gt;</div>
+            <div>&nbsp;&nbsp;&lt;/<span class="tag">body</span>&gt;</div>
+            <div>&lt;/<span class="tag">html</span>&gt;</div>
+        </div>
+    </div>
+</body>
+</html>

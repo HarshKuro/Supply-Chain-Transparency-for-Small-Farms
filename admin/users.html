@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users - Admin | Supply Chain Transparency</title>
+    <title>Manage Stakeholders - Admin | Supply Chain Transparency</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
@@ -11,14 +11,14 @@
     <header>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <h1>
-                <a href="#" style="color: white;">
+                <a href="dashboard.html" style="color: white; display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
                     <i data-lucide="shield-check"></i>
-                    <span>Admin Portal</span>
+                    <span>AgriTrace Admin Portal</span>
                 </a>
             </h1>
             <div class="user-info">
-                <span id="userName">Loading...</span>
-                <button id="logoutBtn" class="btn btn-secondary">
+                <span id="userName">Loading Admin...</span>
+                <button id="logoutBtn" class="btn btn-logout">
                     <i data-lucide="log-out"></i>
                     <span>Logout</span>
                 </button>
@@ -31,29 +31,52 @@
             <h3>Admin Menu</h3>
             <ul class="nav-links">
                 <li><a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li><a href="approvals.html"><i data-lucide="check-square"></i> Wholesaler Approvals</a></li>
                 <li><a href="users.html" class="active"><i data-lucide="users"></i> Manage Users</a></li>
                 <li><a href="products.html"><i data-lucide="package"></i> All Products</a></li>
                 <li><a href="orders.html"><i data-lucide="shopping-bag"></i> All Orders</a></li>
+                <li><a href="evaluation.html"><i data-lucide="bar-chart-3"></i> Financial Evaluation</a></li>
+            </ul>
+
+            <h3 style="margin-top: 1.5rem;">Documentation</h3>
+            <ul class="nav-links">
+                <li><a href="../sitemap.html"><i data-lucide="map"></i> Site Map</a></li>
+                <li><a href="../user-manual.html"><i data-lucide="book-open"></i> User Manual</a></li>
+                <li><a href="../installation-manual.html"><i data-lucide="terminal"></i> Installation Manual</a></li>
+                <li><a href="../evaluation-report.html"><i data-lucide="dollar-sign"></i> Expenses Report</a></li>
+                <li><a href="../index.html"><i data-lucide="globe"></i> Public Overview</a></li>
             </ul>
         </aside>
 
         <main class="main-content">
-            <h2>User Management</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h2 style="margin: 0 0 0.25rem 0;">Stakeholder User Management</h2>
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">
+                        View, audit, and regulate accounts across Farmers, Wholesalers, Drivers, and Consumers.
+                    </p>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <a href="approvals.html" class="btn btn-sm" style="background: #D97706; color: white !important;">
+                        <i data-lucide="check-square"></i> Pending Wholesalers
+                    </a>
+                </div>
+            </div>
             
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Role</th>
-                            <th>Joined</th>
-                            <th>Action</th>
+                            <th>Name / Business</th>
+                            <th>Email Address</th>
+                            <th>Phone (Australia)</th>
+                            <th>Role & Status</th>
+                            <th>Registered</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="usersTableBody">
-                        <tr><td colspan="6" style="text-align:center;">Loading users...</td></tr>
+                        <tr><td colspan="6" style="text-align:center; padding: 1.5rem;">Loading stakeholders...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -69,11 +92,13 @@
         import { initAdminUsersPage } from '../js/admin.js';
         
         checkRoleAccess('admin');
-        document.getElementById('logoutBtn').addEventListener('click', logoutUser);
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) logoutBtn.addEventListener('click', logoutUser);
         
         getCurrentUserData((user) => {
             if(user) {
-                document.getElementById('userName').textContent = user.name;
+                const userNameEl = document.getElementById('userName');
+                if (userNameEl) userNameEl.textContent = user.name;
                 initAdminUsersPage(user);
                 if (window.lucide) lucide.createIcons();
             }

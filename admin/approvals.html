@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wholesaler Approvals - Admin | Supply Chain Transparency</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>
+                <a href="dashboard.html" style="color: white; display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                    <i data-lucide="shield-check"></i>
+                    <span>AgriTrace Admin Portal</span>
+                </a>
+            </h1>
+            <div class="user-info">
+                <span id="userName">Loading Admin...</span>
+                <button id="logoutBtn" class="btn btn-logout">
+                    <i data-lucide="log-out"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h3>Admin Menu</h3>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li><a href="approvals.html" class="active"><i data-lucide="check-square"></i> Wholesaler Approvals</a></li>
+                <li><a href="users.html"><i data-lucide="users"></i> Manage Users</a></li>
+                <li><a href="products.html"><i data-lucide="package"></i> All Products</a></li>
+                <li><a href="orders.html"><i data-lucide="shopping-bag"></i> All Orders</a></li>
+                <li><a href="evaluation.html"><i data-lucide="bar-chart-3"></i> Financial Evaluation</a></li>
+            </ul>
+
+            <h3 style="margin-top: 1.5rem;">Documentation</h3>
+            <ul class="nav-links">
+                <li><a href="../sitemap.html"><i data-lucide="map"></i> Site Map</a></li>
+                <li><a href="../user-manual.html"><i data-lucide="book-open"></i> User Manual</a></li>
+                <li><a href="../installation-manual.html"><i data-lucide="terminal"></i> Installation Manual</a></li>
+                <li><a href="../evaluation-report.html"><i data-lucide="dollar-sign"></i> Expenses Report</a></li>
+                <li><a href="../index.html"><i data-lucide="globe"></i> Public Overview</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h2 style="margin: 0 0 0.25rem 0;">Wholesaler Accreditation & Approvals</h2>
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">
+                        Authorize verified Australian produce wholesalers before they can audit stock and verify farm deliveries.
+                    </p>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <a href="users.html" class="btn btn-secondary btn-sm">
+                        <i data-lucide="users"></i> All Users
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 2rem;">
+                <div class="stat-card" style="border-top: 4px solid #D97706; background: #FFFBEB;">
+                    <h4 style="color: #92400E;"><i data-lucide="clock" style="color: #D97706;"></i> Pending Review</h4>
+                    <div class="value" id="statPendingApprovals" style="color: #B45309;">0</div>
+                </div>
+                <div class="stat-card" style="border-top: 4px solid #059669; background: #F0FDF4;">
+                    <h4 style="color: #065F46;"><i data-lucide="check-circle" style="color: #059669;"></i> Accredited Active</h4>
+                    <div class="value" id="statApprovedWholesalers" style="color: #047857;">0</div>
+                </div>
+            </div>
+
+            <!-- Section 1: Pending Wholesalers -->
+            <div style="margin-bottom: 2.5rem;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.85rem;">
+                    <h3 style="margin: 0; font-size: 1.15rem; color: #B45309; display: flex; align-items: center; gap: 0.5rem;">
+                        <i data-lucide="alert-circle" style="color: #D97706;"></i> Wholesalers Awaiting Compliance Approval
+                    </h3>
+                    <span style="font-size: 0.85rem; color: var(--text-muted);">Action required to grant verification authority</span>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Wholesaler Business / Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Compliance Status</th>
+                                <th>Registered</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendingTableBody">
+                            <tr><td colspan="6" style="text-align:center; padding: 1.5rem;">Loading pending wholesalers...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 2: Approved Wholesalers -->
+            <div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.85rem;">
+                    <h3 style="margin: 0; font-size: 1.15rem; color: #047857; display: flex; align-items: center; gap: 0.5rem;">
+                        <i data-lucide="shield-check" style="color: #059669;"></i> Accredited & Active Wholesalers
+                    </h3>
+                    <span style="font-size: 0.85rem; color: var(--text-muted);">Currently authorized to verify farm orders</span>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Wholesaler Business / Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Compliance Status</th>
+                                <th>Registered</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="approvedTableBody">
+                            <tr><td colspan="6" style="text-align:center; padding: 1.5rem;">Loading accredited wholesalers...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/lucide.min.js"></script>
+    <script>
+        if (window.lucide) lucide.createIcons();
+    </script>
+    <script type="module">
+        import { checkRoleAccess, logoutUser, getCurrentUserData } from '../js/auth.js';
+        import { initAdminApprovalsPage } from '../js/admin.js';
+        
+        checkRoleAccess('admin');
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) logoutBtn.addEventListener('click', logoutUser);
+        
+        getCurrentUserData((user) => {
+            if(user) {
+                const userNameEl = document.getElementById('userName');
+                if (userNameEl) userNameEl.textContent = user.name;
+                initAdminApprovalsPage(user);
+                if (window.lucide) lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>

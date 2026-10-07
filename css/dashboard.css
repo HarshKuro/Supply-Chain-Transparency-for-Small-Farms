@@ -224,6 +224,26 @@ tbody tr:hover {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.user-info #cartCount {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #FFFFFF !important;
+    background: rgba(255, 255, 255, 0.18) !important;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+}
+
+.user-info #cartCount:hover {
+    background: rgba(255, 255, 255, 0.28) !important;
 }
 
 /* Customer Products & Orders Enhancements */

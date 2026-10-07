@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminal - Robots & Sitemap HTTP Verification</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #18191c;
+            font-family: 'Cascadia Code', 'Segoe UI', Consolas, monospace;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        .window {
+            width: 1100px;
+            background-color: #0c0c0c;
+            border-radius: 8px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        .titlebar {
+            background: #1f1f1f;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            border-bottom: 1px solid #2a2a2a;
+            user-select: none;
+        }
+        .tabs {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tab {
+            background: #0c0c0c;
+            color: #e5e5e5;
+            padding: 5px 14px;
+            border-radius: 6px 6px 0 0;
+            font-size: 12.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #2a2a2a;
+            border-bottom: none;
+        }
+        .tab svg {
+            width: 14px;
+            height: 14px;
+            fill: #0078d4;
+        }
+        .tab .close-tab {
+            font-size: 14px;
+            color: #888;
+            margin-left: 4px;
+        }
+        .window-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: #999;
+            font-size: 13px;
+        }
+        .window-controls .close-btn {
+            font-size: 14px;
+        }
+        .console-body {
+            padding: 20px 24px;
+            font-family: 'Cascadia Code', Consolas, 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #cccccc;
+            font-variant-ligatures: none;
+            letter-spacing: 0;
+        }
+        .prompt {
+            color: #cccccc;
+        }
+        .prompt .path {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+        .command {
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .output-text {
+            color: #d4d4d4;
+        }
+        .http-status {
+            color: #10b981;
+            font-weight: bold;
+        }
+        .http-header {
+            color: #94a3b8;
+        }
+        .xml-tag {
+            color: #38bdf8;
+        }
+        .xml-val {
+            color: #f1f5f9;
+        }
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background-color: #cccccc;
+            vertical-align: middle;
+            margin-left: 4px;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="titlebar">
+            <div class="tabs">
+                <div class="tab">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v12h16V6H4zm2 2h2v2H6V8zm0 4h5v2H6v-2zm7 0h5v2h-5v-2zm-7 4h12v2H6v-2z"/></svg>
+                    <span>Windows PowerShell</span>
+                    <span class="close-tab">&times;</span>
+                </div>
+            </div>
+            <div class="window-controls">
+                <span>&#x2212;</span>
+                <span>&#x25A2;</span>
+                <span class="close-btn">&#x2715;</span>
+            </div>
+        </div>
+        <div class="console-body">
+            <div class="prompt"><span class="path">PS C:\Users\harsh\OneDrive\Documents\Pritam-projects\Supply Chain Transparency for Small Farms&gt;</span> <span class="command">Get-Content .\robots.txt</span></div>
+            <div class="output-text">
+User-agent: *<br>
+Allow: /<br>
+Disallow: /farmer/<br>
+Disallow: /wholesaler/<br>
+Disallow: /driver/<br>
+Disallow: /customer/<br>
+Disallow: /admin/<br>
+<br>
+Sitemap: /sitemap.xml
+            </div>
+            <br>
+            <div class="prompt"><span class="path">PS C:\Users\harsh\OneDrive\Documents\Pritam-projects\Supply Chain Transparency for Small Farms&gt;</span> <span class="command">curl.exe -I http://localhost:8080/robots.txt</span></div>
+            <div class="output-text">
+<span class="http-status">HTTP/1.0 200 OK</span><br>
+<span class="http-header">Server: SimpleHTTP/0.6 Python/3.14.3</span><br>
+<span class="http-header">Content-type: text/plain</span><br>
+<span class="http-header">Content-Length: 179</span>
+            </div>
+            <br>
+            <div class="prompt"><span class="path">PS C:\Users\harsh\OneDrive\Documents\Pritam-projects\Supply Chain Transparency for Small Farms&gt;</span> <span class="command">Get-Content .\sitemap.xml</span></div>
+            <div class="output-text">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>
+&lt;<span class="xml-tag">urlset</span> xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;<br>
+&nbsp;&nbsp;&lt;<span class="xml-tag">url</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xml-tag">loc</span>&gt;<span class="xml-val">/index.html</span>&lt;/<span class="xml-tag">loc</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xml-tag">lastmod</span>&gt;2026-10-07&lt;/<span class="xml-tag">lastmod</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xml-tag">changefreq</span>&gt;weekly&lt;/<span class="xml-tag">changefreq</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xml-tag">priority</span>&gt;1.0&lt;/<span class="xml-tag">priority</span>&gt;<br>
+&nbsp;&nbsp;&lt;/<span class="xml-tag">url</span>&gt;<br>
+&nbsp;&nbsp;&lt;<span class="xml-tag">url</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xml-tag">loc</span>&gt;<span class="xml-val">/login.html</span>&lt;/<span class="xml-tag">loc</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xml-tag">lastmod</span>&gt;2026-10-07&lt;/<span class="xml-tag">lastmod</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xml-tag">changefreq</span>&gt;monthly&lt;/<span class="xml-tag">changefreq</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xml-tag">priority</span>&gt;0.8&lt;/<span class="xml-tag">priority</span>&gt;<br>
+&nbsp;&nbsp;&lt;/<span class="xml-tag">url</span>&gt;<br>
+&nbsp;&nbsp;&lt;<span class="xml-tag">url</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xml-tag">loc</span>&gt;<span class="xml-val">/register.html</span>&lt;/<span class="xml-tag">loc</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xml-tag">lastmod</span>&gt;2026-10-07&lt;/<span class="xml-tag">lastmod</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xml-tag">changefreq</span>&gt;monthly&lt;/<span class="xml-tag">changefreq</span>&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="xml-tag">priority</span>&gt;0.8&lt;/<span class="xml-tag">priority</span>&gt;<br>
+&nbsp;&nbsp;&lt;/<span class="xml-tag">url</span>&gt;<br>
+&lt;/<span class="xml-tag">urlset</span>&gt;
+            </div>
+            <br>
+            <div class="prompt"><span class="path">PS C:\Users\harsh\OneDrive\Documents\Pritam-projects\Supply Chain Transparency for Small Farms&gt;</span> <span class="command">curl.exe -I http://localhost:8080/sitemap.xml</span></div>
+            <div class="output-text">
+<span class="http-status">HTTP/1.0 200 OK</span><br>
+<span class="http-header">Server: SimpleHTTP/0.6 Python/3.14.3</span><br>
+<span class="http-header">Content-type: text/xml</span><br>
+<span class="http-header">Content-Length: 633</span>
+            </div>
+            <br>
+            <div class="prompt"><span class="path">PS C:\Users\harsh\OneDrive\Documents\Pritam-projects\Supply Chain Transparency for Small Farms&gt;</span> <span class="cursor"></span></div>
+        </div>
+    </div>
+</body>
+</html>
