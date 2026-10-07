@@ -16,8 +16,8 @@ All features strictly adhere to an authentic Australian agricultural context, ut
 ┌──────────────────────────────────────────────────────────────────────────────────┐
 │                             AGRITRACE KEY HIGHLIGHTS                             │
 ├────────────────────────────┬─────────────────────────────┬───────────────────────┤
-│ 31/31 Automated Tests      │ 5 Stakeholder Roles         │ $75,400 AUD CAPEX     │
-│ 100% Pass Rate (Unit, Sys) │ Farm-to-Consumer Trace      │ $1,790 AUD/mo OPEX    │
+│ 31/31 Automated Tests      │ 5 Stakeholder Roles         │ $18,900 AUD CAPEX     │
+│ 100% Pass Rate (Unit, Sys) │ Farm-to-Consumer Trace      │ $280 AUD/mo OPEX      │
 ├────────────────────────────┼─────────────────────────────┼───────────────────────┤
 │ 0 External Domain Links    │ High-Contrast Logout Action │ 19 Visual Snapshots   │
 │ Clean Localized Base URLs  │ Scoped Crimson Styling      │ Portals & Terminals   │
@@ -171,30 +171,42 @@ A comprehensive commercial expense and economic feasibility report was developed
 
 ### Financial Breakdown (Australian Dollars - $ AUD)
 
-#### 1. Initial Development Expenditure (CAPEX) — Total: $75,400 AUD
+#### 1. Initial Development Expenditure (CAPEX) — Total: $18,900 AUD
 | Phase / Expense Item | Description | Cost ($ AUD) |
 | :--- | :--- | :--- |
-| **Discovery & System Architecture** | Domain model, Firebase architecture, Firestore security matrix | $8,400 AUD |
-| **UI/UX Design & Prototyping** | Responsive mobile/desktop portals, Figma design system | $6,000 AUD |
-| **Core Software Engineering** | 5 role portals, real-time lifecycle tracking, auth guards | $28,800 AUD |
-| **Quality Assurance & Testing** | Unit, system integration, UAT, and SEO audit test suites | $15,400 AUD |
-| **Australian Regional Seeding & Manuals** | User Manual, Installation Manual, Site Map, demo seed datasets | $7,200 AUD |
-| **Contingency & Deployment Buffer** | 15% technical contingency buffer | $9,600 AUD |
-| **Total Initial Development (CAPEX)** | **Full Project Build Cost** | **$75,400 AUD** |
+| **System Architecture & Data Schema** | Firestore NoSQL collections, role security rules, Australian biosecurity standards (24 hrs @ $95/hr) | $2,280 AUD |
+| **Responsive UI/UX Design** | Accessible layouts for farm tablets, pack sheds, and smartphones (36 hrs @ $85/hr) | $3,060 AUD |
+| **Core Software Engineering** | 5 role portals, real-time lifecycle tracking, auth guards (72 hrs @ $90/hr) | $6,480 AUD |
+| **Quality Assurance & Verification** | 31 automated unit, system integration, UAT, and SEO tests (28 hrs @ $80/hr) | $2,240 AUD |
+| **Documentation & User Manuals** | User Manual, Installation Manual, Site Map, seeder datasets (20 hrs @ $75/hr) | $1,500 AUD |
+| **Pilot Deployment & Farm Onboarding** | Onboarding pilot cohort of 15 regional Victorian farms (20 hrs @ $80/hr) | $1,600 AUD |
+| **Contingency & Production Buffer** | 10% technical buffer for production hardening (20 hrs @ $87/hr) | $1,740 AUD |
+| **Total Initial Development (CAPEX)** | **Full Project Build Cost (220 Contractor Hours)** | **$18,900 AUD** |
 
-#### 2. Ongoing Monthly Operating Costs (OPEX) — Total: $1,790 AUD / month
+#### 2. Ongoing Monthly Operating Costs (OPEX) — Total: $280.00 AUD / month
 | Service Component | Tier / Service | Monthly Cost ($ AUD) |
 | :--- | :--- | :--- |
-| **Cloud Hosting & Serverless DB** | Google Cloud / Firebase Blaze (Firestore reads/writes, Auth) | $420 AUD / mo |
-| **Domain Registration & SSL** | Custom `.com.au` domain, DNS management, automated TLS | $20 AUD / mo |
-| **Monitoring & Telemetry** | Sentry error monitoring, uptime pinging, Cloud Logging | $150 AUD / mo |
-| **Security Auditing & Penetration Tests** | Quarterly security reviews & compliance upkeep | $450 AUD / mo |
-| **Part-time Technical Operations** | System administration, backups, and security patching | $750 AUD / mo |
-| **Total Monthly Operating Cost (OPEX)** | **Monthly Platform Run Rate** | **$1,790 AUD / mo** |
+| **Cloud Hosting & Serverless DB** | Google Cloud / Firebase Blaze (Firestore reads/writes, Auth, Hosting Sydney) | $42.00 AUD / mo |
+| **Domain Registration & SSL** | Custom `.com.au` domain, Cloudflare DNS, automated TLS | $6.00 AUD / mo |
+| **Transactional SMS Notifications** | Twilio Australia SMS / Email dispatch alerts | $32.00 AUD / mo |
+| **Telemetry & Automated Backups** | Daily Firestore backup snapshots and GCP error telemetry | $20.00 AUD / mo |
+| **Part-time Technical Support** | Part-time maintenance retainer (2.5 hrs/mo @ $72/hr for bug triage) | $180.00 AUD / mo |
+| **Total Monthly Operating Cost (OPEX)** | **Monthly Platform Run Rate ($3,360 AUD / yr)** | **$280.00 AUD / mo** |
 
-#### 3. Small Farm Economic ROI & Payback
-- **Farmer Margin Improvement**: Traditional Australian supermarket duopoly channels take a **50–60%** intermediary markup. AgriTrace disintermediates the chain, returning **+36% net margin** directly to small regional family growers.
-- **Breakeven Horizon**: Based on an average regional cooperative throughput of 15 family farms processing 1,200 transactions monthly, the platform achieves commercial payback within **7.5 months**.
+#### 3. Monthly Revenue Charge Streams — Total: $1,027.00 AUD / month
+| Charge Stream | Pricing Structure | Monthly Volume | Monthly Inflow ($ AUD) |
+| :--- | :--- | :--- | :--- |
+| **Fair-Trade Transaction Fee** | 3.0% of GMV | 350 orders @ $44.00 AUD ($15,400 GMV) | $462.00 AUD / mo |
+| **Wholesaler Verification Fee** | $35.00 AUD / mo | 8 accredited commercial buyers / distributors | $280.00 AUD / mo |
+| **Farm Cooperative SaaS Tiers** | $15 / $45 AUD / mo | 7 commercial farms ($105) + 2 packing hubs ($90) | $195.00 AUD / mo |
+| **Digital QR Batch Stamp Fee** | $0.20 AUD / batch | 450 verified produce crates / batches dispatched | $90.00 AUD / mo |
+| **Total Monthly Gross Revenue** | **Consolidated Monthly Inflow ($12,324 AUD / yr)** | **All 4 Revenue Channels** | **$1,027.00 AUD / mo** |
+| **Net Operating Cash Flow** | **Gross Revenue ($1,027) Less OPEX ($280)** | **Sustained Monthly Net Profit** | **$747.00 AUD / mo** |
+
+#### 4. Small Farm Economic ROI & Real Money Gain
+- **Farmer Margin Improvement**: Traditional Australian supermarket duopolies pay growers only **$1.80 AUD** on a $5.50 retail strawberry punnet (32.7%). AgriTrace enables direct and transparent cooperative selling where growers net **$3.52 AUD per unit (+95.5% net margin gain)**.
+- **Family Farm Real Money Uplift**: For an average small grower harvesting 6,000 units per season, net income rises from $10,800 AUD to $21,120 AUD, delivering **+$10,320.00 AUD in extra cash profit** per farm. Across the 15-farm pilot, over **$154,800.00 AUD** in collective rural revenue is retained locally.
+- **Breakeven Horizon**: Commercial self-sufficiency achieved in **2.1 years** on organic cash flow, or **under 12 months** with a standard $10,000 AUD regional AgTech seed grant.
 
 ![Project Financial Evaluation Report](screenshots/14_browser_evaluation_report.png)
 *Figure 7.1: Project Financial Evaluation Report (`evaluation-report.html`)*
@@ -317,7 +329,7 @@ node tests/seo_audit.js                  # 9/9 Tests Passed (100%)
 | [sitemap.html](file:///c:/Users/harsh/OneDrive/Documents/Pritam-projects/Supply%20Chain%20Transparency%20for%20Small%20Farms/sitemap.html) | **Created** | Interactive site map with real-time keyword search filtering all 18+ platform pages. |
 | [user-manual.html](file:///c:/Users/harsh/OneDrive/Documents/Pritam-projects/Supply%20Chain%20Transparency%20for%20Small%20Farms/user-manual.html) | **Created** | Operational user guide covering Farmers, Wholesalers, Drivers, Consumers, and Admins. |
 | [installation-manual.html](file:///c:/Users/harsh/OneDrive/Documents/Pritam-projects/Supply%20Chain%20Transparency%20for%20Small%20Farms/installation-manual.html) | **Created** | Technical manual detailing Firebase setup, Firestore security rules, seeding, and local hosting. |
-| [evaluation-report.html](file:///c:/Users/harsh/OneDrive/Documents/Pritam-projects/Supply%20Chain%20Transparency%20for%20Small%20Farms/evaluation-report.html) | **Created** | Detailed commercial evaluation report: $75,400 AUD CAPEX, $1,790 AUD/mo OPEX, farm ROI analysis. |
+| [evaluation-report.html](file:///c:/Users/harsh/OneDrive/Documents/Pritam-projects/Supply%20Chain%20Transparency%20for%20Small%20Farms/evaluation-report.html) | **Created** | Detailed commercial evaluation report: $18,900 AUD CAPEX, $280 AUD/mo OPEX, $1,027 AUD/mo revenue, farm ROI analysis. |
 | [admin/approvals.html](file:///c:/Users/harsh/OneDrive/Documents/Pritam-projects/Supply%20Chain%20Transparency%20for%20Small%20Farms/admin/approvals.html) | **Created** | Admin Wholesaler Accreditation Hub with 1-click Approve / Revoke status controls. |
 | [admin/evaluation.html](file:///c:/Users/harsh/OneDrive/Documents/Pritam-projects/Supply%20Chain%20Transparency%20for%20Small%20Farms/admin/evaluation.html) | **Created** | In-portal Admin Financial Feasibility and platform expense dashboard. |
 | [admin/dashboard.html](file:///c:/Users/harsh/OneDrive/Documents/Pritam-projects/Supply%20Chain%20Transparency%20for%20Small%20Farms/admin/dashboard.html) | Modified | Fixed `welcomeName` null error; linked Wholesaler Approvals, manuals, and financial reports. |

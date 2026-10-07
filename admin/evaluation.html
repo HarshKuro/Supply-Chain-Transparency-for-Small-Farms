@@ -114,29 +114,82 @@
             <div class="metric-banner">
                 <div class="stat-card" style="border-top: 4px solid #2563EB;">
                     <h4><i data-lucide="dollar-sign" style="color: #2563EB;"></i> Development CAPEX</h4>
-                    <div class="value" style="color: #1D4ED8;">$75,400 AUD</div>
-                    <small style="color: var(--text-muted);">One-time build cost</small>
+                    <div class="value" style="color: #1D4ED8;">$18,900 AUD</div>
+                    <small style="color: var(--text-muted);">Lean MVP build (220 contractor hrs)</small>
                 </div>
                 <div class="stat-card" style="border-top: 4px solid #D97706;">
                     <h4><i data-lucide="server" style="color: #D97706;"></i> Monthly OPEX</h4>
-                    <div class="value" style="color: #B45309;">$1,790 AUD/mo</div>
-                    <small style="color: var(--text-muted);">$21,480 AUD annually</small>
+                    <div class="value" style="color: #B45309;">$280 AUD/mo</div>
+                    <small style="color: var(--text-muted);">$3,360 AUD annually</small>
                 </div>
                 <div class="stat-card" style="border-top: 4px solid #059669;">
-                    <h4><i data-lucide="trending-up" style="color: #059669;"></i> Farmer Margin Uplift</h4>
-                    <div class="value" style="color: #047857;">+36% Gain</div>
-                    <small style="color: var(--text-muted);">vs Supermarket duopoly</small>
+                    <h4><i data-lucide="trending-up" style="color: #059669;"></i> Monthly Inflow</h4>
+                    <div class="value" style="color: #047857;">$1,027 AUD/mo</div>
+                    <small style="color: var(--text-muted);">$747 AUD/mo net operating cash</small>
                 </div>
                 <div class="stat-card" style="border-top: 4px solid #7C3AED;">
-                    <h4><i data-lucide="clock" style="color: #7C3AED;"></i> Payback Period</h4>
-                    <div class="value" style="color: #6D28D9;">7.5 Months</div>
-                    <small style="color: var(--text-muted);">15-Farm cooperative model</small>
+                    <h4><i data-lucide="clock" style="color: #7C3AED;"></i> Farmer Income Gain</h4>
+                    <div class="value" style="color: #6D28D9;">+$10,320 AUD/yr</div>
+                    <small style="color: var(--text-muted);">+95.5% net margin per family farm</small>
                 </div>
             </div>
 
-            <!-- Section 1: CAPEX -->
+            <!-- Section 1: Real Money Charge Streams -->
             <div class="eval-section">
-                <h3><i data-lucide="layers"></i> 1. Capital Expenditure (CAPEX) — Initial Software Engineering</h3>
+                <h3><i data-lucide="dollar-sign"></i> 1. Platform Charge Streams (Monthly Real Money Inflow)</h3>
+                <div class="table-container">
+                    <table class="fin-table">
+                        <thead>
+                            <tr>
+                                <th>Charge Stream</th>
+                                <th>Pricing Structure</th>
+                                <th>Monthly Pilot Volume</th>
+                                <th>Monthly Revenue (AUD)</th>
+                                <th>Annualized (AUD)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Fair-Trade Transaction Commission</strong></td>
+                                <td>3.0% of Marketplace GMV</td>
+                                <td>350 orders @ $44.00 AUD avg basket ($15,400 GMV)</td>
+                                <td>$462.00 AUD</td>
+                                <td>$5,544.00 AUD</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Commercial Wholesaler Verification Fee</strong></td>
+                                <td>$35.00 AUD / month</td>
+                                <td>8 accredited regional commercial buyers / grocers</td>
+                                <td>$280.00 AUD</td>
+                                <td>$3,360.00 AUD</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Farm Cooperative SaaS Tiers</strong></td>
+                                <td>$15 / $45 AUD / month</td>
+                                <td>7 commercial family farms ($105) + 2 packing hubs ($90)</td>
+                                <td>$195.00 AUD</td>
+                                <td>$2,340.00 AUD</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Digital QR Batch Verification Stamps</strong></td>
+                                <td>$0.20 AUD / batch</td>
+                                <td>450 verified produce crates / batches dispatched</td>
+                                <td>$90.00 AUD</td>
+                                <td>$1,080.00 AUD</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td colspan="3"><strong>TOTAL CONSOLIDATED MONTHLY REVENUE</strong></td>
+                                <td><strong>$1,027.00 AUD / mo</strong></td>
+                                <td><strong>$12,324.00 AUD / yr</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 2: CAPEX -->
+            <div class="eval-section">
+                <h3><i data-lucide="layers"></i> 2. Capital Expenditure (CAPEX) — Initial Software Engineering</h3>
                 <div class="table-container">
                     <table class="fin-table">
                         <thead>
@@ -150,66 +203,66 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Discovery, Agricultural Supply Chain Mapping & Wireframes</td>
-                                <td>Senior UX Architect</td>
-                                <td>80 hrs</td>
-                                <td>$110/hr</td>
-                                <td>$8,800</td>
+                                <td>System Architecture & Data Schema (Firestore NoSQL, Role Security)</td>
+                                <td>Cloud Architect</td>
+                                <td>24 hrs</td>
+                                <td>$95/hr</td>
+                                <td>$2,280</td>
                             </tr>
                             <tr>
-                                <td>5 Stakeholder Portals (Farmer, Wholesaler, Driver, Customer, Admin)</td>
-                                <td>UI/UX Design Lead</td>
-                                <td>120 hrs</td>
-                                <td>$120/hr</td>
-                                <td>$14,400</td>
+                                <td>Responsive UI/UX Design System (Farm Tablets, Packing Stations, Mobile)</td>
+                                <td>UI/UX Engineer</td>
+                                <td>36 hrs</td>
+                                <td>$85/hr</td>
+                                <td>$3,060</td>
                             </tr>
                             <tr>
-                                <td>Frontend Application Engineering (HTML5/CSS3/ES Modules)</td>
-                                <td>Senior Frontend Developer</td>
-                                <td>140 hrs</td>
-                                <td>$125/hr</td>
-                                <td>$17,500</td>
-                            </tr>
-                            <tr>
-                                <td>Cloud Database & Real-Time Sync (Firebase Auth & Firestore)</td>
-                                <td>Cloud Architecture Lead</td>
-                                <td>110 hrs</td>
-                                <td>$135/hr</td>
-                                <td>$14,850</td>
-                            </tr>
-                            <tr>
-                                <td>Chain-of-Custody Tracking & Logistics Handover Engine</td>
+                                <td>5 Stakeholder Portals Implementation (Farmer, Wholesaler, Driver, Customer, Admin)</td>
                                 <td>Full-Stack Developer</td>
-                                <td>70 hrs</td>
-                                <td>$130/hr</td>
-                                <td>$9,100</td>
+                                <td>72 hrs</td>
+                                <td>$90/hr</td>
+                                <td>$6,480</td>
                             </tr>
                             <tr>
-                                <td>QA Automated Verification & Security Penetration Testing</td>
-                                <td>Security & QA Specialist</td>
-                                <td>60 hrs</td>
-                                <td>$115/hr</td>
-                                <td>$6,900</td>
+                                <td>Quality Assurance, Security Audits & 31 Automated Tests</td>
+                                <td>QA Specialist</td>
+                                <td>28 hrs</td>
+                                <td>$80/hr</td>
+                                <td>$2,240</td>
                             </tr>
                             <tr>
-                                <td>Deployment Pipelines, Seeding & System Manuals</td>
-                                <td>DevOps Engineer</td>
-                                <td>35 hrs</td>
-                                <td>$110/hr</td>
-                                <td>$3,850</td>
+                                <td>Documentation, User Manuals & Australian Database Seeder</td>
+                                <td>Technical Writer</td>
+                                <td>20 hrs</td>
+                                <td>$75/hr</td>
+                                <td>$1,500</td>
+                            </tr>
+                            <tr>
+                                <td>Pilot Deployment & Farm Onboarding (15 Regional Victorian Farms)</td>
+                                <td>DevOps Specialist</td>
+                                <td>20 hrs</td>
+                                <td>$80/hr</td>
+                                <td>$1,600</td>
+                            </tr>
+                            <tr>
+                                <td>Contingency & Production Hardening Buffer (10%)</td>
+                                <td>Senior Engineer</td>
+                                <td>20 hrs</td>
+                                <td>$87/hr</td>
+                                <td>$1,740</td>
                             </tr>
                             <tr class="total-row">
                                 <td colspan="4"><strong>TOTAL DEVELOPMENT CAPEX</strong></td>
-                                <td><strong>$75,400 AUD</strong></td>
+                                <td><strong>$18,900 AUD</strong></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Section 2: OPEX -->
+            <!-- Section 3: OPEX -->
             <div class="eval-section">
-                <h3><i data-lucide="server"></i> 2. Operational Expenditure (OPEX) — Monthly Cloud & Support</h3>
+                <h3><i data-lucide="server"></i> 3. Operational Expenditure (OPEX) — Monthly Cloud & Support</h3>
                 <div class="table-container">
                     <table class="fin-table">
                         <thead>
@@ -222,62 +275,50 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Cloud NoSQL Database & Real-Time Listeners</td>
-                                <td>Google Cloud Firestore (Sydney)</td>
-                                <td>$85 AUD</td>
-                                <td>$1,020 AUD</td>
+                                <td>Cloud Database & Static Hosting (Firestore, Auth, CDN)</td>
+                                <td>Google Cloud / Firebase Blaze (Sydney)</td>
+                                <td>$42.00 AUD</td>
+                                <td>$504.00 AUD</td>
                             </tr>
                             <tr>
-                                <td>Stakeholder Authentication & Tokens</td>
-                                <td>Firebase Authentication</td>
-                                <td>$25 AUD</td>
-                                <td>$300 AUD</td>
+                                <td>Custom Domain & Automated Cloudflare SSL</td>
+                                <td>auDA Registrar / Cloudflare Edge</td>
+                                <td>$6.00 AUD</td>
+                                <td>$72.00 AUD</td>
                             </tr>
                             <tr>
-                                <td>Transactional SMS & Dispatch Notifications</td>
-                                <td>Twilio Australia SMS</td>
-                                <td>$120 AUD</td>
-                                <td>$1,440 AUD</td>
+                                <td>Transactional SMS & Order Dispatch Alerts</td>
+                                <td>Twilio Australia Gateway</td>
+                                <td>$32.00 AUD</td>
+                                <td>$384.00 AUD</td>
                             </tr>
                             <tr>
-                                <td>Serverless Event Functions & Webhooks</td>
-                                <td>Cloud Functions</td>
-                                <td>$45 AUD</td>
-                                <td>$540 AUD</td>
+                                <td>Telemetry, Uptime Monitoring & Automated Backups</td>
+                                <td>GCP Cloud Backups</td>
+                                <td>$20.00 AUD</td>
+                                <td>$240.00 AUD</td>
                             </tr>
                             <tr>
-                                <td>System Maintenance, Security & Backups</td>
-                                <td>Managed SLA Support</td>
-                                <td>$650 AUD</td>
-                                <td>$7,800 AUD</td>
-                            </tr>
-                            <tr>
-                                <td>Farmer Onboarding & Accreditation Helpdesk</td>
-                                <td>Cooperative Operations</td>
-                                <td>$850 AUD</td>
-                                <td>$10,200 AUD</td>
-                            </tr>
-                            <tr>
-                                <td>Managed SSL, Edge CDN & Domain</td>
-                                <td>Cloudflare Enterprise Edge</td>
-                                <td>$15 AUD</td>
-                                <td>$180 AUD</td>
+                                <td>Part-Time Maintenance & Bug Triage Retainer</td>
+                                <td>Contract Support (2.5 hrs/mo @ $72/hr)</td>
+                                <td>$180.00 AUD</td>
+                                <td>$2,160.00 AUD</td>
                             </tr>
                             <tr class="total-row">
                                 <td colspan="2"><strong>TOTAL RECURRING OPEX</strong></td>
-                                <td><strong>$1,790 AUD / mo</strong></td>
-                                <td><strong>$21,480 AUD / yr</strong></td>
+                                <td><strong>$280.00 AUD / mo</strong></td>
+                                <td><strong>$3,360.00 AUD / yr</strong></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Section 3: Strategic Feasibility -->
+            <!-- Section 4: Strategic Feasibility -->
             <div class="eval-section">
-                <h3><i data-lucide="award"></i> 3. Strategic Feasibility for Australian Small Farms</h3>
+                <h3><i data-lucide="award"></i> 4. Strategic Feasibility for Australian Small Farms</h3>
                 <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-color);">
-                    By replacing predatory middlemen markups (typically 45% - 52%) with transparent direct-to-consumer and wholesale distribution, participating Australian farmers retain an estimated <strong>$43,200 AUD in extra income</strong> per orchard annually. For a small cooperative of 15 farms, the entire platform investment is fully recovered in just <strong>7.5 months</strong>.
+                    By replacing predatory supermarket duopoly markups (where growers receive only $1.80 AUD on a $5.50 retail punnet) with direct transparent marketing, participating Australian family growers net <strong>$3.52 AUD per unit (+95.5% net margin gain)</strong>. For an average small family farm harvesting 6,000 units per season, this injects <strong>+$10,320.00 AUD in extra cash profit</strong> directly into the household farm economy. Across the 15-farm pilot, over <strong>$154,800.00 AUD</strong> in collective additional income is retained locally.
                 </p>
             </div>
         </main>

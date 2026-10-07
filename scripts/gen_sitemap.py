@@ -81,7 +81,7 @@ def build_sitemap_doc():
         ["admin/evaluation.html", "Administrator", "Commercial feasibility, CAPEX/OPEX model in AUD", "Role: admin"],
         ["user-manual.html", "Public / Docs", "Step-by-step operational handbook for all 5 roles", "Public Access"],
         ["installation-manual.html", "Public / Docs", "Technical setup, Firebase configuration, seed instructions", "Public Access"],
-        ["evaluation-report.html", "Public / Docs", "Full commercial ROI model ($75,400 CAPEX, $1,790 OPEX)", "Public Access"],
+        ["evaluation-report.html", "Public / Docs", "Full commercial ROI model ($18,900 CAPEX, $280 OPEX)", "Public Access"],
         ["seed.html", "Developer / Admin", "One-click Australian database populator (farms, AUD items)", "Public / Dev"],
         ["test_runner.html", "Developer / QA", "Automated in-browser test runner verifying 22 assertions", "Public / Dev"]
     ]

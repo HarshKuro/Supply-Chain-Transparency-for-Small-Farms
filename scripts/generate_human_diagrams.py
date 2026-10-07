@@ -737,62 +737,62 @@ HTML_FINANCIAL = """<!DOCTYPE html>
   <div class="kpi-row">
     <div class="kpi-card">
       <div class="lbl">Gross Monthly Inflow</div>
-      <div class="val" style="color:#16A34A;">$9,812.50 AUD</div>
+      <div class="val" style="color:#16A34A;">$1,027.00 AUD</div>
       <div class="sub">Across 4 diversified streams</div>
     </div>
     <div class="kpi-card">
       <div class="lbl">Monthly Cloud OPEX</div>
-      <div class="val" style="color:#DC2626;">$1,790.00 AUD</div>
-      <div class="sub">Firebase, domain, security & ops</div>
+      <div class="val" style="color:#DC2626;">$280.00 AUD</div>
+      <div class="sub">Firebase, domain, backups & ops</div>
     </div>
     <div class="kpi-card">
-      <div class="lbl">Net Monthly Profit</div>
-      <div class="val" style="color:#2563EB;">$8,022.50 AUD</div>
-      <div class="sub">$96,270 AUD Annualized profit</div>
+      <div class="lbl">Net Monthly Cash Flow</div>
+      <div class="val" style="color:#2563EB;">$747.00 AUD</div>
+      <div class="sub">$8,964 AUD Annualized net profit</div>
     </div>
     <div class="kpi-card">
       <div class="lbl">CAPEX Payback Horizon</div>
-      <div class="val" style="color:#D97706;">9.4 Months</div>
-      <div class="sub">On $75,400 AUD Build budget</div>
+      <div class="val" style="color:#D97706;">2.1 Years</div>
+      <div class="sub">On $18,900 AUD Lean build budget</div>
     </div>
   </div>
 
   <div class="streams-grid">
     <div class="stream-box s1">
-      <h3>Fair-Trade Fee (2.5%)</h3>
-      <div class="rate">2.5% of Marketplace GMV</div>
-      <div class="cash">$1,687.50 AUD / mo</div>
-      <p>1,500 monthly customer orders @ $45 AUD average basket size. Transparent take rate that undercuts supermarket duopolies.</p>
+      <h3>Fair-Trade Fee (3.0%)</h3>
+      <div class="rate">3.0% of Marketplace GMV</div>
+      <div class="cash">$462.00 AUD / mo</div>
+      <p>350 monthly customer orders @ $44 AUD average basket size. Transparent take rate that undercuts supermarket duopolies.</p>
     </div>
 
     <div class="stream-box s2">
-      <h3>Wholesaler License</h3>
-      <div class="rate">$120 AUD / month subscription</div>
-      <div class="cash">$3,000.00 AUD / mo</div>
-      <p>25 commercial regional distributors paying for access to pre-verified grower batches, QA certificates, and dispatch routing.</p>
+      <h3>Wholesaler Verification</h3>
+      <div class="rate">$35 AUD / month subscription</div>
+      <div class="cash">$280.00 AUD / mo</div>
+      <p>8 accredited regional commercial buyers / distributors paying for access to verified grower batches, QA certificates, and bulk orders.</p>
     </div>
 
     <div class="stream-box s3">
       <h3>Farm Cooperative SaaS</h3>
-      <div class="rate">$49 - $149 AUD / month SaaS</div>
-      <div class="cash">$4,450.00 AUD / mo</div>
-      <p>30 commercial farms ($49/mo) + 20 regional cooperatives ($149/mo) for inventory intelligence, temp logging, and export logs.</p>
+      <div class="rate">$15 - $45 AUD / month SaaS</div>
+      <div class="cash">$195.00 AUD / mo</div>
+      <p>7 commercial farms ($15/mo) + 2 regional packing hubs ($45/mo). Free starter tier ($0) ensures zero barrier for micro-farms.</p>
     </div>
 
     <div class="stream-box s4">
-      <h3>Logistics Dispatch Fee</h3>
-      <div class="rate">1.0% per freight coordination</div>
-      <div class="cash">$675.00 AUD / mo</div>
-      <p>Refrigerated freight transit operators paying coordination fees on $67,500 AUD monthly managed delivery volume.</p>
+      <h3>Digital QR Batch Stamp</h3>
+      <div class="rate">$0.20 per batch dispatch</div>
+      <div class="cash">$90.00 AUD / mo</div>
+      <p>Tamper-proof QR digital verification seals generated for 450 verified fruit/vegetable crates and cold-chain cartons monthly.</p>
     </div>
   </div>
 
   <div class="bottom-roi">
     <div>
-      <h4>SMALL FAMILY FARM ECONOMIC BENEFIT: +36% NET MARGIN UPLIFT</h4>
-      <p>Growers net $4.49 AUD/punnet vs $2.20 AUD supermarket wholesale (+104% net unit profit). Average grower earns +$18,320 AUD extra/yr.</p>
+      <h4>SMALL FAMILY FARM ECONOMIC BENEFIT: +95.5% NET MARGIN UPLIFT</h4>
+      <p>Growers net $3.52 AUD/punnet vs $1.80 AUD supermarket wholesale (+95.5% unit gain). Average family farm nets +$10,320 AUD extra/yr.</p>
     </div>
-    <div class="roi-pill">ROI: +36% FARM GAIN</div>
+    <div class="roi-pill">ROI: +$10,320 AUD / YR</div>
   </div>
 </body>
 </html>
