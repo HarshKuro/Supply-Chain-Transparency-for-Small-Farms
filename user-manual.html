@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Manual & Stakeholder Guide | Supply Chain Transparency</title>
-    <meta name="description" content="Official User Manual for AgriTrace. Step-by-step instructions and visual screenshots for Farmers, Wholesalers, Drivers, Customers, and Administrators.">
+    <title>User Manual & Working Operational Flow | Supply Chain Transparency</title>
+    <meta name="description" content="Official User Manual for AgriTrace. Complete end-to-end operational flow from product listing, purchase, wholesaler approval/rejection, QA verification, driver transit, and admin audit.">
     <link rel="stylesheet" href="css/style.css">
     <style>
         .manual-hero {
@@ -22,7 +22,7 @@
         }
         .manual-hero p {
             color: #E8F5E9;
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto;
             font-size: 1.05rem;
             line-height: 1.6;
@@ -71,7 +71,7 @@
             padding: 0.45rem 0.65rem;
             color: var(--text-color);
             text-decoration: none;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             font-weight: 500;
             border-radius: var(--radius-sm);
             transition: all 0.15s ease;
@@ -97,7 +97,7 @@
             margin-bottom: 0;
         }
         .manual-section h2 {
-            font-size: 1.65rem;
+            font-size: 1.6rem;
             color: var(--primary-color);
             margin-bottom: 0.85rem;
             display: flex;
@@ -108,78 +108,22 @@
         }
         .manual-section h3 {
             font-size: 1.25rem;
-            margin: 1.5rem 0 0.65rem;
+            margin: 1.75rem 0 0.65rem;
             color: var(--text-color);
         }
-        .step-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.25rem;
-            margin: 1.25rem 0;
-        }
-        .step-card {
-            background: #F9FAFB;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 1.25rem;
-            border-top: 4px solid var(--primary-color);
-        }
-        .step-card.amber-top { border-top-color: #D97706; }
-        .step-card.blue-top { border-top-color: #2563EB; }
-        .step-card.purple-top { border-top-color: #7C3AED; }
-        .step-card.red-top { border-top-color: #DC2626; }
-        .step-num {
+        .step-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 26px;
-            height: 26px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            font-size: 0.8rem;
+            gap: 0.4rem;
+            padding: 0.25rem 0.65rem;
+            background: var(--primary-light);
+            color: var(--primary-color);
             font-weight: 700;
+            font-size: 0.8rem;
+            border-radius: 9999px;
             margin-bottom: 0.5rem;
-        }
-        .step-card h4 {
-            margin: 0.25rem 0 0.5rem;
-            font-size: 1rem;
-            color: var(--text-color);
-        }
-        .step-card p {
-            margin: 0;
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-        .callout {
-            padding: 1rem 1.25rem;
-            border-radius: var(--radius-md);
-            margin: 1.25rem 0;
-            display: flex;
-            gap: 0.75rem;
-            align-items: flex-start;
-        }
-        .callout-info {
-            background: #EFF6FF;
-            border: 1px solid #BFDBFE;
-            color: #1E40AF;
-        }
-        .callout-warning {
-            background: #FFFBEB;
-            border: 1px solid #FCD34D;
-            color: #92400E;
-        }
-        .callout-success {
-            background: #ECFDF5;
-            border: 1px solid #A7F3D0;
-            color: #065F46;
-        }
-        .callout i {
-            width: 22px;
-            height: 22px;
-            flex-shrink: 0;
-            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
         .manual-figure {
             margin: 1.5rem 0;
@@ -209,6 +153,17 @@
             align-items: center;
             gap: 0.5rem;
         }
+        .callout {
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-md);
+            margin: 1.25rem 0;
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
+        .callout-info { background: #EFF6FF; border: 1px solid #BFDBFE; color: #1E40AF; }
+        .callout-warning { background: #FFFBEB; border: 1px solid #FCD34D; color: #92400E; }
+        .callout-success { background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; }
     </style>
 </head>
 <body>
@@ -236,51 +191,40 @@
     <main>
         <section class="manual-hero">
             <div class="container">
-                <h1>Platform User Manual & Operational Guide</h1>
-                <p>Complete stakeholder guide and visual interface manual for Farmers, Wholesalers, Logistics Drivers, Direct Customers, and System Administrators.</p>
+                <h1>Platform User Manual & Complete Working Flow</h1>
+                <p>Comprehensive step-by-step operational lifecycle guide with zero loading marks: From Farmer harvest listing and Consumer purchase, to Admin wholesaler vetting, QA verification, Driver delivery, and Master audit.</p>
             </div>
         </section>
 
         <div class="container manual-layout">
-            <!-- Sidebar Table of Contents -->
+            <!-- Table of Contents -->
             <aside class="manual-toc">
-                <h3>Table of Contents</h3>
+                <h3>Working Flow TOC</h3>
                 <ul class="toc-list">
-                    <li><a href="#overview"><i data-lucide="info"></i> 1. System Overview</a></li>
-                    <li><a href="#auth-guide"><i data-lucide="log-in"></i> 2. Public & Login Guide</a></li>
-                    <li><a href="#farmer-guide"><i data-lucide="sprout"></i> 3. Farmer Guide</a></li>
-                    <li><a href="#wholesaler-guide"><i data-lucide="store"></i> 4. Wholesaler Guide</a></li>
-                    <li><a href="#driver-guide"><i data-lucide="truck"></i> 5. Driver Logistics</a></li>
-                    <li><a href="#customer-guide"><i data-lucide="shopping-bag"></i> 6. Customer Guide</a></li>
-                    <li><a href="#admin-guide"><i data-lucide="shield-check"></i> 7. Admin Governance</a></li>
-                    <li><a href="#quick-demo"><i data-lucide="sparkles"></i> 8. Quick Demo Access</a></li>
-                    <li><a href="#faq"><i data-lucide="help-circle"></i> 9. Common FAQs</a></li>
+                    <li><a href="#overview"><i data-lucide="info"></i> 1. System Architecture</a></li>
+                    <li><a href="#flow-auth"><i data-lucide="log-in"></i> 2.1 Public Entry & Login</a></li>
+                    <li><a href="#flow-farmer-add"><i data-lucide="plus-circle"></i> 2.2 Farmer Adds Harvest</a></li>
+                    <li><a href="#flow-customer-buy"><i data-lucide="shopping-cart"></i> 2.3 Consumer Purchase</a></li>
+                    <li><a href="#flow-farmer-confirm"><i data-lucide="check-square"></i> 2.4 Farmer Confirmation</a></li>
+                    <li><a href="#flow-admin-approvals"><i data-lucide="shield-check"></i> 2.5 Admin Wholesaler Vetting</a></li>
+                    <li><a href="#flow-wholesaler-qa"><i data-lucide="check-circle"></i> 2.6 Wholesaler QA Audit</a></li>
+                    <li><a href="#flow-driver-transit"><i data-lucide="truck"></i> 2.7 Driver Delivery</a></li>
+                    <li><a href="#flow-customer-review"><i data-lucide="star"></i> 2.8 Customer Live Tracking</a></li>
+                    <li><a href="#flow-admin-audit"><i data-lucide="file-text"></i> 2.9 Admin Master Audit</a></li>
+                    <li><a href="#quick-demo"><i data-lucide="sparkles"></i> 3. Demo Credentials</a></li>
+                    <li><a href="#faq"><i data-lucide="help-circle"></i> 4. Common FAQs</a></li>
                 </ul>
-
-                <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color);">
-                    <small style="color: var(--text-muted); display: block; margin-bottom: 0.5rem;">Need setup help?</small>
-                    <a href="installation-manual.html" class="btn btn-secondary btn-sm" style="width: 100%;">
-                        <i data-lucide="terminal"></i> Installation Manual
-                    </a>
-                </div>
             </aside>
 
             <!-- Manual Body -->
             <article class="manual-content">
                 
-                <!-- Section 1 -->
+                <!-- Section 1: Architecture -->
                 <section id="overview" class="manual-section">
-                    <h2><i data-lucide="sprout"></i> 1. System Overview & The 5 Roles</h2>
+                    <h2><i data-lucide="sprout"></i> 1. Platform Architecture & Supply Chain Lifecycle</h2>
                     <p>
-                        The <strong>Supply Chain Transparency for Small Farms (AgriTrace)</strong> platform is engineered to eliminate opaque agricultural markups and empower small Australian family farms. By linking producers directly with customers through a verifiable digital custody chain, every stakeholder has transparent oversight:
+                        AgriTrace provides a decentralized digital trust framework connecting Australian family growers with conscious consumers. Every physical handover across the supply chain is recorded immutably in Cloud Firestore, enforcing transparent farm-gate pricing in Australian Dollars ($ AUD) and biosecurity validation.
                     </p>
-                    <ul>
-                        <li><strong>Farmer (Producer):</strong> Lists harvest batches, specifies AUD pricing per kg/unit, and confirms dispatch.</li>
-                        <li><strong>Wholesaler (Quality Auditor):</strong> Audits produce quality and verifies physical stock. <em>Must be approved by Administrator before verifying shipments.</em></li>
-                        <li><strong>Driver (Transit Logistics):</strong> Transports batches between rural Australian regional farms and suburban/urban destinations.</li>
-                        <li><strong>Customer (Consumer):</strong> Purchases direct-from-farm goods in AUD and tracks real-time chain of custody.</li>
-                        <li><strong>Administrator (Governance):</strong> Audits platform integrity, manages stakeholders, and approves wholesaler accreditations.</li>
-                    </ul>
 
                     <figure class="manual-figure">
                         <img src="docx/images/01_sitemap_visual_tree.png" alt="Platform Architecture Visual Sitemap">
@@ -293,210 +237,251 @@
                     </figure>
                 </section>
 
-                <!-- Section 2: Public Portal & Authentication -->
-                <section id="auth-guide" class="manual-section">
-                    <h2><i data-lucide="log-in"></i> 2. Public Portal, Registration & Authentication</h2>
+                <!-- Step 2.1: Public & Login -->
+                <section id="flow-auth" class="manual-section">
+                    <h2><i data-lucide="log-in"></i> 2.1 Public Entry & 1-Click Authentication</h2>
+                    <span class="step-badge">Workflow Stage 1</span>
                     <p>
-                        The public portal allows open browsing of platform features, role registration, and instant demo login using the embedded 1-Click toolbar.
+                        Stakeholders enter via the public homepage (index.html) and access the authentication portal (login.html) equipped with a 1-Click Demo Login bar pre-configured with Australian accounts.
                     </p>
 
                     <figure class="manual-figure">
-                        <img src="docx/images/portal_01_landing_page.png" alt="Public Landing Page">
-                        <figcaption><i data-lucide="image"></i> Figure 2.1: Public Landing Page featuring Australian Regional Produce Mission</figcaption>
+                        <img src="docx/images/flow_01_landing_page.png" alt="AgriTrace Public Landing Page">
+                        <figcaption><i data-lucide="image"></i> Flow 1: Public Hero Landing Page featuring Australian Regional Produce Mission</figcaption>
                     </figure>
 
                     <figure class="manual-figure">
-                        <img src="docx/images/portal_03_register_page.png" alt="Stakeholder Registration Portal">
-                        <figcaption><i data-lucide="image"></i> Figure 2.2: Stakeholder Registration Portal with Role-Based Metadata Fields</figcaption>
-                    </figure>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/portal_02_login_page.png" alt="Authentication Login Portal">
-                        <figcaption><i data-lucide="image"></i> Figure 2.3: Secure Authentication Portal with Integrated 1-Click Demo Bar</figcaption>
+                        <img src="docx/images/flow_02_login_page.png" alt="Authentication Login Portal">
+                        <figcaption><i data-lucide="image"></i> Flow 2: Secure Authentication Portal with Integrated 1-Click Demo Bar</figcaption>
                     </figure>
                 </section>
 
-                <!-- Section 3: Farmer Guide -->
-                <section id="farmer-guide" class="manual-section">
-                    <h2><i data-lucide="sprout"></i> 3. Farmer Guide (Producers)</h2>
-                    <p>Farmers can easily publish fresh harvests, monitor stock, and confirm incoming customer orders.</p>
-                    
-                    <div class="step-cards">
-                        <div class="step-card">
-                            <span class="step-num">1</span>
-                            <h4>Add Fresh Harvest</h4>
-                            <p>Navigate to <em>My Products</em>. Enter product name (e.g., Yarra Valley Strawberries), category, price in AUD, available quantity, and unit (kg, punnet, box).</p>
-                        </div>
-                        <div class="step-card">
-                            <span class="step-num">2</span>
-                            <h4>Review Stock</h4>
-                            <p>Stock automatically updates when consumers order. You can toggle product availability or adjust inventory anytime from the products table.</p>
-                        </div>
-                        <div class="step-card">
-                            <span class="step-num">3</span>
-                            <h4>Confirm Order</h4>
-                            <p>When an order arrives in <em>Orders</em>, click <strong>Confirm Order</strong>. This advances state to "Confirmed" so accredited wholesalers can audit the batch.</p>
-                        </div>
-                    </div>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/farmer_01_dashboard.png" alt="Farmer Operations Dashboard">
-                        <figcaption><i data-lucide="image"></i> Figure 3.1: Farmer Operations Command Center & Inventory Telemetry (Jack Miller, Yarra Valley VIC)</figcaption>
-                    </figure>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/farmer_02_products.png" alt="Farmer Harvest Batches & AUD Pricing">
-                        <figcaption><i data-lucide="image"></i> Figure 3.2: Produce Catalog Management with AUD Unit Pricing and Origin Tracking</figcaption>
-                    </figure>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/farmer_03_orders.png" alt="Farmer Inbound Orders Queue">
-                        <figcaption><i data-lucide="image"></i> Figure 3.3: Inbound Orders Queue and Batch Confirmation Workspace</figcaption>
-                    </figure>
-                </section>
-
-                <!-- Section 4: Wholesaler Guide -->
-                <section id="wholesaler-guide" class="manual-section">
-                    <h2><i data-lucide="store"></i> 4. Wholesaler Accreditation & Audit Manual</h2>
+                <!-- Step 2.2: Farmer Adds Produce -->
+                <section id="flow-farmer-add" class="manual-section">
+                    <h2><i data-lucide="plus-circle"></i> 2.2 Farmer Publishes Fresh Harvest Batch</h2>
+                    <span class="step-badge">Workflow Stage 2</span>
                     <p>
-                        Wholesalers bridge the gap between rural producers and metropolitan distribution by certifying that produce matches quality standards and physical quantities.
+                        Jack Miller (Yarra Valley Harvests VIC) signs into the Farmer Portal, opens his produce catalog, clicks <strong>+ Add Product</strong>, and lists a new crop: <strong>Barossa Valley Organic Shiraz Grapes</strong> ($6.80 AUD/kg, 150 kg stock).
                     </p>
 
                     <figure class="manual-figure">
-                        <img src="docx/images/03_wholesaler_accreditation_flow.png" alt="Wholesaler Accreditation Flowchart">
-                        <figcaption><i data-lucide="image"></i> Figure 4.1: Wholesaler Accreditation & Biosecurity Lifecycle Flowchart</figcaption>
+                        <img src="docx/images/flow_03_farmer_dashboard.png" alt="Farmer Operations Dashboard">
+                        <figcaption><i data-lucide="image"></i> Flow 3: Farmer Operations Command Center & Revenue Telemetry (Jack Miller)</figcaption>
                     </figure>
 
-                    <h3>4.1 Unaccredited Wholesaler Experience (Pending Approval)</h3>
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_04_farmer_add_product_modal.png" alt="Farmer Adding Product Modal">
+                        <figcaption><i data-lucide="image"></i> Flow 4: Add Product Modal populated with Barossa Valley Grapes Specifications</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_05_farmer_product_saved.png" alt="Produce Batch Saved in Catalog">
+                        <figcaption><i data-lucide="image"></i> Flow 5: Barossa Valley Grapes Published Live in Farmer Produce Catalog</figcaption>
+                    </figure>
+                </section>
+
+                <!-- Step 2.3: Consumer Purchase -->
+                <section id="flow-customer-buy" class="manual-section">
+                    <h2><i data-lucide="shopping-cart"></i> 2.3 Consumer Discovers & Buys Produce</h2>
+                    <span class="step-badge">Workflow Stage 3</span>
                     <p>
-                        Unapproved wholesalers who log in see a persistent amber warning banner: <em>"Account Pending Administrator Approval"</em>. The "Verify Stock" button is disabled until an Admin grants accreditation.
+                        Chloe Taylor (Consumer, Carlton Melbourne VIC) explores the fresh marketplace, discovers the newly listed Barossa Valley grapes, adds 5 kg to cart, reviews itemized AUD costs in her cart ($34.00 AUD), and executes fair-trade checkout.
                     </p>
 
                     <figure class="manual-figure">
-                        <img src="docx/images/wholesaler_01_pending_dashboard.png" alt="Pending Wholesaler Warning Dashboard">
-                        <figcaption><i data-lucide="image"></i> Figure 4.2: Pending Wholesaler Dashboard Displaying Regulatory Warning Banner (Matilda Evans)</figcaption>
+                        <img src="docx/images/flow_06_customer_marketplace.png" alt="Customer Marketplace">
+                        <figcaption><i data-lucide="image"></i> Flow 6: Fresh Produce Marketplace displaying Barossa Valley Grapes</figcaption>
                     </figure>
 
                     <figure class="manual-figure">
-                        <img src="docx/images/wholesaler_02_pending_orders.png" alt="Wholesaler QA Queue Locked State">
-                        <figcaption><i data-lucide="image"></i> Figure 4.3: Wholesaler Quality Assurance Queue with Verification Actions Locked</figcaption>
+                        <img src="docx/images/flow_07_customer_cart.png" alt="Customer Shopping Cart">
+                        <figcaption><i data-lucide="image"></i> Flow 7: Shopping Cart with Itemized AUD Pricing ($34.00 AUD) and Delivery Destination</figcaption>
                     </figure>
 
-                    <h3>4.2 Accredited Wholesaler Certified Workspace</h3>
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_08_customer_order_placed.png" alt="Order Placed Confirmation">
+                        <figcaption><i data-lucide="image"></i> Flow 8: Fair-Trade Order Checkout Completed with Atomic Stock Reservation</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_09_customer_order_tracking_step1.png" alt="Customer Live Order Tracker Step 1">
+                        <figcaption><i data-lucide="image"></i> Flow 9: Customer 7-Stage Live Order Tracker (Stage 1: Order Placed)</figcaption>
+                    </figure>
+                </section>
+
+                <!-- Step 2.4: Farmer Confirmation -->
+                <section id="flow-farmer-confirm" class="manual-section">
+                    <h2><i data-lucide="check-square"></i> 2.4 Farmer Confirms Order Preparation</h2>
+                    <span class="step-badge">Workflow Stage 4</span>
                     <p>
-                        Once approved by an Administrator, the wholesaler receives certified auditing status with unlocked verification controls.
+                        Jack Miller checks incoming orders in <strong>farmer/orders.html</strong>, prepares the grape batch for wholesale pickup, and clicks <strong>Confirm Order</strong>. Status transitions to "Farmer Confirmed".
                     </p>
 
                     <figure class="manual-figure">
-                        <img src="docx/images/wholesaler_03_approved_dashboard.png" alt="Accredited Wholesaler Dashboard">
-                        <figcaption><i data-lucide="image"></i> Figure 4.4: Accredited Wholesaler Certified Command Dashboard (Liam Wilson, Sydney NSW)</figcaption>
+                        <img src="docx/images/flow_10_farmer_inbound_order.png" alt="Farmer Inbound Orders Queue">
+                        <figcaption><i data-lucide="image"></i> Flow 10: Inbound Order Queue displaying Chloe Taylor's New Order</figcaption>
                     </figure>
 
                     <figure class="manual-figure">
-                        <img src="docx/images/wholesaler_04_approved_orders.png" alt="Active Produce QA Verification Queue">
-                        <figcaption><i data-lucide="image"></i> Figure 4.5: Active Produce QA Verification & Batch Certification Workspace</figcaption>
+                        <img src="docx/images/flow_11_farmer_order_confirmed.png" alt="Order Confirmed by Farmer">
+                        <figcaption><i data-lucide="image"></i> Flow 11: Order Confirmed by Farmer and Routed to Wholesaler QA Queue</figcaption>
                     </figure>
                 </section>
 
-                <!-- Section 5: Driver Logistics -->
-                <section id="driver-guide" class="manual-section">
-                    <h2><i data-lucide="truck"></i> 5. Logistics & Driver Guide</h2>
-                    <p>Logistics operators ensure cold-chain integrity and record physical custody transfers across Australian routes.</p>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/driver_01_dashboard.png" alt="Driver Dashboard">
-                        <figcaption><i data-lucide="image"></i> Figure 5.1: Logistics Driver Fleet Operations & Milestone Telemetry (Lucas Brown)</figcaption>
-                    </figure>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/driver_02_deliveries.png" alt="Driver Transit Deliveries Queue">
-                        <figcaption><i data-lucide="image"></i> Figure 5.2: Real-Time Transit Delivery Queue and Checkpoint Execution Controls</figcaption>
-                    </figure>
-                </section>
-
-                <!-- Section 6: Customer Guide -->
-                <section id="customer-guide" class="manual-section">
-                    <h2><i data-lucide="shopping-bag"></i> 6. Customer Guide (Direct Consumers)</h2>
-                    <p>Customers enjoy fresh Australian harvest produce with full traceability of who grew it, who verified it, and who delivered it.</p>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/customer_01_dashboard.png" alt="Customer Dashboard">
-                        <figcaption><i data-lucide="image"></i> Figure 6.1: Consumer Account Dashboard & Recent Order Summary (Chloe Taylor, Melbourne VIC)</figcaption>
-                    </figure>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/customer_02_products.png" alt="Fresh Australian Produce Marketplace">
-                        <figcaption><i data-lucide="image"></i> Figure 6.2: Fresh Australian Produce Marketplace with Origin Provenance & Category Filters</figcaption>
-                    </figure>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/customer_03_cart.png" alt="Shopping Cart & Fair Trade Checkout">
-                        <figcaption><i data-lucide="image"></i> Figure 6.3: Shopping Cart & Fair-Trade Checkout Workspace with Itemized AUD Pricing</figcaption>
-                    </figure>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/customer_04_orders.png" alt="7-Stage Live Order Tracker">
-                        <figcaption><i data-lucide="image"></i> Figure 6.4: 7-Stage Live Order Provenance and Real-Time Custody Tracker</figcaption>
-                    </figure>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/customer_05_feedback.png" alt="Farmer Quality Rating Form">
-                        <figcaption><i data-lucide="image"></i> Figure 6.5: Fair-Trade Farmer Quality Rating & Review Submission Form</figcaption>
-                    </figure>
-                </section>
-
-                <!-- Section 7: Admin Governance -->
-                <section id="admin-guide" class="manual-section">
-                    <h2><i data-lucide="shield-check"></i> 7. Administrator Governance Guide</h2>
+                <!-- Step 2.5: Admin Wholesaler Approvals -->
+                <section id="flow-admin-approvals" class="manual-section">
+                    <h2><i data-lucide="shield-check"></i> 2.5 Admin Wholesaler Accreditation Governance</h2>
+                    <span class="step-badge">Workflow Stage 5</span>
                     <p>
-                        The Admin Portal provides macro-oversight of users, inventory, order volume in AUD, and regulatory accreditations.
+                        To uphold Australian food safety standards, wholesalers cannot verify batches without administrator accreditation. This section demonstrates the full vetting lifecycle: Pending Review -> Verification Locked -> Approved Active -> Revocation Controls.
                     </p>
 
                     <figure class="manual-figure">
-                        <img src="docx/images/04_admin_governance_architecture.png" alt="Admin Architecture">
-                        <figcaption><i data-lucide="image"></i> Figure 7.1: Multi-Module Administrative Governance Architecture</figcaption>
+                        <img src="docx/images/flow_12_admin_approvals_pending.png" alt="Admin Approvals Hub Pending Queue">
+                        <figcaption><i data-lucide="image"></i> Flow 12: Admin Approvals Hub Showing Matilda Evans Awaiting Compliance Approval</figcaption>
                     </figure>
 
                     <figure class="manual-figure">
-                        <img src="docx/images/admin_01_dashboard.png" alt="Admin Command Center">
-                        <figcaption><i data-lucide="image"></i> Figure 7.2: Central Administration Command Center & Platform Metrics Telemetry</figcaption>
+                        <img src="docx/images/flow_13_wholesaler_pending_warning.png" alt="Pending Wholesaler Warning Banner">
+                        <figcaption><i data-lucide="image"></i> Flow 13: Unaccredited Wholesaler Dashboard Displaying Regulatory Amber Warning Banner</figcaption>
                     </figure>
 
                     <figure class="manual-figure">
-                        <img src="docx/images/admin_02_approvals.png" alt="Wholesaler Approvals Hub">
-                        <figcaption><i data-lucide="image"></i> Figure 7.3: Wholesaler Accreditation & Regulatory Approvals Management Hub</figcaption>
+                        <img src="docx/images/flow_14_wholesaler_pending_locked.png" alt="Wholesaler QA Queue Locked State">
+                        <figcaption><i data-lucide="image"></i> Flow 14: Wholesaler QA Queue with Stock Verification Controls Locked</figcaption>
                     </figure>
 
                     <figure class="manual-figure">
-                        <img src="docx/images/admin_03_users.png" alt="Master Stakeholder Registry">
-                        <figcaption><i data-lucide="image"></i> Figure 7.4: Master Stakeholder Registry and Role Management Workspace</figcaption>
+                        <img src="docx/images/flow_15_admin_wholesaler_approved.png" alt="Admin Approves Wholesaler">
+                        <figcaption><i data-lucide="image"></i> Flow 15: Admin Approves Wholesaler — Account Transitioned to Accredited Active Status</figcaption>
                     </figure>
 
                     <figure class="manual-figure">
-                        <img src="docx/images/admin_04_products.png" alt="Global Product Audit">
-                        <figcaption><i data-lucide="image"></i> Figure 7.5: Global Produce Catalog Audit & Biosecurity Verification Ledger</figcaption>
-                    </figure>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/admin_05_orders.png" alt="Master Order Transaction Ledger">
-                        <figcaption><i data-lucide="image"></i> Figure 7.6: Master Supply Chain Transaction & Custody Audit Ledger</figcaption>
-                    </figure>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/admin_06_evaluation.png" alt="Administrative Financial Evaluation">
-                        <figcaption><i data-lucide="image"></i> Figure 7.7: Administrative Commercial Evaluation & Operational Expenditure Telemetry</figcaption>
-                    </figure>
-
-                    <figure class="manual-figure">
-                        <img src="docx/images/05_commercial_revenue_model.png" alt="Commercial Revenue Flow">
-                        <figcaption><i data-lucide="image"></i> Figure 7.8: Commercial Revenue Flow & Multi-Stream Monetization Model</figcaption>
+                        <img src="docx/images/flow_16_admin_wholesaler_revoked.png" alt="Admin Revocation Governance Controls">
+                        <figcaption><i data-lucide="image"></i> Flow 16: Admin Regulatory Enforcement — One-Click Revocation and Rejection Controls</figcaption>
                     </figure>
                 </section>
 
-                <!-- Section 8: Quick Demo -->
+                <!-- Step 2.6: Wholesaler QA Audit -->
+                <section id="flow-wholesaler-qa" class="manual-section">
+                    <h2><i data-lucide="check-circle"></i> 2.6 Accredited Wholesaler Conducts Quality Audit</h2>
+                    <span class="step-badge">Workflow Stage 6</span>
+                    <p>
+                        Liam Wilson (Sydney Central Produce Markets), an accredited wholesaler, opens the QA queue. He conducts physical grade audits and weight verification before clicking <strong>Verify Stock</strong>. The order advances to "Wholesaler Verified".
+                    </p>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_17_wholesaler_approved_dashboard.png" alt="Accredited Wholesaler Dashboard">
+                        <figcaption><i data-lucide="image"></i> Flow 17: Accredited Wholesaler Dashboard with Certified Regulatory Status</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_18_wholesaler_audit_queue.png" alt="Wholesaler QA Audit Queue">
+                        <figcaption><i data-lucide="image"></i> Flow 18: Quality Assurance Queue with Active 'Verify Stock' Controls</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_19_wholesaler_stock_verified.png" alt="Stock Verified by Wholesaler">
+                        <figcaption><i data-lucide="image"></i> Flow 19: Batch Certified & Wholesaler Verified — Dispatched to Logistics Fleet</figcaption>
+                    </figure>
+                </section>
+
+                <!-- Step 2.7: Driver Transit -->
+                <section id="flow-driver-transit" class="manual-section">
+                    <h2><i data-lucide="truck"></i> 2.7 Logistics Driver Executes Transit Milestones</h2>
+                    <span class="step-badge">Workflow Stage 7</span>
+                    <p>
+                        Lucas Brown (Outback Cold Logistics) accepts the verified shipment and moves it through cold-chain checkpoints: Pickup -> Highway Transit -> Delivery Handover.
+                    </p>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_20_driver_dashboard.png" alt="Driver Fleet Dashboard">
+                        <figcaption><i data-lucide="image"></i> Flow 20: Logistics Driver Fleet Operations & Route Telemetry (Lucas Brown)</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_21_driver_deliveries_queue.png" alt="Driver Deliveries Queue">
+                        <figcaption><i data-lucide="image"></i> Flow 21: Verified Shipment Ready for Cold-Chain Transit Pickup</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_22_driver_accepted.png" alt="Shipment Assigned to Driver">
+                        <figcaption><i data-lucide="image"></i> Flow 22: Shipment Assigned to Refrigerated Vehicle</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_23_driver_picked_up.png" alt="Driver Picked Up Checkpoint">
+                        <figcaption><i data-lucide="image"></i> Flow 23: Transit Checkpoint 1 Logged — Picked Up from Hub</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_24_driver_in_transit.png" alt="Driver In Transit Checkpoint">
+                        <figcaption><i data-lucide="image"></i> Flow 24: Transit Checkpoint 2 Logged — In Transit on Regional Highway</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_25_driver_delivered.png" alt="Delivery Handover Completed">
+                        <figcaption><i data-lucide="image"></i> Flow 25: Transit Checkpoint 3 Handover Completed — Order Delivered</figcaption>
+                    </figure>
+                </section>
+
+                <!-- Step 2.8: Customer Tracking & Review -->
+                <section id="flow-customer-review" class="manual-section">
+                    <h2><i data-lucide="star"></i> 2.8 Customer Live Tracking & Fair-Trade Rating</h2>
+                    <span class="step-badge">Workflow Stage 8</span>
+                    <p>
+                        Chloe Taylor checks <strong>customer/orders.html</strong> to see all 7 custody stages complete. She opens <strong>customer/feedback.html</strong> and submits a 5-star rating praising Jack Miller's fresh harvest.
+                    </p>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_26_customer_delivered_stage7.png" alt="7-Stage Tracker Delivered State">
+                        <figcaption><i data-lucide="image"></i> Flow 26: 7-Stage Custody Tracker Displaying Complete Green Delivered Milestones</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_27_customer_feedback_form.png" alt="Customer Review Submission Form">
+                        <figcaption><i data-lucide="image"></i> Flow 27: Fair-Trade Farmer Quality Rating and Review Submission Workspace</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_28_customer_feedback_submitted.png" alt="5-Star Feedback Submitted">
+                        <figcaption><i data-lucide="image"></i> Flow 28: 5-Star Farmer Feedback Successfully Committed to Grower Profile</figcaption>
+                    </figure>
+                </section>
+
+                <!-- Step 2.9: Admin Master Audit -->
+                <section id="flow-admin-audit" class="manual-section">
+                    <h2><i data-lucide="file-text"></i> 2.9 Admin Master Audit Ledger & Analytics</h2>
+                    <span class="step-badge">Workflow Stage 9</span>
+                    <p>
+                        The Administrator inspects the completed transaction ledger, stakeholder user directory, global catalog audit, and commercial financial evaluation metrics in AUD.
+                    </p>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_29_admin_orders_master_ledger.png" alt="Master Order Transaction Audit Ledger">
+                        <figcaption><i data-lucide="image"></i> Flow 29: Master Order Transaction Audit Ledger with Delivered Transaction Record</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_30_admin_users_stakeholders.png" alt="Master Stakeholder Registry">
+                        <figcaption><i data-lucide="image"></i> Flow 30: Master Stakeholder Registry Across Australian Agricultural Nodes</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_31_admin_products_audit.png" alt="Global Produce Catalog Audit">
+                        <figcaption><i data-lucide="image"></i> Flow 31: Global Produce Catalog Audit with Barossa Valley Grapes Listed</figcaption>
+                    </figure>
+
+                    <figure class="manual-figure">
+                        <img src="docx/images/flow_32_admin_evaluation_financials.png" alt="Administrative Financial Evaluation">
+                        <figcaption><i data-lucide="image"></i> Flow 32: Administrative Commercial Evaluation & Revenue Feasibility Telemetry</figcaption>
+                    </figure>
+                </section>
+
+                <!-- Section 3: Demo Accounts -->
                 <section id="quick-demo" class="manual-section">
-                    <h2><i data-lucide="sparkles"></i> 8. Quick 1-Click Demo Accounts</h2>
-                    <p>For rapid evaluation and testing, predefined demo accounts are provided with uniform password <code>password123</code>:</p>
+                    <h2><i data-lucide="sparkles"></i> 3. Quick 1-Click Demo Accounts</h2>
+                    <p>All accounts utilize uniform password <code>password123</code>:</p>
 
                     <div style="overflow-x: auto; margin-top: 1rem;">
                         <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
@@ -505,7 +490,7 @@
                                     <th style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);">Role</th>
                                     <th style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);">Email</th>
                                     <th style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);">Password</th>
-                                    <th style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);">Status / Context</th>
+                                    <th style="padding: 0.65rem 0.85rem; border: 1px solid var(--border-color);">Context</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -550,26 +535,26 @@
                     </div>
                 </section>
 
-                <!-- Section 9: FAQ -->
+                <!-- Section 4: FAQs -->
                 <section id="faq" class="manual-section">
-                    <h2><i data-lucide="help-circle"></i> 9. Frequently Asked Questions</h2>
+                    <h2><i data-lucide="help-circle"></i> 4. Frequently Asked Questions</h2>
                     <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
                         <details style="background: #F9FAFB; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
-                            <summary style="font-weight: 600; cursor: pointer; color: var(--primary-color);">Why can't my wholesaler account verify orders immediately?</summary>
+                            <summary style="font-weight: 600; cursor: pointer; color: var(--primary-color);">Why are unaccredited wholesalers restricted from verifying stock?</summary>
                             <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-color); line-height: 1.5;">
-                                To guarantee food safety and fair certification compliance, wholesalers require Administrator verification. An administrator must approve your application via the <strong>Admin Portal → Wholesaler Approvals</strong> before verification permissions are unlocked.
+                                Australian biosecurity standards require vetted quality assurance partners. An Administrator must audit the wholesaler via <strong>Admin Portal → Wholesaler Approvals</strong> before verification capabilities unlock.
                             </p>
                         </details>
-                        <details style="background: #F9FAFB; padding: 1rem; border-radius: var(--border-color); border: 1px solid var(--border-color);">
+                        <details style="background: #F9FAFB; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                            <summary style="font-weight: 600; cursor: pointer; color: var(--primary-color);">Can an Administrator revoke a wholesaler's accreditation?</summary>
+                            <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-color); line-height: 1.5;">
+                                Yes. The Administrator Approvals Hub provides one-click 'Revoke' actions that immediately lock the wholesaler's verification permissions if biosecurity or food standards are breached.
+                            </p>
+                        </details>
+                        <details style="background: #F9FAFB; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
                             <summary style="font-weight: 600; cursor: pointer; color: var(--primary-color);">In what currency are platform transactions processed?</summary>
                             <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-color); line-height: 1.5;">
-                                All produce pricing, order totals, and platform volume are measured and presented in Australian Dollars ($ AUD).
-                            </p>
-                        </details>
-                        <details style="background: #F9FAFB; padding: 1rem; border-radius: var(--border-color); border: 1px solid var(--border-color);">
-                            <summary style="font-weight: 600; cursor: pointer; color: var(--primary-color);">How does inventory stay synchronized?</summary>
-                            <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-color); line-height: 1.5;">
-                                When a customer places an order, Cloud Firestore automatically decrements product quantity in real-time. If stock hits zero, the product is automatically marked as unavailable.
+                                All produce pricing, order totals, farm revenues, and platform analytics are measured in Australian Dollars ($ AUD).
                             </p>
                         </details>
                     </div>

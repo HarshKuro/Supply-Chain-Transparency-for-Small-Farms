@@ -101,16 +101,20 @@ A complete operational guide for end users and evaluators was created at [user-m
   - **🛒 Consumer**: Browsing regional harvests, adding produce to cart, executing fair-trade checkout in AUD, tracking live 7-stage order status, and rating farmers.
   - **🛡️ System Administrator**: Platform monitoring, approving/revoking wholesaler accounts, auditing all system users and transactions.
 - **Interactive Quick-Credential Cards**: Provides 1-click test emails and passwords for evaluators.
-- **Complete Portal Screenshot Suite (26 Embedded Figures)**:
+- **Complete Interactive Working Flow Suite (34 Embedded Figures, Zero Loading Marks)**:
   - System architecture visual sitemap & 7-stage custody verification sequence.
   - Public hero landing page (`index.html`) & role-based registration (`register.html`).
   - Secure authentication portal with 1-click demo bar (`login.html`).
-  - Farmer dashboard, harvest batch creation in AUD, and order confirmation (`farmer/`).
-  - Wholesaler pending approval warning banner & locked audit controls vs. accredited certified workspace (`wholesaler/`).
-  - Logistics driver dashboard and 3-step transit milestone execution queue (`driver/`).
-  - Consumer account dashboard, regional produce catalog, shopping cart, live order provenance tracker, and farmer rating form (`customer/`).
-  - Admin command center, wholesaler accreditation management hub, master user registry, produce catalog audit, transaction ledger, and financial evaluation telemetry (`admin/`).
-  - Available in both interactive web format (`user-manual.html`) and official printable Word document (`docx/usermanual.docx`, 1.92 MB).
+  - **Full Operational Lifecycle in the Flow**:
+    - Farmer (Jack Miller) adds fresh harvest batch modal ("Barossa Valley Organic Shiraz Grapes") & publishes live to catalog.
+    - Consumer (Chloe Taylor) discovers grapes on marketplace, adds 5 kg to cart, reviews itemized AUD checkout ($34.00 AUD), and places order.
+    - Farmer receives inbound order in queue, packs produce, and clicks "Confirm Order".
+    - Administrator inspects Wholesaler Approvals Hub: reviews Matilda Evans in "Pending Review", demonstrates unaccredited warning banner and locked QA controls, executes 1-click approval, and demonstrates regulatory revocation controls.
+    - Accredited Wholesaler (Liam Wilson) conducts quality audit and clicks "Verify Stock".
+    - Logistics Driver (Lucas Brown) accepts dispatch, logs "Picked Up", logs "In Transit", and completes "Delivered" handover at Carlton VIC.
+    - Consumer tracks 7-stage live custody progress to 100% green "Delivered" and submits 5-star review.
+    - Administrator audits master transaction ledger, stakeholder user registry, global catalog, and commercial financial evaluation.
+  - Available in both interactive web format (`user-manual.html`) and official printable Word document (`docx/usermanual.docx`, 2.58 MB).
 
 ![Stakeholder User Manual](screenshots/12_browser_user_manual.png)
 *Figure 4.1: Operational User Manual (`user-manual.html`) showing role workflows and visual documentation*

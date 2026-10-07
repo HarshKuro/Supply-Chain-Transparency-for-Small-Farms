@@ -12,7 +12,7 @@ def build_usermanual_doc():
     add_title_header(
         doc,
         title="AgriTrace Operational User Manual",
-        subtitle="Complete Step-by-Step Operating Handbook & Visual Interface Guide for Farmers, Wholesalers, Logistics Drivers, Direct Consumers, and System Administrators.",
+        subtitle="Complete End-to-End Operating Handbook & Working Lifecycle Flow: From Product Listing and Purchase to Wholesaler Accreditation, QA Verification, Driver Transit, and Admin Audit.",
         category_tag="Operations & User Manual"
     )
 
@@ -22,23 +22,19 @@ def build_usermanual_doc():
     add_heading_1(doc, "1. Platform Architecture & Supply Chain Lifecycle")
     add_body_paragraph(
         doc,
-        "AgriTrace is a decentralized digital supply chain transparency platform engineered to empower Australian family farms, independent regional growers, accredited commercial wholesalers, cold-chain logistics providers, and conscious consumers. In Australia's retail food sector, major supermarket duopolies capture gross margins exceeding 50% to 60%, leaving primary producers vulnerable while obscuring food provenance from shoppers."
+        "AgriTrace is a decentralized digital supply chain transparency platform engineered to empower Australian family farms, regional growers, accredited commercial wholesalers, cold-chain logistics fleets, and conscious consumers. In Australia's retail food sector, major supermarket duopolies capture gross margins exceeding 50% to 60%, leaving primary producers vulnerable while obscuring food provenance from shoppers."
     )
     add_body_paragraph(
         doc,
         "By enforcing tamper-evident digital custody transitions at every physical handover, AgriTrace delivers cryptographic proof of origin, transparent farm-gate pricing in Australian Dollars ($ AUD), and end-to-end biosecurity verification."
     )
 
-    # Embedded High-Res Clean Diagrams
+    # Architectural Diagrams
     add_screenshot(
         doc,
         "01_sitemap_visual_tree.png",
         "Figure 1.1: AgriTrace System Architecture & Hierarchical Visual Sitemap",
         width_inches=6.2
-    )
-    add_body_paragraph(
-        doc,
-        "The supply chain enforces a strict 7-stage sequential state machine. An order cannot bypass stages or be altered retroactively once committed to the Cloud Firestore database."
     )
     add_screenshot(
         doc,
@@ -49,7 +45,7 @@ def build_usermanual_doc():
 
     lifecycle_headers = ["Stage", "Lifecycle Status", "Responsible Stakeholder", "Enforced Verification Action"]
     lifecycle_rows = [
-        ["Stage 1", "Order Placed", "🛒 Consumer", "Shopping cart checkout & atomic inventory deduction in Firestore."],
+        ["Stage 1", "Order Placed / Pending", "🛒 Consumer", "Shopping cart checkout & atomic inventory deduction in Firestore."],
         ["Stage 2", "Farmer Confirmed", "🌾 Small Farmer", "Physical crop harvesting, packing, batch label generation."],
         ["Stage 3", "Wholesaler Verified", "🏢 Accredited Wholesaler", "Quality audit, biosecurity grade checks, weight validation."],
         ["Stage 4", "Picked Up", "🚚 Logistics Driver", "Loading into refrigerated vehicle; cold-chain custody seal."],
@@ -60,55 +56,120 @@ def build_usermanual_doc():
     add_styled_table(doc, lifecycle_headers, lifecycle_rows, [1.0, 1.4, 1.8, 2.2])
 
     # =========================================================================
-    # 2. PUBLIC PORTAL & AUTHENTICATION MANUAL
+    # 2. COMPLETE END-TO-END WORKING LIFECYCLE IN THE FLOW
     # =========================================================================
-    add_heading_1(doc, "2. Public Portal, Registration & Authentication (login.html)")
+    add_heading_1(doc, "2. Complete End-to-End Working Operational Flow")
     add_body_paragraph(
         doc,
-        "The public web application provides open access to the platform overview, educational transparency metrics, stakeholder registration, and secure authentication with automated role-based routing."
+        "This section illustrates the full, connected working flow of an authentic transaction through every stage of the AgriTrace platform: from a farmer adding a fresh harvest batch, to a consumer purchasing it, the farmer confirming it, the administrator vetting the wholesaler, the wholesaler auditing the batch, the logistics driver executing physical transport, the customer tracking delivery, and the administrator auditing the final ledger."
     )
 
-    add_heading_2(doc, "2.1 Public Landing Page (index.html)")
+    # Step 2.1 Public & Authentication
+    add_heading_2(doc, "Step 2.1: Public Entry & 1-Click Authentication")
     add_body_paragraph(
         doc,
-        "Visitors can explore AgriTrace's core mission, interactive transparency widgets, Australian regional harvest stories, and direct navigation links to all platform documentation."
+        "Users enter via index.html and sign in via login.html using the 1-Click Demo Login toolbar. All accounts are pre-seeded with authentic Australian regional identities and uniform password 'password123'."
     )
-    add_screenshot(
-        doc,
-        "portal_01_landing_page.png",
-        "Figure 2.1: Public Landing Page featuring Australian Fair-Trade Mission & Direct Portal Entry",
-        width_inches=6.0
-    )
+    add_screenshot(doc, "flow_01_landing_page.png", "Flow 1: Public Hero Landing Page featuring Australian Regional Produce Mission", width_inches=6.0)
+    add_screenshot(doc, "flow_02_login_page.png", "Flow 2: Secure Authentication Portal with Integrated 1-Click Demo Bar", width_inches=6.0)
 
-    add_heading_2(doc, "2.2 Stakeholder Account Registration (register.html)")
+    # Step 2.2 Farmer Adds Harvest Batch
+    add_heading_2(doc, "Step 2.2: Farmer Publishes Fresh Harvest Batch")
     add_body_paragraph(
         doc,
-        "New stakeholders register via register.html. Depending on the selected role, the interface dynamically displays pertinent metadata fields required for verification:"
+        "Jack Miller (Yarra Valley Harvests VIC) logs into farmer/dashboard.html, opens farmer/products.html, clicks '+ Add Product', and lists a new batch: 'Barossa Valley Organic Shiraz Grapes' ($6.80 AUD/kg, 150 kg stock)."
     )
-    add_bullet_point(doc, "Full Name & Legal Business Entity Name", "• ")
-    add_bullet_point(doc, "Registered Email Address & Australian Mobile Phone (e.g., 0412 345 678)", "• ")
-    add_bullet_point(doc, "Secure Account Password (minimum 6 alphanumeric characters)", "• ")
-    add_bullet_point(doc, "Role Selection: Farmer, Wholesaler, Logistics Driver, or Consumer", "• ")
-    add_bullet_point(doc, "Role-Specific Geographic Metadata (Farm Location for growers; Commercial Warehouse Location for wholesalers; Delivery Address for consumers)", "• ")
-    add_screenshot(
-        doc,
-        "portal_03_register_page.png",
-        "Figure 2.2: Stakeholder Registration Portal with Dynamic Role-Based Metadata Fields",
-        width_inches=6.0
-    )
+    add_screenshot(doc, "flow_03_farmer_dashboard.png", "Flow 3: Farmer Operations Command Center & Revenue Telemetry", width_inches=6.0)
+    add_screenshot(doc, "flow_04_farmer_add_product_modal.png", "Flow 4: Farmer Add Product Modal with Barossa Valley Grapes Specifications", width_inches=6.0)
+    add_screenshot(doc, "flow_05_farmer_product_saved.png", "Flow 5: Newly Added Produce Published Live in Farmer Catalog", width_inches=6.0)
 
-    add_heading_2(doc, "2.3 Authentication & 1-Click Demo Testing Toolbar (login.html)")
+    # Step 2.3 Customer Discovers & Purchases Produce
+    add_heading_2(doc, "Step 2.3: Consumer Discovers Produce & Executes Fair-Trade Checkout")
     add_body_paragraph(
         doc,
-        "To facilitate rapid User Acceptance Testing (UAT) and operational evaluation without manual credential setup, AgriTrace features an integrated 1-Click Demo Login bar directly on login.html. Clicking any demo button automatically injects seeded credentials and executes secure authentication."
+        "Chloe Taylor (Customer, Melbourne VIC) logs into customer/products.html, spots the newly harvested Barossa Valley grapes with regional origin tag, adds 5 kg to cart, reviews itemized AUD pricing ($34.00 AUD) in customer/cart.html, and executes checkout."
     )
-    add_callout(
+    add_screenshot(doc, "flow_06_customer_marketplace.png", "Flow 6: Fresh Produce Marketplace Displaying Newly Published Barossa Valley Grapes", width_inches=6.0)
+    add_screenshot(doc, "flow_07_customer_cart.png", "Flow 7: Shopping Cart with Itemized AUD Pricing and Delivery Destination", width_inches=6.0)
+    add_screenshot(doc, "flow_08_customer_order_placed.png", "Flow 8: Fair-Trade Order Checkout Completed with Atomic Stock Reservation", width_inches=6.0)
+    add_screenshot(doc, "flow_09_customer_order_tracking_step1.png", "Flow 9: Customer 7-Stage Live Order Tracker (Stage 1: Order Placed)", width_inches=6.0)
+
+    # Step 2.4 Farmer Confirms Inbound Order
+    add_heading_2(doc, "Step 2.4: Farmer Confirms Order Preparation")
+    add_body_paragraph(
         doc,
-        "Uniform Demo Password: password123\nAll pre-seeded Australian stakeholder accounts utilize the uniform password 'password123'. Clicking any demo toolbar button instantly logs into the selected role environment.",
-        "Quick Access Security Key",
-        "success"
+        "Jack Miller opens farmer/orders.html, sees Chloe's new inbound order, packs the 5 kg harvest batch, and clicks 'Confirm Order'. The order status advances to 'Farmer Confirmed'."
+    )
+    add_screenshot(doc, "flow_10_farmer_inbound_order.png", "Flow 10: Inbound Order Queue Displaying Chloe Taylor's New Order", width_inches=6.0)
+    add_screenshot(doc, "flow_11_farmer_order_confirmed.png", "Flow 11: Order Confirmed by Farmer and Routed to Wholesaler QA Queue", width_inches=6.0)
+
+    # Step 2.5 Admin Wholesaler Accreditation Governance
+    add_heading_2(doc, "Step 2.5: Administrator Wholesaler Accreditation Governance")
+    add_body_paragraph(
+        doc,
+        "Before unvetted wholesalers can certify farm shipments, they must undergo regulatory accreditation. When Matilda Evans (Melbourne Wholesale Hub) registers, her account is locked in 'Pending Review' status."
+    )
+    add_screenshot(doc, "flow_12_admin_approvals_pending.png", "Flow 12: Admin Approvals Hub Showing Matilda Evans Awaiting Compliance Approval", width_inches=6.0)
+    add_screenshot(doc, "flow_13_wholesaler_pending_warning.png", "Flow 13: Unaccredited Wholesaler Dashboard Displaying Regulatory Amber Warning Banner", width_inches=6.0)
+    add_screenshot(doc, "flow_14_wholesaler_pending_locked.png", "Flow 14: Wholesaler QA Queue with Stock Verification Controls Locked", width_inches=6.0)
+    add_screenshot(doc, "flow_15_admin_wholesaler_approved.png", "Flow 15: Admin Approves Wholesaler — Account Transitioned to Accredited Active Status", width_inches=6.0)
+    add_screenshot(doc, "flow_16_admin_wholesaler_revoked.png", "Flow 16: Admin Regulatory Enforcement — One-Click Revocation and Rejection Controls", width_inches=6.0)
+
+    # Step 2.6 Accredited Wholesaler Audits & Verifies Stock
+    add_heading_2(doc, "Step 2.6: Accredited Wholesaler Conducts Quality Audit")
+    add_body_paragraph(
+        doc,
+        "Liam Wilson (Sydney Central Produce Markets Pty Ltd), an accredited wholesaler, opens wholesaler/orders.html. He audits crop freshness, temperature logs, and packaging tolerances before clicking 'Verify Stock'. The order transitions to 'Wholesaler Verified'."
+    )
+    add_screenshot(doc, "flow_17_wholesaler_approved_dashboard.png", "Flow 17: Accredited Wholesaler Dashboard with Certified Regulatory Status", width_inches=6.0)
+    add_screenshot(doc, "flow_18_wholesaler_audit_queue.png", "Flow 18: Quality Assurance Queue with Active 'Verify Stock' Controls", width_inches=6.0)
+    add_screenshot(doc, "flow_19_wholesaler_stock_verified.png", "Flow 19: Batch Certified & Wholesaler Verified — Dispatched to Logistics Fleet", width_inches=6.0)
+
+    # Step 2.7 Logistics Driver Transit Handover
+    add_heading_2(doc, "Step 2.7: Logistics Driver Executes Transit Milestones")
+    add_body_paragraph(
+        doc,
+        "Lucas Brown (Outback Cold Logistics) opens driver/deliveries.html. He accepts the shipment, clicks 'Mark Picked Up' at the cold depot, clicks 'Mark In Transit' along the highway, and clicks 'Mark Delivered' upon physical handover at 42 Elgin Street, Carlton VIC."
+    )
+    add_screenshot(doc, "flow_20_driver_dashboard.png", "Flow 20: Logistics Driver Fleet Operations & Route Telemetry", width_inches=6.0)
+    add_screenshot(doc, "flow_21_driver_deliveries_queue.png", "Flow 21: Verified Shipment Ready for Cold-Chain Transit Pickup", width_inches=6.0)
+    add_screenshot(doc, "flow_22_driver_accepted.png", "Flow 22: Shipment Assigned to Refrigerated Vehicle", width_inches=6.0)
+    add_screenshot(doc, "flow_23_driver_picked_up.png", "Flow 23: Transit Checkpoint 1 Logged — Picked Up from Hub", width_inches=6.0)
+    add_screenshot(doc, "flow_24_driver_in_transit.png", "Flow 24: Transit Checkpoint 2 Logged — In Transit on Regional Highway", width_inches=6.0)
+    add_screenshot(doc, "flow_25_driver_delivered.png", "Flow 25: Transit Checkpoint 3 Handover Completed — Order Delivered", width_inches=6.0)
+
+    # Step 2.8 Customer 7-Stage Live Tracking & 5-Star Review
+    add_heading_2(doc, "Step 2.8: Customer Live Provenance Tracking & Fair-Trade Rating")
+    add_body_paragraph(
+        doc,
+        "Chloe Taylor opens customer/orders.html. All 7 progress stages are now illuminated green. She navigates to customer/feedback.html and submits a 5-star rating praising Jack Miller's fresh Barossa Valley grapes."
+    )
+    add_screenshot(doc, "flow_26_customer_delivered_stage7.png", "Flow 26: 7-Stage Custody Tracker Displaying Complete Green Delivered Milestones", width_inches=6.0)
+    add_screenshot(doc, "flow_27_customer_feedback_form.png", "Flow 27: Fair-Trade Farmer Quality Rating and Review Submission Workspace", width_inches=6.0)
+    add_screenshot(doc, "flow_28_customer_feedback_submitted.png", "Flow 28: 5-Star Farmer Feedback Successfully Committed to Grower Profile", width_inches=6.0)
+
+    # Step 2.9 Admin Master Audit Ledger & Financial Evaluation
+    add_heading_2(doc, "Step 2.9: Admin Master Audit Ledger & Financial Telemetry")
+    add_body_paragraph(
+        doc,
+        "The Administrator audits the platform: inspecting the master transaction ledger, stakeholder user directory, global biosecurity catalog, and commercial financial evaluation metrics in AUD."
+    )
+    add_screenshot(doc, "flow_29_admin_orders_master_ledger.png", "Flow 29: Master Order Transaction Audit Ledger with Delivered Transaction Record", width_inches=6.0)
+    add_screenshot(doc, "flow_30_admin_users_stakeholders.png", "Flow 30: Master Stakeholder Registry Across Australian Agricultural Nodes", width_inches=6.0)
+    add_screenshot(doc, "flow_31_admin_products_audit.png", "Flow 31: Global Produce Catalog Audit with Barossa Valley Grapes Listed", width_inches=6.0)
+    add_screenshot(doc, "flow_32_admin_evaluation_financials.png", "Flow 32: Administrative Commercial Evaluation & Revenue Feasibility Telemetry", width_inches=6.0)
+
+    # =========================================================================
+    # 3. DETAILED PORTAL-BY-PORTAL OPERATIONAL GUIDE
+    # =========================================================================
+    add_heading_1(doc, "3. Detailed Portal Reference & Stakeholder Procedures")
+    add_body_paragraph(
+        doc,
+        "This section details dedicated procedures, account setups, and role-specific permissions across each independent web portal."
     )
 
+    # 3.1 Authentication
+    add_heading_2(doc, "3.1 Authentication & 1-Click Demo Bar (login.html)")
     cred_headers = ["Role Domain", "Stakeholder Entity", "Seeded Test Email", "Initial Account Status"]
     cred_rows = [
         ["🛡️ Administrator", "AgriTrace Admin (Canberra ACT)", "admin@example.com", "Full Platform Governance"],
@@ -120,364 +181,35 @@ def build_usermanual_doc():
     ]
     add_styled_table(doc, cred_headers, cred_rows, [1.4, 2.0, 1.8, 1.3])
 
-    add_screenshot(
-        doc,
-        "portal_02_login_page.png",
-        "Figure 2.3: Authentication Login Portal with Integrated 1-Click Demo Toolbar and Form Validation",
-        width_inches=6.0
-    )
-
-    # =========================================================================
-    # 3. FARMER OPERATIONS MANUAL
-    # =========================================================================
-    add_heading_1(doc, "3. Small Farmer Operations Manual (farmer/)")
-    add_body_paragraph(
-        doc,
-        "The Farmer Portal provides small producers, family-run orchards, and regional agricultural cooperatives with direct market access, eliminating middlemen broker commissions. Growers control their own produce catalog, publish seasonal harvest batches in AUD, and track inbound purchase orders in real time."
-    )
-
-    add_heading_2(doc, "3.1 Farmer Operations Dashboard (farmer/dashboard.html)")
-    add_body_paragraph(
-        doc,
-        "Upon successful login, the farmer lands on their central telemetry dashboard displaying real-time metrics:"
-    )
-    add_bullet_point(doc, "Active Produce Listings: Total harvest batches currently live on the public marketplace.", "• ")
-    add_bullet_point(doc, "Pending Inbound Orders: Orders placed by consumers awaiting harvest and packaging confirmation.", "• ")
-    add_bullet_point(doc, "Gross Farm Revenue ($ AUD): Total cumulative funds earned from fulfilled orders.", "• ")
-    add_bullet_point(doc, "Operational Quick Links: Direct navigation to batch creation and fulfillment queues.", "• ")
-
-    add_screenshot(
-        doc,
-        "farmer_01_dashboard.png",
-        "Figure 3.1: Farmer Operations Command Center & Inventory Telemetry (Jack Miller, Yarra Valley VIC)",
-        width_inches=6.0
-    )
-
-    add_heading_2(doc, "3.2 Listing Fresh Harvest Batches (farmer/products.html)")
-    add_body_paragraph(
-        doc,
-        "To publish a new harvest batch to the marketplace, the farmer follows these sequential steps:"
-    )
-    add_bullet_point(doc, "Navigate to 'Produce Catalog' (farmer/products.html) from the sidebar.", "Step 1: ")
-    add_bullet_point(doc, "Click the '+ Add Produce' action button to trigger the modal dialog.", "Step 2: ")
-    add_bullet_point(doc, "Input Produce Name (e.g. 'Yarra Valley Organic Strawberries') and select Category (Fruits, Vegetables, Grains).", "Step 3: ")
-    add_bullet_point(doc, "Specify Farm-Gate Price ($ AUD) and Unit of Measure (kg, punnet, bunch, box).", "Step 4: ")
-    add_bullet_point(doc, "Enter Total Batch Quantity available (e.g. 120 punnets) and Farm Origin (e.g. 'Coldstream, Yarra Valley VIC').", "Step 5: ")
-    add_bullet_point(doc, "Click 'Save Produce'. The batch is immediately broadcast to the consumer marketplace with full origin transparency.", "Step 6: ")
-
-    add_screenshot(
-        doc,
-        "farmer_02_products.png",
-        "Figure 3.2: Farmer Produce Catalog Management with AUD Unit Pricing and Origin Tracking",
-        width_inches=6.0
-    )
-
-    add_heading_2(doc, "3.3 Fulfilling & Confirming Inbound Orders (farmer/orders.html)")
-    add_body_paragraph(
-        doc,
-        "When a consumer places an order, it appears in the farmer's inbound order queue with status 'Order Placed'. The farmer must verify produce availability and pack the items for wholesale collection."
-    )
-    add_bullet_point(doc, "Review the customer's delivery destination, items requested, and order timestamp.", "Step 1: ")
-    add_bullet_point(doc, "Physically pick and package the harvest batch adhering to Australian food safety standards.", "Step 2: ")
-    add_bullet_point(doc, "Click 'Confirm Order'. The status transitions atomically to 'Farmer Confirmed'.", "Step 3: ")
-    add_bullet_point(doc, "The order automatically transfers to the Wholesaler Quality Assurance queue for biosecurity certification.", "Step 4: ")
-
-    add_screenshot(
-        doc,
-        "farmer_03_orders.png",
-        "Figure 3.3: Inbound Orders Queue and Batch Confirmation Workspace",
-        width_inches=6.0
-    )
-
-    # =========================================================================
-    # 4. WHOLESALER ACCREDITATION & AUDIT MANUAL
-    # =========================================================================
-    add_heading_1(doc, "4. Wholesaler Accreditation & Audit Manual (wholesaler/)")
-    add_body_paragraph(
-        doc,
-        "Commercial wholesalers and distribution hubs act as critical quality checkpoints in the Australian agricultural supply chain. In accordance with Australian biosecurity frameworks, unvetted commercial distributors cannot certify food shipments without prior administrative accreditation."
-    )
-
-    add_screenshot(
-        doc,
-        "03_wholesaler_accreditation_flow.png",
-        "Figure 4.1: Wholesaler Accreditation & Biosecurity Lifecycle Flowchart",
-        width_inches=6.2
-    )
-
-    add_heading_2(doc, "4.1 The Unaccredited Wholesaler Experience (wholesaler.pending@example.com)")
-    add_body_paragraph(
-        doc,
-        "Upon registration, a wholesale distributor's status is defaulted to 'Pending Approval'. When logging in with pending credentials (e.g. Matilda Evans, Melbourne Wholesale Hub), the portal enforces strict regulatory lockouts:"
-    )
-    add_bullet_point(doc, "Prominent amber warning banner displayed across all header views informing the user that their commercial license is under review.", "• ")
-    add_bullet_point(doc, "Stock Verification controls on incoming farm orders are completely locked and disabled.", "• ")
-    add_bullet_point(doc, "The wholesaler cannot verify batches, dispatch drivers, or modify order states until an Administrator grants formal approval.", "• ")
-
     add_callout(
         doc,
-        "WARNING: Account Pending Administrator Approval\nYour wholesale business credentials must be validated by an Administrator before you can audit stock and certify farm produce shipments. The 'Verify Stock' control remains locked until approval is granted.",
-        "Regulatory Biosecurity Restriction",
-        "warning"
+        "Uniform Demo Password: password123\nAll accounts use password123. Clicking any demo button on login.html auto-fills credentials and executes an immediate authenticated session.",
+        "Quick Testing Security Key",
+        "success"
     )
 
-    add_screenshot(
-        doc,
-        "wholesaler_01_pending_dashboard.png",
-        "Figure 4.2: Pending Wholesaler Dashboard Displaying Regulatory Warning Banner (Matilda Evans)",
-        width_inches=6.0
-    )
-
-    add_screenshot(
-        doc,
-        "wholesaler_02_pending_orders.png",
-        "Figure 4.3: Wholesaler Quality Assurance Queue with Verification Actions Locked",
-        width_inches=6.0
-    )
-
-    add_heading_2(doc, "4.2 Accredited Wholesaler Operations (wholesaler@example.com)")
+    # 3.2 Administrator Wholesaler Approvals Focus
+    add_heading_2(doc, "3.2 Administrator Wholesaler Approvals Hub (admin/approvals.html)")
     add_body_paragraph(
         doc,
-        "Once verified and approved by an Administrator (e.g. Liam Wilson, Sydney Central Produce Markets), the wholesaler receives full operational privileges:"
+        "The Wholesaler Approvals Hub enforces regulatory compliance. Administrators inspect wholesaler credentials in three distinct operational states:"
     )
-    add_bullet_point(doc, "The warning banner is replaced by an accredited badge confirming certified biosecurity status.", "• ")
-    add_bullet_point(doc, "Orders in 'Farmer Confirmed' status display active 'Verify Stock' action buttons.", "• ")
-    add_bullet_point(doc, "The auditor conducts physical and documentary checks: harvest date, cold storage temperature, weight tolerances, and packaging integrity.", "• ")
-    add_bullet_point(doc, "Clicking 'Verify Stock' advances the order to 'Wholesaler Verified', assigning it to the Logistics Driver queue for dispatch.", "• ")
+    add_bullet_point(doc, "Pending Wholesalers: Unaccredited applications awaiting verification (amber status badge, 'Approve' and 'Reject & Delete' actions).", "State 1: ")
+    add_bullet_point(doc, "Accredited Active Wholesalers: Approved distributors with certified authority to audit farm batches (green status badge, 'Revoke' action).", "State 2: ")
+    add_bullet_point(doc, "Revocation & Enforcement: Immediate removal of stock verification authority if non-compliant practices are detected.", "State 3: ")
 
-    add_screenshot(
-        doc,
-        "wholesaler_03_approved_dashboard.png",
-        "Figure 4.4: Accredited Wholesaler Certified Command Dashboard (Liam Wilson, Sydney NSW)",
-        width_inches=6.0
-    )
+    add_screenshot(doc, "admin_02_approvals_pending.png", "Figure 3.1: Admin Wholesaler Approvals Hub — Pending Wholesaler Review Queue", width_inches=6.0)
+    add_screenshot(doc, "admin_02_wholesaler_approved.png", "Figure 3.2: Admin Wholesaler Approvals Hub — Wholesaler Approved & Accredited Active", width_inches=6.0)
+    add_screenshot(doc, "admin_02_wholesaler_revoked.png", "Figure 3.3: Admin Wholesaler Approvals Hub — Regulatory Revocation & Governance Controls", width_inches=6.0)
 
-    add_screenshot(
-        doc,
-        "wholesaler_04_approved_orders.png",
-        "Figure 4.5: Active Produce QA Verification & Batch Certification Workspace",
-        width_inches=6.0
-    )
+    # Architectural Diagrams for Admin & Revenue
+    add_screenshot(doc, "04_admin_governance_architecture.png", "Figure 3.4: Multi-Module Administrative Governance Architecture", width_inches=6.2)
+    add_screenshot(doc, "05_commercial_revenue_model.png", "Figure 3.5: Commercial Revenue Flow & Multi-Stream Monetization Model", width_inches=6.2)
 
     # =========================================================================
-    # 5. LOGISTICS & COLD-CHAIN DRIVER MANUAL
+    # 4. OPERATIONAL TROUBLESHOOTING MATRIX
     # =========================================================================
-    add_heading_1(doc, "5. Logistics & Cold-Chain Driver Manual (driver/)")
-    add_body_paragraph(
-        doc,
-        "Logistics drivers maintain physical custody and cold-chain integrity across regional highways and metropolitan delivery routes (e.g. Lucas Brown, Outback Cold Logistics). The Driver Portal operates seamlessly on mobile and desktop browsers to record transit checkpoints."
-    )
-
-    add_heading_2(doc, "5.1 Driver Fleet Dashboard (driver/dashboard.html)")
-    add_body_paragraph(
-        doc,
-        "The driver dashboard summarizes active route assignments, shipments currently in transit, and total delivered packages for the shift."
-    )
-    add_screenshot(
-        doc,
-        "driver_01_dashboard.png",
-        "Figure 5.1: Logistics Driver Fleet Operations & Milestone Telemetry (Lucas Brown)",
-        width_inches=6.0
-    )
-
-    add_heading_2(doc, "5.2 Executing Transit Milestone Checkpoints (driver/deliveries.html)")
-    add_body_paragraph(
-        doc,
-        "The driver moves each verified shipment through three mandatory physical transit checkpoints:"
-    )
-    add_bullet_point(doc, "Checkpoint 1 - 'Mark as Picked Up': Clicked when the refrigerated vehicle collects certified produce from the regional farm or distribution hub. Sets status to 'Picked Up'.", "1. ")
-    add_bullet_point(doc, "Checkpoint 2 - 'Mark as In Transit': Clicked upon departure from the central depot onto transit corridors. Sets status to 'In Transit'.", "2. ")
-    add_bullet_point(doc, "Checkpoint 3 - 'Confirm Delivery': Clicked upon physical handover at the consumer's delivery address. Sets status to 'Delivered' and concludes custody tracking.", "3. ")
-
-    add_screenshot(
-        doc,
-        "driver_02_deliveries.png",
-        "Figure 5.2: Real-Time Transit Delivery Queue and Checkpoint Execution Controls",
-        width_inches=6.0
-    )
-
-    # =========================================================================
-    # 6. DIRECT CONSUMER MARKETPLACE MANUAL
-    # =========================================================================
-    add_heading_1(doc, "6. Direct Consumer Marketplace & Transparency Manual (customer/)")
-    add_body_paragraph(
-        doc,
-        "AgriTrace enables Australian consumers to discover genuine regional harvests, purchase directly from family growers, inspect farm provenance, and track orders across 7 transparent milestones."
-    )
-
-    add_heading_2(doc, "6.1 Consumer Account Dashboard (customer/dashboard.html)")
-    add_body_paragraph(
-        doc,
-        "The consumer dashboard provides quick access to recent orders, shopping cart status, and submitted farm feedback ratings."
-    )
-    add_screenshot(
-        doc,
-        "customer_01_dashboard.png",
-        "Figure 6.1: Consumer Account Dashboard & Recent Order Summary (Chloe Taylor, Melbourne VIC)",
-        width_inches=6.0
-    )
-
-    add_heading_2(doc, "6.2 Discovering Regional Australian Produce (customer/products.html)")
-    add_body_paragraph(
-        doc,
-        "Shoppers browse active listings filtered by category and origin. Every item clearly displays its regional Australian origin badge (e.g. 'Goulburn Valley VIC', 'Bowen QLD', 'Barossa Valley SA') alongside transparent AUD unit pricing."
-    )
-    add_screenshot(
-        doc,
-        "customer_02_products.png",
-        "Figure 6.2: Fresh Australian Produce Marketplace with Origin Provenance & Category Filters",
-        width_inches=6.0
-    )
-
-    add_heading_2(doc, "6.3 Shopping Cart & Fair-Trade Checkout (customer/cart.html)")
-    add_body_paragraph(
-        doc,
-        "Shoppers can review cart items, adjust quantities, verify farm sources, and execute fair-trade checkout. The system atomically reserves stock in Firestore and creates an order in 'Order Placed' status."
-    )
-    add_screenshot(
-        doc,
-        "customer_03_cart.png",
-        "Figure 6.3: Shopping Cart & Fair-Trade Checkout Workspace with Itemized AUD Pricing",
-        width_inches=6.0
-    )
-
-    add_heading_2(doc, "6.4 7-Stage Live Order Provenance Tracking (customer/orders.html)")
-    add_body_paragraph(
-        doc,
-        "On 'My Orders', the customer can observe real-time progress indicators highlighting each completed stage in the custody pipeline: Order Placed -> Farmer Confirmed -> Wholesaler Verified -> Picked Up -> In Transit -> Out for Delivery -> Delivered."
-    )
-    add_screenshot(
-        doc,
-        "customer_04_orders.png",
-        "Figure 6.4: 7-Stage Live Order Provenance and Real-Time Custody Tracker",
-        width_inches=6.0
-    )
-
-    add_heading_2(doc, "6.5 Submitting Farmer Quality Feedback (customer/feedback.html)")
-    add_body_paragraph(
-        doc,
-        "Once an order is marked 'Delivered', the customer can submit an authentic 1-to-5 star quality rating and review comment. Ratings link directly to the grower's profile, fostering long-term consumer trust."
-    )
-    add_screenshot(
-        doc,
-        "customer_05_feedback.png",
-        "Figure 6.5: Fair-Trade Farmer Quality Rating & Review Submission Form",
-        width_inches=6.0
-    )
-
-    # =========================================================================
-    # 7. SYSTEM ADMINISTRATOR GOVERNANCE MANUAL
-    # =========================================================================
-    add_heading_1(doc, "7. System Administrator Governance & Compliance Manual (admin/)")
-    add_body_paragraph(
-        doc,
-        "The Administrator Portal serves as the central command bridge for platform governance, regulatory biosecurity accreditation, dispute resolution, user registry oversight, and financial feasibility auditing."
-    )
-
-    add_screenshot(
-        doc,
-        "04_admin_governance_architecture.png",
-        "Figure 7.1: Multi-Module Administrative Governance Architecture",
-        width_inches=6.2
-    )
-
-    add_heading_2(doc, "7.1 Admin Command Center & Live Telemetry (admin/dashboard.html)")
-    add_body_paragraph(
-        doc,
-        "The main dashboard provides high-level platform telemetry: total registered stakeholders, pending wholesaler accreditation queues, active produce listings, and cumulative gross merchandise volume (GMV) in AUD."
-    )
-    add_screenshot(
-        doc,
-        "admin_01_dashboard.png",
-        "Figure 7.2: Central Administration Command Center & Platform Metrics Telemetry",
-        width_inches=6.0
-    )
-
-    add_heading_2(doc, "7.2 Wholesaler Accreditation & Approvals Hub (admin/approvals.html)")
-    add_body_paragraph(
-        doc,
-        "This critical governance module displays all registered wholesale entities awaiting biosecurity vetting. The Administrator can inspect legal trading names, business premises, and phone records before executing 1-click approvals or revoking credentials if standards are breached."
-    )
-    add_bullet_point(doc, "Review Pending Applications: Displays unaccredited wholesalers with amber badges.", "• ")
-    add_bullet_point(doc, "Click 'Approve Wholesaler': Instantly grants full stock verification permissions in Firestore.", "• ")
-    add_bullet_point(doc, "Revoke Accreditation: If compliance issues arise, clicking 'Revoke' immediately locks the wholesaler's verification capabilities.", "• ")
-
-    add_screenshot(
-        doc,
-        "admin_02_approvals.png",
-        "Figure 7.3: Wholesaler Accreditation & Regulatory Approvals Management Hub",
-        width_inches=6.0
-    )
-
-    add_heading_2(doc, "7.3 Master Stakeholder User Directory (admin/users.html)")
-    add_body_paragraph(
-        doc,
-        "The User Management console lists every stakeholder profile across all roles (Farmer, Wholesaler, Driver, Customer, Admin). Administrators can filter by role, audit contact phone numbers, and verify registration timestamps."
-    )
-    add_screenshot(
-        doc,
-        "admin_03_users.png",
-        "Figure 7.4: Master Stakeholder Registry and Role Management Workspace",
-        width_inches=6.0
-    )
-
-    add_heading_2(doc, "7.4 Global Product Catalog & Biosecurity Audit (admin/products.html)")
-    add_body_paragraph(
-        doc,
-        "Administrators can audit all produce batches listed on the platform to prevent fraudulent origin claims, monitor fair AUD farm-gate pricing, and verify that produce origins comply with Australian state biosecurity regulations."
-    )
-    add_screenshot(
-        doc,
-        "admin_04_products.png",
-        "Figure 7.5: Global Produce Catalog Audit & Biosecurity Verification Ledger",
-        width_inches=6.0
-    )
-
-    add_heading_2(doc, "7.5 Master Supply Chain Order Audit Ledger (admin/orders.html)")
-    add_body_paragraph(
-        doc,
-        "The Master Order Ledger records every commercial transaction across the platform, displaying current lifecycle status, purchasing customer, grower entity, order total in AUD, and full timestamp history."
-    )
-    add_screenshot(
-        doc,
-        "admin_05_orders.png",
-        "Figure 7.6: Master Supply Chain Transaction & Custody Audit Ledger",
-        width_inches=6.0
-    )
-
-    add_heading_2(doc, "7.6 Commercial Evaluation & Financial Telemetry (admin/evaluation.html)")
-    add_body_paragraph(
-        doc,
-        "The administrative financial evaluation module analyzes platform profitability, operating expenditures, and serverless hosting fees against four primary commercial revenue streams:"
-    )
-    add_bullet_point(doc, "Commercial Wholesaler Accreditation Fee: $299 AUD annual audit certification.", "1. ")
-    add_bullet_point(doc, "Farmer Cooperative SaaS Subscription: $49 AUD monthly farm management fee.", "2. ")
-    add_bullet_point(doc, "Fair-Trade Transaction Commission: 3.5% transaction levy (compared to 50%+ duopoly markups).", "3. ")
-    add_bullet_point(doc, "Enterprise Provenance API Access: $450 AUD monthly quota for institutional food distributors.", "4. ")
-
-    add_screenshot(
-        doc,
-        "admin_06_evaluation.png",
-        "Figure 7.7: Administrative Commercial Evaluation & Operational Expenditure Telemetry",
-        width_inches=6.0
-    )
-
-    add_screenshot(
-        doc,
-        "05_commercial_revenue_model.png",
-        "Figure 7.8: Commercial Revenue Flow & Multi-Stream Monetization Model",
-        width_inches=6.2
-    )
-
-    # =========================================================================
-    # 8. OPERATIONAL TROUBLESHOOTING & SUPPORT MATRIX
-    # =========================================================================
-    add_heading_1(doc, "8. Operational Troubleshooting & Support Matrix")
-    add_body_paragraph(
-        doc,
-        "This section outlines rapid diagnostic and corrective procedures for common operational scenarios encountered by platform users."
-    )
-
+    add_heading_1(doc, "4. Operational Troubleshooting & Support Matrix")
     trouble_headers = ["Operational Issue", "Affected Role", "Root Cause Analysis", "Step-by-Step Resolution"]
     trouble_rows = [
         [
@@ -515,7 +247,7 @@ def build_usermanual_doc():
 
     output_path = os.path.join("docx", "usermanual.docx")
     doc.save(output_path)
-    print(f"Successfully generated comprehensive User Manual: {output_path}")
+    print(f"Successfully generated complete flow User Manual: {output_path}")
 
 if __name__ == "__main__":
     build_usermanual_doc()
