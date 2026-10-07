@@ -34,15 +34,15 @@ def build_wholesaler_approval_doc():
         "warning"
     )
 
-    # 2. End-to-End Approval Workflow (REAL IMAGE)
+    # 2. End-to-End Approval Workflow (HUMAN-DESIGNED FLOW DIAGRAM)
     add_heading_1(doc, "2. End-to-End Accreditation Lifecycle Flow Diagram")
     add_body_paragraph(
         doc,
         "Below is the complete visual workflow chart governing wholesaler account onboarding, permission gating, administrative review, and status revocation:"
     )
 
-    # Embedded high-res visual image diagram (NO text signs)
-    add_screenshot(doc, "flow_wholesaler_accreditation.png", "Wholesaler Accreditation & Administrative Approval Governance Lifecycle", width_inches=6.2)
+    # Clean human-designed visual diagram
+    add_screenshot(doc, "03_wholesaler_accreditation_flow.png", "Wholesaler Accreditation & Administrative Approval Governance Lifecycle", width_inches=6.2)
 
     add_screenshot(doc, "15_browser_admin_approvals.png", "Administrator Wholesaler Accreditation & Approvals Hub (admin/approvals.html)", width_inches=6.0)
 

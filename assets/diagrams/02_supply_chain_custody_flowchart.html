@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+  body { background: #FFFFFF; color: #0F172A; padding: 35px 25px; width: 1400px; height: 850px; }
+  
+  .header-box { text-align: center; margin-bottom: 30px; }
+  .header-box .badge { display: inline-block; background: #DBEAFE; color: #1E40AF; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .header-box h1 { font-size: 26px; font-weight: 800; color: #0F172A; }
+  .header-box p { font-size: 13px; color: #64748B; margin-top: 2px; }
+
+  .pipeline-track { display: flex; justify-content: space-between; align-items: stretch; gap: 8px; position: relative; margin-top: 20px; }
+
+  .stage-box {
+    flex: 1;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 16px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .stage-box.active-1 { border-top: 4px solid #16A34A; }
+  .stage-box.active-2 { border-top: 4px solid #7C3AED; }
+  .stage-box.active-3 { border-top: 4px solid #16A34A; }
+  .stage-box.active-4 { border-top: 4px solid #D97706; }
+  .stage-box.active-5 { border-top: 4px solid #2563EB; }
+  .stage-box.active-6 { border-top: 4px solid #059669; }
+  .stage-box.active-7 { border-top: 4px solid #EA580C; }
+
+  .step-badge {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #0F172A;
+    color: #FFF;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px auto;
+  }
+  .stage-box h3 { font-size: 13px; font-weight: 700; text-align: center; margin-bottom: 6px; }
+  .stage-box p { font-size: 10.5px; color: #64748B; text-align: center; line-height: 1.4; margin-bottom: 12px; }
+
+  .stage-meta {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    padding: 6px;
+    font-size: 9.5px;
+    text-align: center;
+    color: #475569;
+    font-weight: 600;
+  }
+
+  .arrow-sep { display: flex; align-items: center; justify-content: center; color: #94A3B8; font-size: 18px; font-weight: bold; width: 14px; }
+
+  .gov-container {
+    margin-top: 35px;
+    background: #F8FAFC;
+    border: 1px solid #CBD5E1;
+    border-radius: 10px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .gov-left h4 { font-size: 14px; font-weight: 700; color: #0F172A; margin-bottom: 2px; }
+  .gov-left p { font-size: 12px; color: #64748B; }
+  .gov-badges { display: flex; gap: 10px; }
+  .gov-badge-item { background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 6px; padding: 6px 12px; font-size: 11px; font-weight: 600; color: #1E293B; }
+</style>
+</head>
+<body>
+  <div class="header-box">
+    <div class="badge">Custody Verification Pipeline</div>
+    <h1>End-to-End Farm-to-Consumer Supply Chain Custody Flow</h1>
+    <p>7-stage sequential digital handover protocol providing complete provenance transparency in regional Australia</p>
+  </div>
+
+  <div class="pipeline-track">
+    <div class="stage-box active-1">
+      <div>
+        <div class="step-badge" style="background:#16A34A;">1</div>
+        <h3>List Harvest</h3>
+        <p>Farmer registers fresh harvest batch with AUD unit price and stock count.</p>
+      </div>
+      <div class="stage-meta">Farmer Portal<br>farmer/products.html</div>
+    </div>
+
+    <div class="arrow-sep">→</div>
+
+    <div class="stage-box active-2">
+      <div>
+        <div class="step-badge" style="background:#7C3AED;">2</div>
+        <h3>Order Placed</h3>
+        <p>Consumer discovers produce and checkouts. Inventory decremented atomically.</p>
+      </div>
+      <div class="stage-meta">Consumer Store<br>customer/cart.html</div>
+    </div>
+
+    <div class="arrow-sep">→</div>
+
+    <div class="stage-box active-3">
+      <div>
+        <div class="step-badge" style="background:#16A34A;">3</div>
+        <h3>Farm Confirm</h3>
+        <p>Produce picked, packaged, and marked ready for regional transport.</p>
+      </div>
+      <div class="stage-meta">Farmer Orders<br>farmer/orders.html</div>
+    </div>
+
+    <div class="arrow-sep">→</div>
+
+    <div class="stage-box active-4">
+      <div>
+        <div class="step-badge" style="background:#D97706;">4</div>
+        <h3>QA Inspection</h3>
+        <p>Accredited Wholesaler certifies grade, weight, and biosecurity standards.</p>
+      </div>
+      <div class="stage-meta" style="color:#B45309;">Accredited Wholesaler<br>wholesaler/orders.html</div>
+    </div>
+
+    <div class="arrow-sep">→</div>
+
+    <div class="stage-box active-5">
+      <div>
+        <div class="step-badge" style="background:#2563EB;">5</div>
+        <h3>Cold Transit</h3>
+        <p>Refrigerated driver logs pickup, highway checkpoints, and handover.</p>
+      </div>
+      <div class="stage-meta">Logistics Driver<br>driver/deliveries.html</div>
+    </div>
+
+    <div class="arrow-sep">→</div>
+
+    <div class="stage-box active-6">
+      <div>
+        <div class="step-badge" style="background:#059669;">6</div>
+        <h3>Doorstep Drop</h3>
+        <p>Final delivery confirmed. Custody transferred to consumer.</p>
+      </div>
+      <div class="stage-meta">Order Tracker<br>customer/orders.html</div>
+    </div>
+
+    <div class="arrow-sep">→</div>
+
+    <div class="stage-box active-7">
+      <div>
+        <div class="step-badge" style="background:#EA580C;">7</div>
+        <h3>Fair Feedback</h3>
+        <p>Customer leaves 5-star rating and quality review directly for the grower.</p>
+      </div>
+      <div class="stage-meta">Consumer Review<br>customer/feedback.html</div>
+    </div>
+  </div>
+
+  <div class="gov-container">
+    <div class="gov-left">
+      <h4>🛡️ Administrative Governance & Security Verification Layer</h4>
+      <p>Cloud Firestore real-time security rules and administrative audit controls oversee all 7 stages continuously.</p>
+    </div>
+    <div class="gov-badges">
+      <div class="gov-badge-item">Wholesaler Accreditation Gating</div>
+      <div class="gov-badge-item">Atomic Inventory Protection</div>
+      <div class="gov-badge-item">AUD Revenue Telemetry</div>
+    </div>
+  </div>
+</body>
+</html>

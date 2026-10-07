@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+  body { background: #FFFFFF; color: #0F172A; padding: 35px 25px; width: 1400px; height: 850px; }
+  
+  .header-box { text-align: center; margin-bottom: 25px; }
+  .header-box .badge { display: inline-block; background: #DCFCE7; color: #166534; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .header-box h1 { font-size: 26px; font-weight: 800; color: #0F172A; }
+  .header-box p { font-size: 13px; color: #64748B; margin-top: 2px; }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+  .kpi-card { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 16px; text-align: center; }
+  .kpi-card .lbl { font-size: 10.5px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.04em; }
+  .kpi-card .val { font-size: 24px; font-weight: 800; margin: 4px 0 2px 0; }
+  .kpi-card .sub { font-size: 10px; color: #94A3B8; }
+
+  .streams-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+  .stream-box {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 16px 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .stream-box.s1 { border-top: 3px solid #16A34A; }
+  .stream-box.s2 { border-top: 3px solid #2563EB; }
+  .stream-box.s3 { border-top: 3px solid #7C3AED; }
+  .stream-box.s4 { border-top: 3px solid #EA580C; }
+
+  .stream-box h3 { font-size: 13px; font-weight: 700; color: #0F172A; margin-bottom: 2px; }
+  .stream-box .rate { font-size: 10.5px; color: #64748B; margin-bottom: 10px; }
+  .stream-box .cash { font-size: 18px; font-weight: 800; color: #16A34A; margin-bottom: 6px; }
+  .stream-box p { font-size: 10.5px; color: #475569; line-height: 1.4; }
+
+  .bottom-roi {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    border-radius: 10px;
+    padding: 16px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .bottom-roi h4 { font-size: 14px; font-weight: 800; color: #166534; margin-bottom: 2px; }
+  .bottom-roi p { font-size: 12px; color: #334155; }
+  .roi-pill { background: #166534; color: #FFF; font-size: 12px; font-weight: 800; padding: 6px 16px; border-radius: 6px; }
+</style>
+</head>
+<body>
+  <div class="header-box">
+    <div class="badge">Commercial Feasibility Model</div>
+    <h1>Platform Revenue Streams & Real Money Cash Inflow ($ AUD)</h1>
+    <p>Detailed monthly commercial realization, operational expenditures, and small family farm margin gain</p>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="lbl">Gross Monthly Inflow</div>
+      <div class="val" style="color:#16A34A;">$9,812.50 AUD</div>
+      <div class="sub">Across 4 diversified streams</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">Monthly Cloud OPEX</div>
+      <div class="val" style="color:#DC2626;">$1,790.00 AUD</div>
+      <div class="sub">Firebase, domain, security & ops</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">Net Monthly Profit</div>
+      <div class="val" style="color:#2563EB;">$8,022.50 AUD</div>
+      <div class="sub">$96,270 AUD Annualized profit</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">CAPEX Payback Horizon</div>
+      <div class="val" style="color:#D97706;">9.4 Months</div>
+      <div class="sub">On $75,400 AUD Build budget</div>
+    </div>
+  </div>
+
+  <div class="streams-grid">
+    <div class="stream-box s1">
+      <h3>Fair-Trade Fee (2.5%)</h3>
+      <div class="rate">2.5% of Marketplace GMV</div>
+      <div class="cash">$1,687.50 AUD / mo</div>
+      <p>1,500 monthly customer orders @ $45 AUD average basket size. Transparent take rate that undercuts supermarket duopolies.</p>
+    </div>
+
+    <div class="stream-box s2">
+      <h3>Wholesaler License</h3>
+      <div class="rate">$120 AUD / month subscription</div>
+      <div class="cash">$3,000.00 AUD / mo</div>
+      <p>25 commercial regional distributors paying for access to pre-verified grower batches, QA certificates, and dispatch routing.</p>
+    </div>
+
+    <div class="stream-box s3">
+      <h3>Farm Cooperative SaaS</h3>
+      <div class="rate">$49 - $149 AUD / month SaaS</div>
+      <div class="cash">$4,450.00 AUD / mo</div>
+      <p>30 commercial farms ($49/mo) + 20 regional cooperatives ($149/mo) for inventory intelligence, temp logging, and export logs.</p>
+    </div>
+
+    <div class="stream-box s4">
+      <h3>Logistics Dispatch Fee</h3>
+      <div class="rate">1.0% per freight coordination</div>
+      <div class="cash">$675.00 AUD / mo</div>
+      <p>Refrigerated freight transit operators paying coordination fees on $67,500 AUD monthly managed delivery volume.</p>
+    </div>
+  </div>
+
+  <div class="bottom-roi">
+    <div>
+      <h4>SMALL FAMILY FARM ECONOMIC BENEFIT: +36% NET MARGIN UPLIFT</h4>
+      <p>Growers net $4.49 AUD/punnet vs $2.20 AUD supermarket wholesale (+104% net unit profit). Average grower earns +$18,320 AUD extra/yr.</p>
+    </div>
+    <div class="roi-pill">ROI: +36% FARM GAIN</div>
+  </div>
+</body>
+</html>

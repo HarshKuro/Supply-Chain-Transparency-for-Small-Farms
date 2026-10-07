@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  body { background: #F8FAFC; color: #0F172A; padding: 30px; width: 1400px; height: 900px; }
+  
+  .header-box { text-align: center; margin-bottom: 24px; }
+  .header-box .badge { display: inline-block; background: #DCFCE7; color: #166534; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .header-box h1 { font-size: 26px; font-weight: 800; color: #0F172A; letter-spacing: -0.02em; }
+  .header-box p { font-size: 13px; color: #64748B; margin-top: 2px; }
+
+  .tree-root-container { display: flex; flex-direction: column; align-items: center; position: relative; }
+
+  .node-root {
+    background: #FFFFFF;
+    border: 2px solid #166534;
+    border-radius: 10px;
+    padding: 12px 28px;
+    box-shadow: 0 4px 12px rgba(22, 101, 52, 0.12);
+    text-align: center;
+    z-index: 2;
+  }
+  .node-root h2 { font-size: 16px; font-weight: 700; color: #166534; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .node-root span { font-size: 11px; color: #475569; font-family: ui-monospace, SFMono-Regular, monospace; }
+
+  .line-v1 { width: 2px; height: 20px; background: #CBD5E1; }
+  .line-h-bar { width: 1240px; height: 2px; background: #CBD5E1; position: relative; }
+  .line-drops { display: flex; justify-content: space-between; width: 1240px; }
+  .drop-stem { width: 2px; height: 20px; background: #CBD5E1; }
+
+  .portals-grid { display: flex; justify-content: space-between; width: 1340px; gap: 14px; margin-top: 0; }
+  .portal-col { flex: 1; display: flex; flex-direction: column; align-items: center; }
+
+  .portal-card {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    overflow: hidden;
+  }
+  .card-top { padding: 10px 12px; border-bottom: 1px solid #E2E8F0; display: flex; align-items: center; justify-content: space-between; }
+  .card-top h3 { font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+  .card-top .role-tag { font-size: 9.5px; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
+
+  .farmer-c .card-top { background: #F0FDF4; border-top: 3px solid #16A34A; }
+  .farmer-c .role-tag { background: #DCFCE7; color: #166534; }
+
+  .wholesaler-c .card-top { background: #FFFBEB; border-top: 3px solid #D97706; }
+  .wholesaler-c .role-tag { background: #FEF3C7; color: #B45309; }
+
+  .driver-c .card-top { background: #EFF6FF; border-top: 3px solid #2563EB; }
+  .driver-c .role-tag { background: #DBEAFE; color: #1E40AF; }
+
+  .customer-c .card-top { background: #FAF5FF; border-top: 3px solid #7C3AED; }
+  .customer-c .role-tag { background: #EDE9FE; color: #5B21B6; }
+
+  .admin-c .card-top { background: #FEF2F2; border-top: 3px solid #DC2626; }
+  .admin-c .role-tag { background: #FEE2E2; color: #991B1B; }
+
+  .sub-list { list-style: none; padding: 8px 10px; }
+  .sub-list li {
+    padding: 6px 8px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    background: #F8FAFC;
+    border: 1px solid #F1F5F9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #334155;
+  }
+  .sub-list li .page-name { font-weight: 600; }
+  .sub-list li .file-ref { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 9.5px; color: #64748B; }
+  .sub-list li.warn-item { background: #FEF3C7; border-color: #FDE68A; color: #92400E; }
+  .sub-list li.admin-item { background: #FEE2E2; border-color: #FECACA; color: #991B1B; }
+
+  .bottom-hub {
+    margin-top: 22px;
+    width: 1340px;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  }
+  .bottom-hub .hub-label { font-size: 11.5px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; }
+  .pill-group { display: flex; gap: 8px; }
+  .doc-pill { background: #F1F5F9; border: 1px solid #CBD5E1; padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; color: #334155; }
+</style>
+</head>
+<body>
+  <div class="header-box">
+    <div class="badge">AgriTrace Platform Architecture</div>
+    <h1>System Sitemap & Hierarchical Navigation Directory</h1>
+    <p>Complete structural map connecting public storefront, 5 authenticated stakeholder portals, and governance engines</p>
+  </div>
+
+  <div class="tree-root-container">
+    <div class="node-root">
+      <h2>🏠 Landing & Public Storefront</h2>
+      <span>index.html (Mission • Australian Produce • Navigation Bar)</span>
+    </div>
+
+    <div class="line-v1"></div>
+    <div class="line-h-bar"></div>
+    <div class="line-drops">
+      <div class="drop-stem"></div>
+      <div class="drop-stem"></div>
+      <div class="drop-stem"></div>
+      <div class="drop-stem"></div>
+      <div class="drop-stem"></div>
+    </div>
+
+    <div class="portals-grid">
+      <!-- Farmer -->
+      <div class="portal-col">
+        <div class="portal-card farmer-c">
+          <div class="card-top">
+            <h3>🌾 Farmer Portal</h3>
+            <span class="role-tag">Role: farmer</span>
+          </div>
+          <ul class="sub-list">
+            <li><span class="page-name">Dashboard</span><span class="file-ref">farmer/dashboard.html</span></li>
+            <li><span class="page-name">Produce Batches</span><span class="file-ref">farmer/products.html</span></li>
+            <li><span class="page-name">Incoming Orders</span><span class="file-ref">farmer/orders.html</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Wholesaler -->
+      <div class="portal-col">
+        <div class="portal-card wholesaler-c">
+          <div class="card-top">
+            <h3>🏢 Wholesaler Hub</h3>
+            <span class="role-tag">Role: wholesaler</span>
+          </div>
+          <ul class="sub-list">
+            <li><span class="page-name">Dashboard</span><span class="file-ref">wholesaler/dashboard.html</span></li>
+            <li class="warn-item"><span class="page-name">Stock Verification</span><span class="file-ref">wholesaler/orders.html</span></li>
+            <li style="background:none; border:none; padding:2px 4px; font-size:9px; color:#D97706;">*Requires Admin Accreditation to verify</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Driver -->
+      <div class="portal-col">
+        <div class="portal-card driver-c">
+          <div class="card-top">
+            <h3>🚚 Logistics Driver</h3>
+            <span class="role-tag">Role: driver</span>
+          </div>
+          <ul class="sub-list">
+            <li><span class="page-name">Driver Dashboard</span><span class="file-ref">driver/dashboard.html</span></li>
+            <li><span class="page-name">Transit Deliveries</span><span class="file-ref">driver/deliveries.html</span></li>
+            <li><span class="page-name">Cold-Chain Handover</span><span class="file-ref">Live Checkpoints</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Customer -->
+      <div class="portal-col">
+        <div class="portal-card customer-c">
+          <div class="card-top">
+            <h3>🛒 Consumer Store</h3>
+            <span class="role-tag">Role: customer</span>
+          </div>
+          <ul class="sub-list">
+            <li><span class="page-name">Fresh Catalog</span><span class="file-ref">customer/products.html</span></li>
+            <li><span class="page-name">Shopping Cart</span><span class="file-ref">customer/cart.html</span></li>
+            <li><span class="page-name">7-Stage Tracking</span><span class="file-ref">customer/orders.html</span></li>
+            <li><span class="page-name">Farmer Ratings</span><span class="file-ref">customer/feedback.html</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Admin -->
+      <div class="portal-col">
+        <div class="portal-card admin-c">
+          <div class="card-top">
+            <h3>🛡️ Administrator</h3>
+            <span class="role-tag">Role: admin</span>
+          </div>
+          <ul class="sub-list">
+            <li><span class="page-name">Command Dashboard</span><span class="file-ref">admin/dashboard.html</span></li>
+            <li class="admin-item"><span class="page-name">Wholesaler Approvals</span><span class="file-ref">admin/approvals.html</span></li>
+            <li><span class="page-name">User Registry</span><span class="file-ref">admin/users.html</span></li>
+            <li><span class="page-name">Catalog & Orders</span><span class="file-ref">admin/products & orders</span></li>
+            <li><span class="page-name">Financial Evaluation</span><span class="file-ref">admin/evaluation.html</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-hub">
+      <span class="hub-label">Platform Documentation & Testing Utilities:</span>
+      <div class="pill-group">
+        <div class="doc-pill">📖 user-manual.html</div>
+        <div class="doc-pill">💻 installation-manual.html</div>
+        <div class="doc-pill">📊 evaluation-report.html</div>
+        <div class="doc-pill">🇦🇺 seed.html (Australian Database)</div>
+        <div class="doc-pill">🧪 test_runner.html (31 Unit/System Tests)</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

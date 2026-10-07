@@ -3,7 +3,7 @@ import sys
 from docx.shared import Inches, Pt, RGBColor
 from doc_utils import (
     init_document, add_title_header, add_heading_1, add_heading_2, add_heading_3,
-    add_body_paragraph, add_bullet_point, add_callout, add_diagram_box,
+    add_body_paragraph, add_bullet_point, add_callout,
     add_styled_table, add_screenshot
 )
 
@@ -23,6 +23,9 @@ def build_installation_doc():
         "The AgriTrace application is engineered as a lightweight, high-performance serverless web platform utilizing modern ES Modules (ECMAScript 6+), Vanilla CSS3 variables, Google Firebase Authentication, and Cloud Firestore. It requires zero compilation, bundlers, or heavy runtime frameworks, ensuring rapid deployment and extreme reliability."
     )
 
+    # Embedded clean human-designed pipeline diagram
+    add_screenshot(doc, "06_installation_deployment_pipeline.png", "Technical Installation & Production Deployment Pipeline Architecture", width_inches=6.2)
+
     prereq_headers = ["Prerequisite Component", "Minimum Required Version", "Purpose in Architecture"]
     prereq_rows = [
         ["Web Browser", "Chrome 110+, Edge 110+, Safari 16+", "Client-side ES Modules & Lucide iconography"],
@@ -32,7 +35,7 @@ def build_installation_doc():
     ]
     add_styled_table(doc, prereq_headers, prereq_rows, [1.8, 2.0, 2.7])
 
-    add_screenshot(doc, "13_browser_installation_manual.png", "AgriTrace Technical Installation & Deployment Manual Interface (installation-manual.html)")
+    add_screenshot(doc, "13_browser_installation_manual.png", "AgriTrace Technical Installation & Deployment Manual Interface (installation-manual.html)", width_inches=6.0)
 
     # 2. Step-by-Step Installation Procedures
     add_heading_1(doc, "2. Step-by-Step Installation & Firebase Setup")
@@ -55,37 +58,8 @@ def build_installation_doc():
     add_heading_2(doc, "Step 2.4: Deploy Cloud Firestore Security Rules")
     add_body_paragraph(
         doc,
-        "Copy and paste the project's firestore.rules into the Firestore Rules tab in the console. These rules enforce role validation and wholesaler accreditation checks:"
+        "Copy and paste the project's firestore.rules into the Firestore Rules tab in the console. These rules enforce role validation and wholesaler accreditation checks. Non-accredited wholesalers cannot advance orders to verified status."
     )
-
-    rules_lines = [
-        "rules_version = '2';",
-        "service cloud.firestore {",
-        "  match /databases/{database}/documents {",
-        "    function isSignedIn() { return request.auth != null; }",
-        "    function getUserData() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }",
-        "    function hasRole(r) { return isSignedIn() && getUserData().role == r; }",
-        "    function isApprovedWholesaler() { return hasRole('wholesaler') && getUserData().approved == true; }",
-        "    function isAdmin() { return hasRole('admin'); }",
-        "    ",
-        "    match /users/{userId} {",
-        "      allow read: if isSignedIn();",
-        "      allow create: if isSignedIn() && request.auth.uid == userId;",
-        "      allow update: if isSignedIn() && (request.auth.uid == userId || isAdmin());",
-        "    }",
-        "    match /products/{productId} {",
-        "      allow read: if true;",
-        "      allow write: if hasRole('farmer') || isAdmin();",
-        "    }",
-        "    match /orders/{orderId} {",
-        "      allow read: if isSignedIn();",
-        "      allow create: if hasRole('customer');",
-        "      allow update: if hasRole('farmer') || isApprovedWholesaler() || hasRole('driver') || isAdmin();",
-        "    }",
-        "  }",
-        "}"
-    ]
-    add_diagram_box(doc, "Firestore Role Security Schema", rules_lines)
 
     add_heading_2(doc, "Step 2.5: Link Firebase Credentials")
     add_body_paragraph(
@@ -123,20 +97,9 @@ def build_installation_doc():
         doc,
         "The repository contains an automated Node.js test suite verifying 31 critical checkpoints across unit logic, system workflows, and production SEO compliance:"
     )
-
-    test_lines = [
-        "> node tests/unit_tests.js",
-        "  ✔ 8/8 Unit Tests Passed (Form validation, quantities, totals, AUD currency formatting)",
-        "",
-        "> node tests/system_integration_tests.js",
-        "  ✔ 14/14 System Tests Passed (Auth sync, stock deduction, lifecycle, UAT roles)",
-        "",
-        "> node tests/seo_audit.js",
-        "  ✔ 9/9 SEO Audits Passed (robots.txt, sitemap.xml, Open Graph tags, single H1)",
-        "",
-        "SUMMARY: 31/31 TESTS PASSED (100% SUCCESS RATE)"
-    ]
-    add_diagram_box(doc, "Automated Test Suite Execution Log", test_lines)
+    add_bullet_point(doc, "Unit Tests (tests/unit_tests.js): 8/8 Passed (Form validation, AUD currency formatting, stock boundaries)", "Suite 1: ")
+    add_bullet_point(doc, "System Tests (tests/system_integration_tests.js): 14/14 Passed (Atomic stock deductions, 7-stage lifecycle, UAT)", "Suite 2: ")
+    add_bullet_point(doc, "SEO Audits (tests/seo_audit.js): 9/9 Passed (robots.txt, sitemap.xml, Open Graph tags, single H1 compliance)", "Suite 3: ")
 
     add_screenshot(doc, "01_terminal_unit_tests.png", "Terminal Execution: Unit Test Suite (8/8 Passed)")
     add_screenshot(doc, "03_terminal_system_integration_tests.png", "Terminal Execution: System Integration & UAT Test Suite (14/14 Passed)")

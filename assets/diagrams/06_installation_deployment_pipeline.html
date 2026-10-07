@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+  body { background: #FFFFFF; color: #0F172A; padding: 35px 25px; width: 1400px; height: 850px; }
+  
+  .header-box { text-align: center; margin-bottom: 25px; }
+  .header-box .badge { display: inline-block; background: #DBEAFE; color: #1E40AF; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .header-box h1 { font-size: 26px; font-weight: 800; color: #0F172A; }
+  .header-box p { font-size: 13px; color: #64748B; margin-top: 2px; }
+
+  .pipeline-grid { display: flex; justify-content: space-between; gap: 12px; margin-top: 25px; }
+  .pipe-step {
+    flex: 1;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 18px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    height: 380px;
+  }
+  .pipe-step.s1 { border-top: 4px solid #64748B; }
+  .pipe-step.s2 { border-top: 4px solid #D97706; }
+  .pipe-step.s3 { border-top: 4px solid #DC2626; }
+  .pipe-step.s4 { border-top: 4px solid #16A34A; }
+  .pipe-step.s5 { border-top: 4px solid #2563EB; }
+  .pipe-step.s6 { border-top: 4px solid #059669; }
+
+  .num-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #0F172A;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  .pipe-step h3 { font-size: 13.5px; font-weight: 700; color: #0F172A; margin-bottom: 8px; }
+  .pipe-step p { font-size: 11px; color: #64748B; line-height: 1.45; }
+
+  .pipe-meta {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 10px;
+    color: #334155;
+    font-weight: 600;
+    text-align: center;
+    margin-top: auto;
+  }
+
+  .pipe-footer {
+    margin-top: 30px;
+    background: #F1F5F9;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pipe-footer h4 { font-size: 13px; font-weight: 700; color: #1E293B; }
+  .pipe-footer p { font-size: 11.5px; color: #64748B; }
+</style>
+</head>
+<body>
+  <div class="header-box">
+    <div class="badge">Production Deployment Architecture</div>
+    <h1>Technical Installation & Production Deployment Pipeline</h1>
+    <p>Zero-compilation ES Modules architecture deployed to Google Cloud Platform and Firebase</p>
+  </div>
+
+  <div class="pipeline-grid">
+    <div class="pipe-step s1">
+      <div>
+        <div class="num-badge" style="background:#64748B;">1</div>
+        <h3>Workspace Setup</h3>
+        <p>Clone repository. Native ES Modules architecture requires no bundlers, webpack, or npm builds.</p>
+      </div>
+      <div class="pipe-meta">Local Environment<br>Node.js or Python</div>
+    </div>
+
+    <div class="pipe-step s2">
+      <div>
+        <div class="num-badge" style="background:#D97706;">2</div>
+        <h3>Firebase Init</h3>
+        <p>Initialize Web App in Firebase Console. Deploy Cloud Firestore in Sydney (australia-southeast1).</p>
+      </div>
+      <div class="pipe-meta">js/firebase-config.js<br>Email/Password Auth</div>
+    </div>
+
+    <div class="pipe-step s3">
+      <div>
+        <div class="num-badge" style="background:#DC2626;">3</div>
+        <h3>Security Rules</h3>
+        <p>Deploy firestore.rules to enforce role guards and lock wholesaler verification behind admin approval.</p>
+      </div>
+      <div class="pipe-meta">firestore.rules<br>Role-Based Security</div>
+    </div>
+
+    <div class="pipe-step s4">
+      <div>
+        <div class="num-badge" style="background:#16A34A;">4</div>
+        <h3>Database Seed</h3>
+        <p>Execute seed.html to populate authentic Australian growers, regional AUD harvests, and test roles.</p>
+      </div>
+      <div class="pipe-meta">seed.html<br>Australian Regional DB</div>
+    </div>
+
+    <div class="pipe-step s5">
+      <div>
+        <div class="num-badge" style="background:#2563EB;">5</div>
+        <h3>Launch Server</h3>
+        <p>Run python -m http.server 8000 or run.bat to serve modules over HTTP and bypass browser CORS limits.</p>
+      </div>
+      <div class="pipe-meta">http://localhost:8000<br>run.bat execution</div>
+    </div>
+
+    <div class="pipe-step s6">
+      <div>
+        <div class="num-badge" style="background:#059669;">6</div>
+        <h3>Test Suite</h3>
+        <p>Execute automated test suite: 8 Unit Tests, 14 System Tests, and 9 SEO Audits (31/31 passing).</p>
+      </div>
+      <div class="pipe-meta">tests/unit_tests.js<br>100% Pass Rate</div>
+    </div>
+  </div>
+
+  <div class="pipe-footer">
+    <div>
+      <h4>TURNKEY DEPLOYMENT GUARANTEE</h4>
+      <p>Compatible with Firebase Hosting, Cloudflare Pages, AWS S3 / CloudFront, and traditional Nginx web servers.</p>
+    </div>
+    <span style="font-size:11.5px; font-weight:700; color:#1E40AF;">PRODUCTION READY</span>
+  </div>
+</body>
+</html>

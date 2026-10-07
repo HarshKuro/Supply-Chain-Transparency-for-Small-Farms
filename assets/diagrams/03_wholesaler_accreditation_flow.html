@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+  body { background: #F8FAFC; color: #0F172A; padding: 35px 25px; width: 1400px; height: 850px; }
+  
+  .header-box { text-align: center; margin-bottom: 25px; }
+  .header-box .badge { display: inline-block; background: #FEF3C7; color: #B45309; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .header-box h1 { font-size: 26px; font-weight: 800; color: #0F172A; }
+  .header-box p { font-size: 13px; color: #64748B; margin-top: 2px; }
+
+  .workflow-grid { display: flex; justify-content: space-between; gap: 14px; margin-top: 25px; }
+
+  .flow-card {
+    flex: 1;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 18px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    height: 380px;
+  }
+  .flow-card.step-1 { border-top: 4px solid #64748B; }
+  .flow-card.step-2 { border-top: 4px solid #DC2626; }
+  .flow-card.step-3 { border-top: 4px solid #2563EB; }
+  .flow-card.step-4 { border-top: 4px solid #16A34A; }
+  .flow-card.step-5 { border-top: 4px solid #475569; }
+
+  .step-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #0F172A;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  .flow-card h3 { font-size: 14px; font-weight: 700; color: #0F172A; margin-bottom: 8px; }
+  .flow-card p { font-size: 11px; color: #64748B; line-height: 1.45; }
+
+  .status-pill {
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: auto;
+  }
+  .pill-pending { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+  .pill-locked { background: #FEE2E2; color: #991B1B; border: 1px solid #FECACA; }
+  .pill-admin { background: #DBEAFE; color: #1E40AF; border: 1px solid #BFDBFE; }
+  .pill-approved { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
+  .pill-revoke { background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0; }
+
+  .notice-panel {
+    margin-top: 30px;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-left: 4px solid #D97706;
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .notice-panel h4 { font-size: 13px; font-weight: 700; color: #92400E; margin-bottom: 2px; }
+  .notice-panel p { font-size: 11.5px; color: #64748B; }
+</style>
+</head>
+<body>
+  <div class="header-box">
+    <div class="badge">Regulatory Biosecurity Compliance</div>
+    <h1>Wholesaler Accreditation & Administrative Approval Workflow</h1>
+    <p>Mandatory vetting protocol ensuring only verified commercial distributors certify Australian farm produce</p>
+  </div>
+
+  <div class="workflow-grid">
+    <div class="flow-card step-1">
+      <div>
+        <div class="step-circle" style="background:#64748B;">1</div>
+        <h3>Registration</h3>
+        <p>Wholesaler signs up selecting 'wholesaler' role and entering Australian Business Number (ABN).</p>
+      </div>
+      <div class="status-pill pill-pending">approved: false<br>status: 'pending'</div>
+    </div>
+
+    <div class="flow-card step-2">
+      <div>
+        <div class="step-circle" style="background:#DC2626;">2</div>
+        <h3>Gated Access</h3>
+        <p>Portal renders amber notice banner. 'Verify Stock' action is locked with a padlock tooltip.</p>
+      </div>
+      <div class="status-pill pill-locked">🔒 Verify Stock Action<br>DISABLED & LOCKED</div>
+    </div>
+
+    <div class="flow-card step-3">
+      <div>
+        <div class="step-circle" style="background:#2563EB;">3</div>
+        <h3>Admin Vetting</h3>
+        <p>Admin opens admin/approvals.html to review ABN, cold storage license, and location details.</p>
+      </div>
+      <div class="status-pill pill-admin">Admin Approvals Hub<br>1-Click 'Approve' Control</div>
+    </div>
+
+    <div class="flow-card step-4">
+      <div>
+        <div class="step-circle" style="background:#16A34A;">4</div>
+        <h3>Accredited Live</h3>
+        <p>Firestore user document updated with approved: true. Quality audit capability unlocked.</p>
+      </div>
+      <div class="status-pill pill-approved">✔ Full QA Authority<br>Certify Batches Active</div>
+    </div>
+
+    <div class="flow-card step-5">
+      <div>
+        <div class="step-circle" style="background:#475569;">5</div>
+        <h3>Revocation Authority</h3>
+        <p>Admin can instantly revoke accreditation if biosecurity or food standards breach occurs.</p>
+      </div>
+      <div class="status-pill pill-revoke">Continuous Governance<br>1-Click 'Revoke Status'</div>
+    </div>
+  </div>
+
+  <div class="notice-panel">
+    <div>
+      <h4>AUSTRALIAN BIOSECURITY & FSANZ FOOD STANDARDS COMPLIANCE</h4>
+      <p>Enforced by Cloud Firestore Security Rules: Non-accredited wholesalers cannot update order documents into verified status.</p>
+    </div>
+    <span style="font-size:11.5px; font-weight:700; color:#B45309;">FSANZ STANDARD 3.2.2 COMPLIANT</span>
+  </div>
+</body>
+</html>

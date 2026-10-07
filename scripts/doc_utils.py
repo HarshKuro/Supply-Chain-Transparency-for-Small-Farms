@@ -294,8 +294,19 @@ def add_styled_table(doc, headers, rows, col_widths=None):
     doc.add_paragraph().paragraph_format.space_after = Pt(8)
 
 def add_screenshot(doc, image_filename, caption, width_inches=6.0):
-    img_path = os.path.join("screenshots", image_filename)
-    if os.path.exists(img_path):
+    possible_paths = [
+        os.path.join("docx", "images", image_filename),
+        os.path.join("screenshots", image_filename),
+        os.path.join("assets", "diagrams", image_filename),
+        image_filename
+    ]
+    img_path = None
+    for p in possible_paths:
+        if os.path.exists(p):
+            img_path = p
+            break
+
+    if img_path:
         p_img = doc.add_paragraph()
         p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_img.paragraph_format.space_before = Pt(8)
@@ -313,4 +324,5 @@ def add_screenshot(doc, image_filename, caption, width_inches=6.0):
         r_cap.font.italic = True
         r_cap.font.color.rgb = TEXT_MUTED_RGB
     else:
-        add_callout(doc, f"Screenshot file missing: {image_filename}", "IMAGE NOT FOUND", "warning")
+        add_callout(doc, f"Image file missing: {image_filename}", "IMAGE NOT FOUND", "warning")
+

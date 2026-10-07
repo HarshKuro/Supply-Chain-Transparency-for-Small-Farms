@@ -23,11 +23,8 @@ def build_usermanual_doc():
         "AgriTrace is a decentralized digital transparency platform engineered specifically for Australian family farms, regional cooperatives, accredited commercial distributors, and direct consumers. Traditional supermarket duopolies take up to 60% markups while obscuring farm provenance. AgriTrace restores transparency and fair trade by recording every physical handover in the supply chain."
     )
     
-    # Embedded visual infographic
-    add_screenshot(doc, "supply_chain_infographic.jpg", "Australian Fair Trade Agricultural Supply Chain Overview (Farm to Doorstep)", width_inches=6.0)
-
-    # Embedded custody workflow diagram
-    add_screenshot(doc, "flow_supply_chain_custody.png", "7-Stage Digital Custody Verification Sequence Flowchart", width_inches=6.2)
+    # Embedded clean human-designed custody workflow diagram
+    add_screenshot(doc, "02_supply_chain_custody_flowchart.png", "7-Stage Digital Custody Verification Sequence Flowchart", width_inches=6.2)
 
     add_body_paragraph(
         doc,

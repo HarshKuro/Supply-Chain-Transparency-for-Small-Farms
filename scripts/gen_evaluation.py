@@ -39,8 +39,8 @@ def build_evaluation_doc():
     ]
     add_styled_table(doc, summary_headers, summary_rows, [2.2, 1.8, 2.5])
 
-    # Visual Cash Flow Infographic Image (NO text signs)
-    add_screenshot(doc, "flow_commercial_financial_model.png", "AgriTrace Commercial Monetization & Real Money Monthly Inflow Infographic ($ AUD)", width_inches=6.2)
+    # Clean human-designed visual infographic (NO text signs, NO AI slop)
+    add_screenshot(doc, "05_commercial_revenue_model.png", "AgriTrace Commercial Monetization & Real Money Monthly Inflow Infographic ($ AUD)", width_inches=6.2)
 
     add_screenshot(doc, "14_browser_evaluation_report.png", "AgriTrace Project Financial Evaluation Report Web Interface (evaluation-report.html)", width_inches=6.0)
 

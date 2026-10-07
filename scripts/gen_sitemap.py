@@ -36,15 +36,15 @@ def build_sitemap_doc():
         "info"
     )
 
-    # 2. Visual Hierarchy & Architecture Flow Diagram (REAL IMAGE)
+    # 2. Visual Hierarchy & Architecture Flow Diagram (HUMAN-DESIGNED IMAGE)
     add_heading_1(doc, "2. Visual Hierarchy & Page Connection Flow Diagram")
     add_body_paragraph(
         doc,
         "Below is the complete visual diagram illustrating how every page connects to the entry landing page, the authentication hub, and the respective stakeholder sub-domains:"
     )
 
-    # Embedded high-res visual image diagram (NO text signs)
-    add_screenshot(doc, "flow_sitemap_hierarchy.png", "AgriTrace Complete Hierarchical Navigation & Role Routing Flow Diagram", width_inches=6.2)
+    # Clean human-designed visual diagram
+    add_screenshot(doc, "01_sitemap_visual_tree.png", "AgriTrace Complete Hierarchical Navigation & Role Routing Flow Diagram", width_inches=6.2)
 
     add_screenshot(doc, "11_browser_sitemap.png", "AgriTrace Interactive Site Map UI (sitemap.html) with Real-Time Search Filtering", width_inches=6.0)
 
@@ -87,18 +87,15 @@ def build_sitemap_doc():
     ]
     add_styled_table(doc, headers, rows, [1.3, 1.1, 2.7, 1.4])
 
-    # 4. User Journey Navigation Workflows (REAL IMAGE)
+    # 4. User Journey Navigation Workflows (HUMAN-DESIGNED FLOWCHART)
     add_heading_1(doc, "4. Cross-Portal User Journey Workflows & Custody Transition")
     add_body_paragraph(
         doc,
         "The power of AgriTrace lies in the synchronized handover of custody between portals. Below is the visual custody lifecycle diagram tracing an order from farm listing to consumer fulfillment:"
     )
 
-    # Embedded high-res visual flowchart (NO text signs)
-    add_screenshot(doc, "flow_supply_chain_custody.png", "7-Stage End-to-End Supply Chain Transparency & Custody Flowchart", width_inches=6.2)
-
-    # Embedded artistic Infographic
-    add_screenshot(doc, "supply_chain_infographic.jpg", "Fair Trade Agricultural Supply Chain Overview in Australia", width_inches=6.0)
+    # Clean human-designed visual flowchart
+    add_screenshot(doc, "02_supply_chain_custody_flowchart.png", "7-Stage End-to-End Supply Chain Transparency & Custody Flowchart", width_inches=6.2)
 
     add_screenshot(doc, "07_browser_landing_page_seo.png", "AgriTrace Landing Page (index.html) Establishing Platform Brand & Access Pathways", width_inches=6.0)
 

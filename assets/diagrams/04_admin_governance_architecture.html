@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+  body { background: #FFFFFF; color: #0F172A; padding: 35px 25px; width: 1400px; height: 850px; }
+  
+  .header-box { text-align: center; margin-bottom: 25px; }
+  .header-box .badge { display: inline-block; background: #FEE2E2; color: #991B1B; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .header-box h1 { font-size: 26px; font-weight: 800; color: #0F172A; }
+  .header-box p { font-size: 13px; color: #64748B; margin-top: 2px; }
+
+  .center-node {
+    width: 480px;
+    margin: 10px auto 25px auto;
+    background: #FEF2F2;
+    border: 2px solid #DC2626;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.08);
+  }
+  .center-node h2 { font-size: 17px; font-weight: 800; color: #991B1B; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .center-node p { font-size: 11px; color: #7F1D1D; margin-top: 3px; font-family: ui-monospace, monospace; }
+
+  .admin-pillars { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 15px; }
+  .pillar-box {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 18px 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .pillar-box.p1 { border-top: 4px solid #D97706; }
+  .pillar-box.p2 { border-top: 4px solid #2563EB; }
+  .pillar-box.p3 { border-top: 4px solid #16A34A; }
+  .pillar-box.p4 { border-top: 4px solid #7C3AED; }
+  .pillar-box.p5 { border-top: 4px solid #059669; }
+
+  .pillar-box h3 { font-size: 13.5px; font-weight: 700; color: #0F172A; margin-bottom: 6px; }
+  .pillar-box p { font-size: 11px; color: #64748B; line-height: 1.45; }
+  .pillar-meta { background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 6px; padding: 8px; font-size: 10px; color: #334155; font-weight: 600; text-align: center; }
+
+  .security-footer {
+    margin-top: 25px;
+    background: #F1F5F9;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .security-footer h4 { font-size: 13px; font-weight: 700; color: #1E293B; }
+  .security-footer p { font-size: 11.5px; color: #64748B; }
+</style>
+</head>
+<body>
+  <div class="header-box">
+    <div class="badge">Platform Security Architecture</div>
+    <h1>Administrator Governance & Multi-Module Security Architecture</h1>
+    <p>Central management and neutral oversight across all Australian regional agricultural nodes</p>
+  </div>
+
+  <div class="center-node">
+    <h2>🛡️ AgriTrace Administrator Portal</h2>
+    <p>admin/dashboard.html • Real-time AUD telemetry • Global Platform Governance</p>
+  </div>
+
+  <div class="admin-pillars">
+    <div class="pillar-box p1">
+      <div>
+        <h3>1. Wholesaler Approvals</h3>
+        <p>Dedicated vetting queue for commercial wholesalers. One-click status toggling and biosecurity accreditation.</p>
+      </div>
+      <div class="pillar-meta">admin/approvals.html<br>Status: Pending / Approved</div>
+    </div>
+
+    <div class="pillar-box p2">
+      <div>
+        <h3>2. User Registry</h3>
+        <p>Comprehensive roster of all 5 stakeholder accounts. Phone verification, role assignment, and audit tracking.</p>
+      </div>
+      <div class="pillar-meta">admin/users.html<br>Role Guards: js/auth.js</div>
+    </div>
+
+    <div class="pillar-box p3">
+      <div>
+        <h3>3. Catalog Oversight</h3>
+        <p>Continuous audit of produce listings, batch limits, and fair-trade price boundaries in Australian Dollars ($ AUD).</p>
+      </div>
+      <div class="pillar-meta">admin/products.html<br>Firestore products collection</div>
+    </div>
+
+    <div class="pillar-box p4">
+      <div>
+        <h3>4. Order Ledger</h3>
+        <p>Macro-level order history providing complete transparency across all 7 stages from placement to delivery.</p>
+      </div>
+      <div class="pillar-meta">admin/orders.html<br>Real-time orders ledger</div>
+    </div>
+
+    <div class="pillar-box p5">
+      <div>
+        <h3>5. Financial Telemetry</h3>
+        <p>Commercial feasibility tracking, recurring cloud expenses (OPEX), and small grower margin improvement analysis.</p>
+      </div>
+      <div class="pillar-meta">admin/evaluation.html<br>$ AUD Turnover Metrics</div>
+    </div>
+  </div>
+
+  <div class="security-footer">
+    <div>
+      <h4>SECURITY & ROLE-BASED ACCESS CONTROL (RBAC)</h4>
+      <p>Protected by Cloud Firestore Security Rules and client-side route redirection engine in js/auth.js.</p>
+    </div>
+    <span style="font-size:11.5px; font-weight:700; color:#166534;">ENCRYPTED & AUTHENTICATED</span>
+  </div>
+</body>
+</html>

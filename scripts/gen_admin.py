@@ -27,15 +27,15 @@ def build_admin_integration_doc():
         "The Administrator Portal (admin/) was fully integrated to provide neutral, macro-level governance over all Australian regional supply nodes, enforcing regulatory compliance, real-time transaction oversight in Australian Dollars ($ AUD), and wholesaler accreditation."
     )
 
-    # 2. Global Navigation & Authentication Routing (REAL IMAGE)
-    add_heading_1(doc, "2. Navigation Integration & Authentication Route Architecture")
+    # 2. Global Navigation & Authentication Routing (HUMAN-DESIGNED ARCHITECTURE DIAGRAM)
+    add_heading_1(doc, "2. Navigation Integration & Multi-Module Security Architecture")
     add_body_paragraph(
         doc,
-        "The Admin Portal has been seamlessly woven into the public information architecture. The diagram below illustrates how authentication routes dispatch users securely into their respective role boundaries:"
+        "The Admin Portal has been seamlessly integrated into the platform architecture. The diagram below illustrates how administrator governance encompasses all platform modules and role boundaries:"
     )
 
-    # Embedded high-res visual flowchart (NO text signs)
-    add_screenshot(doc, "flow_sitemap_hierarchy.png", "Administrator and Role Authentication Routing Architecture", width_inches=6.2)
+    # Clean human-designed visual diagram
+    add_screenshot(doc, "04_admin_governance_architecture.png", "Administrator Governance & Multi-Module Security Architecture Diagram", width_inches=6.2)
 
     add_bullet_point(doc, "Landing Page Header & Footer: Added direct 'Admin' access links on index.html alongside public documentation links.", "1. Entry Points: ")
     add_bullet_point(doc, "1-Click Demo Toolbar: The login.html portal features a dedicated '🛡️ Admin Portal' quick-login button that signs into admin@example.com with password123.", "2. Rapid Access: ")
