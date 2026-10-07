@@ -3,7 +3,7 @@ import sys
 from docx.shared import Inches, Pt, RGBColor
 from doc_utils import (
     init_document, add_title_header, add_heading_1, add_heading_2, add_heading_3,
-    add_body_paragraph, add_bullet_point, add_callout, add_diagram_box,
+    add_body_paragraph, add_bullet_point, add_callout,
     add_styled_table, add_screenshot
 )
 
@@ -22,6 +22,13 @@ def build_usermanual_doc():
         doc,
         "AgriTrace is a decentralized digital transparency platform engineered specifically for Australian family farms, regional cooperatives, accredited commercial distributors, and direct consumers. Traditional supermarket duopolies take up to 60% markups while obscuring farm provenance. AgriTrace restores transparency and fair trade by recording every physical handover in the supply chain."
     )
+    
+    # Embedded visual infographic
+    add_screenshot(doc, "supply_chain_infographic.jpg", "Australian Fair Trade Agricultural Supply Chain Overview (Farm to Doorstep)", width_inches=6.0)
+
+    # Embedded custody workflow diagram
+    add_screenshot(doc, "flow_supply_chain_custody.png", "7-Stage Digital Custody Verification Sequence Flowchart", width_inches=6.2)
+
     add_body_paragraph(
         doc,
         "This manual details how each stakeholder operates their dedicated web portal, executes stage-specific actions, and contributes to the permanent custody ledger."
@@ -52,8 +59,8 @@ def build_usermanual_doc():
     ]
     add_styled_table(doc, cred_headers, cred_rows, [1.4, 2.0, 1.8, 1.3])
 
-    add_screenshot(doc, "19_browser_login_demo_buttons.png", "1-Click Demo Login Toolbar on login.html Providing Immediate Access to All Roles")
-    add_screenshot(doc, "08_browser_login_portal.png", "Secure Authentication Portal with High-Contrast Responsive Controls")
+    add_screenshot(doc, "19_browser_login_demo_buttons.png", "1-Click Demo Login Toolbar on login.html Providing Immediate Access to All Roles", width_inches=6.0)
+    add_screenshot(doc, "08_browser_login_portal.png", "Secure Authentication Portal with High-Contrast Responsive Controls", width_inches=6.0)
 
     # 3. Farmer Manual
     add_heading_1(doc, "3. Farmer Operations Manual (farmer/)")
@@ -143,7 +150,7 @@ def build_usermanual_doc():
     add_bullet_point(doc, "User Directory (admin/users.html): Inspect all registered accounts, change roles, or audit contact numbers.", "Governance 2: ")
     add_bullet_point(doc, "Financial Evaluation (admin/evaluation.html): Review operational expenditures, recurring cloud fees, and farm margin improvements.", "Governance 3: ")
 
-    add_screenshot(doc, "12_browser_user_manual.png", "Official User Manual Web Guide (user-manual.html) Featuring Sticky Navigation & Role Breakdowns")
+    add_screenshot(doc, "12_browser_user_manual.png", "Official User Manual Web Guide (user-manual.html) Featuring Sticky Navigation & Role Breakdowns", width_inches=6.0)
 
     output_path = os.path.join("docx", "usermanual.docx")
     doc.save(output_path)

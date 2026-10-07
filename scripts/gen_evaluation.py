@@ -3,7 +3,7 @@ import sys
 from docx.shared import Inches, Pt, RGBColor
 from doc_utils import (
     init_document, add_title_header, add_heading_1, add_heading_2, add_heading_3,
-    add_body_paragraph, add_bullet_point, add_callout, add_diagram_box,
+    add_body_paragraph, add_bullet_point, add_callout,
     add_styled_table, add_screenshot
 )
 
@@ -39,7 +39,10 @@ def build_evaluation_doc():
     ]
     add_styled_table(doc, summary_headers, summary_rows, [2.2, 1.8, 2.5])
 
-    add_screenshot(doc, "14_browser_evaluation_report.png", "AgriTrace Project Financial Evaluation Report Interface (evaluation-report.html)")
+    # Visual Cash Flow Infographic Image (NO text signs)
+    add_screenshot(doc, "flow_commercial_financial_model.png", "AgriTrace Commercial Monetization & Real Money Monthly Inflow Infographic ($ AUD)", width_inches=6.2)
+
+    add_screenshot(doc, "14_browser_evaluation_report.png", "AgriTrace Project Financial Evaluation Report Web Interface (evaluation-report.html)", width_inches=6.0)
 
     # 2. Platform Charges & Monetization Breakdown
     add_heading_1(doc, "2. Platform Charge Streams: How Real Money is Earned")
@@ -166,8 +169,8 @@ def build_evaluation_doc():
     add_bullet_point(doc, "AgriTrace Direct Model: The grower lists at $4.60 AUD per punnet. The consumer pays $5.50 AUD (cheaper than supermarkets). After the 2.5% platform fee ($0.11 AUD), the farmer nets $4.49 AUD per punnet — a +104% increase in net revenue per unit.", "AgriTrace Model: ")
     add_bullet_point(doc, "Annual Farm Income Gain: An average family producer harvesting 8,000 units annually gains +$18,320 AUD in additional net profit, completely transforming rural farm viability.", "Net Farmer Gain: ")
 
-    add_screenshot(doc, "17_browser_admin_financial_eval.png", "Administrator In-Portal Financial Evaluation Dashboard (admin/evaluation.html)")
-    add_screenshot(doc, "16_browser_admin_dashboard.png", "Administrator Platform Dashboard Tracking Cumulative Revenue in Australian Dollars")
+    add_screenshot(doc, "17_browser_admin_financial_eval.png", "Administrator In-Portal Financial Evaluation Dashboard (admin/evaluation.html)", width_inches=6.0)
+    add_screenshot(doc, "16_browser_admin_dashboard.png", "Administrator Platform Dashboard Tracking Cumulative Revenue in Australian Dollars", width_inches=6.0)
 
     output_path = os.path.join("docx", "evaluation_report.docx")
     doc.save(output_path)

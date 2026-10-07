@@ -3,7 +3,7 @@ import sys
 from docx.shared import Inches, Pt, RGBColor
 from doc_utils import (
     init_document, add_title_header, add_heading_1, add_heading_2, add_heading_3,
-    add_body_paragraph, add_bullet_point, add_callout, add_diagram_box,
+    add_body_paragraph, add_bullet_point, add_callout,
     add_styled_table, add_screenshot
 )
 
@@ -27,27 +27,19 @@ def build_admin_integration_doc():
         "The Administrator Portal (admin/) was fully integrated to provide neutral, macro-level governance over all Australian regional supply nodes, enforcing regulatory compliance, real-time transaction oversight in Australian Dollars ($ AUD), and wholesaler accreditation."
     )
 
-    # 2. Global Navigation & Authentication Routing
-    add_heading_1(doc, "2. Navigation Integration & Authentication Route Guards")
+    # 2. Global Navigation & Authentication Routing (REAL IMAGE)
+    add_heading_1(doc, "2. Navigation Integration & Authentication Route Architecture")
     add_body_paragraph(
         doc,
-        "The Admin Portal has been seamlessly woven into the public information architecture:"
+        "The Admin Portal has been seamlessly woven into the public information architecture. The diagram below illustrates how authentication routes dispatch users securely into their respective role boundaries:"
     )
+
+    # Embedded high-res visual flowchart (NO text signs)
+    add_screenshot(doc, "flow_sitemap_hierarchy.png", "Administrator and Role Authentication Routing Architecture", width_inches=6.2)
+
     add_bullet_point(doc, "Landing Page Header & Footer: Added direct 'Admin' access links on index.html alongside public documentation links.", "1. Entry Points: ")
     add_bullet_point(doc, "1-Click Demo Toolbar: The login.html portal features a dedicated '🛡️ Admin Portal' quick-login button that signs into admin@example.com with password123.", "2. Rapid Access: ")
     add_bullet_point(doc, "Auth Guarding (js/auth.js): Any attempt by non-admin users (farmers, customers, drivers, wholesalers) to access admin/* triggers immediate interception and rerouting.", "3. Security Fence: ")
-
-    routing_lines = [
-        "// js/auth.js - Stakeholder Redirection Matrix",
-        "const roleRoutes = {",
-        "    admin:      'admin/dashboard.html',",
-        "    farmer:     'farmer/dashboard.html',",
-        "    wholesaler: 'wholesaler/dashboard.html',",
-        "    driver:     'driver/dashboard.html',",
-        "    customer:   'customer/products.html'",
-        "};"
-    ]
-    add_diagram_box(doc, "Client-Side Route Authorization Engine", routing_lines)
 
     # 3. Admin Operations Dashboard
     add_heading_1(doc, "3. Admin Operations Dashboard (admin/dashboard.html)")
@@ -67,7 +59,7 @@ def build_admin_integration_doc():
         "success"
     )
 
-    add_screenshot(doc, "16_browser_admin_dashboard.png", "Administrator Operations Command Center (admin/dashboard.html) with Real-Time Australian AUD Metrics")
+    add_screenshot(doc, "16_browser_admin_dashboard.png", "Administrator Operations Command Center (admin/dashboard.html) with Real-Time Australian AUD Metrics", width_inches=6.0)
 
     # 4. Wholesaler Approvals Hub
     add_heading_1(doc, "4. Dedicated Wholesaler Approvals Hub (admin/approvals.html)")
@@ -79,7 +71,7 @@ def build_admin_integration_doc():
     add_bullet_point(doc, "Accredited Wholesalers Queue: Lists actively accredited commercial distributors authorized to verify farm shipments.", "Queue B: ")
     add_bullet_point(doc, "1-Click Status Toggling: Administrators can instantly execute toggleWholesalerApproval(userId, true/false), modifying Firestore and logging audit timestamps.", "Action Controls: ")
 
-    add_screenshot(doc, "15_browser_admin_approvals.png", "Wholesaler Accreditation & Approvals Hub (admin/approvals.html)")
+    add_screenshot(doc, "15_browser_admin_approvals.png", "Wholesaler Accreditation & Approvals Hub (admin/approvals.html)", width_inches=6.0)
 
     # 5. User Management & Catalog Auditing
     add_heading_1(doc, "5. User Registry & Catalog Governance")
@@ -92,7 +84,7 @@ def build_admin_integration_doc():
     add_bullet_point(doc, "Order Transaction Ledger (admin/orders.html): Global order history providing complete end-to-end transparency across every stage from creation to delivery.", "Module 3: ")
     add_bullet_point(doc, "Financial Feasibility Portal (admin/evaluation.html): Integrated operational view of CAPEX, monthly OPEX, and small farm margin gains.", "Module 4: ")
 
-    add_screenshot(doc, "17_browser_admin_financial_eval.png", "In-Portal Administrative Financial Feasibility & Operating Expense View")
+    add_screenshot(doc, "17_browser_admin_financial_eval.png", "In-Portal Administrative Financial Feasibility & Operating Expense View", width_inches=6.0)
 
     output_path = os.path.join("docx", "admin_integration.docx")
     doc.save(output_path)

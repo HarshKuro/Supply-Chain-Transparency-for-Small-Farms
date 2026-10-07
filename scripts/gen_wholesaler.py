@@ -3,7 +3,7 @@ import sys
 from docx.shared import Inches, Pt, RGBColor
 from doc_utils import (
     init_document, add_title_header, add_heading_1, add_heading_2, add_heading_3,
-    add_body_paragraph, add_bullet_point, add_callout, add_diagram_box,
+    add_body_paragraph, add_bullet_point, add_callout,
     add_styled_table, add_screenshot
 )
 
@@ -34,54 +34,17 @@ def build_wholesaler_approval_doc():
         "warning"
     )
 
-    # 2. End-to-End Approval Workflow
-    add_heading_1(doc, "2. End-to-End Accreditation Lifecycle Diagram")
+    # 2. End-to-End Approval Workflow (REAL IMAGE)
+    add_heading_1(doc, "2. End-to-End Accreditation Lifecycle Flow Diagram")
     add_body_paragraph(
         doc,
-        "Below is the complete architectural flowchart governing wholesaler account onboarding, permission gating, administrative review, and status revocation:"
+        "Below is the complete visual workflow chart governing wholesaler account onboarding, permission gating, administrative review, and status revocation:"
     )
 
-    workflow_lines = [
-        " ┌────────────────────────────────────────────────────────────────────────┐",
-        " │ 1. WHOLESALER REGISTRATION (register.html)                            │",
-        " │    • User registers selecting role: 'wholesaler'                       │",
-        " │    • System writes Firestore user doc:                                 │",
-        " │      approved: false, approvalStatus: 'pending'                        │",
-        " └──────────────────────────────────┬─────────────────────────────────────┘",
-        "                                    │",
-        "                                    ▼",
-        " ┌────────────────────────────────────────────────────────────────────────┐",
-        " │ 2. RESTRICTED WHOLESALER SESSION (wholesaler/dashboard.html)          │",
-        " │    • Amber Banner: 'Account Pending Administrator Approval'            │",
-        " │    • Stock Verification Queue: 'Verify Stock' button DISABLED & LOCKED │",
-        " └──────────────────────────────────┬─────────────────────────────────────┘",
-        "                                    │",
-        "                                    ▼",
-        " ┌────────────────────────────────────────────────────────────────────────┐",
-        " │ 3. ADMINISTRATOR ACCREDITATION REVIEW (admin/approvals.html)          │",
-        " │    • Admin inspects business credentials, email, and phone             │",
-        " │    • Admin clicks 'Approve Wholesaler'                                 │",
-        " │    • System updates Firestore:                                         │",
-        " │      approved: true, approvalStatus: 'approved', approvedAt: timestamp │",
-        " └──────────────────────────────────┬─────────────────────────────────────┘",
-        "                                    │",
-        "                                    ▼",
-        " ┌────────────────────────────────────────────────────────────────────────┐",
-        " │ 4. ACCREDITATION GRANTED & UNLOCKED SESSION                            │",
-        " │    • Warning banner clears                                             │",
-        " │    • 'Verify Stock' controls are ACTIVE and audit capability is live   │",
-        " └──────────────────────────────────┬─────────────────────────────────────┘",
-        "                                    │",
-        "                                    ▼ (Optional Compliance Revocation)",
-        " ┌────────────────────────────────────────────────────────────────────────┐",
-        " │ 5. REVOCATION AUTHORITY (admin/approvals.html)                         │",
-        " │    • If quality disputes or regulatory breach occur, Admin clicks       │",
-        " │      'Revoke Status' -> immediately locks all auditing capabilities   │",
-        " └────────────────────────────────────────────────────────────────────────┘"
-    ]
-    add_diagram_box(doc, "Wholesaler Accreditation Workflow", workflow_lines)
+    # Embedded high-res visual image diagram (NO text signs)
+    add_screenshot(doc, "flow_wholesaler_accreditation.png", "Wholesaler Accreditation & Administrative Approval Governance Lifecycle", width_inches=6.2)
 
-    add_screenshot(doc, "15_browser_admin_approvals.png", "Administrator Wholesaler Accreditation & Approvals Hub (admin/approvals.html)")
+    add_screenshot(doc, "15_browser_admin_approvals.png", "Administrator Wholesaler Accreditation & Approvals Hub (admin/approvals.html)", width_inches=6.0)
 
     # 3. Functional Permissions Matrix
     add_heading_1(doc, "3. Functional Permissions Matrix: Pending vs. Approved")
@@ -111,39 +74,14 @@ def build_wholesaler_approval_doc():
     add_heading_2(doc, "4.1 Firestore Security Rule Enforcement")
     add_body_paragraph(
         doc,
-        "In firestore.rules, stock verification actions require the requester to hold both role == 'wholesaler' AND approved == true:"
+        "In firestore.rules, stock verification actions require the requester to hold both role == 'wholesaler' AND approved == true. Non-accredited updates are rejected directly by the database engine."
     )
-
-    rule_snippet = [
-        "function isApprovedWholesaler() {",
-        "    return request.auth != null &&",
-        "           get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'wholesaler' &&",
-        "           get(/databases/$(database)/documents/users/$(request.auth.uid)).data.approved == true;",
-        "}",
-        "",
-        "match /orders/{orderId} {",
-        "    // Only approved wholesalers can advance orders from 'farmer_confirmed' to 'wholesaler_verified'",
-        "    allow update: if isApprovedWholesaler() || hasRole('farmer') || hasRole('driver') || isAdmin();",
-        "}"
-    ]
-    add_diagram_box(doc, "Firestore Database Enforcement Rule", rule_snippet)
 
     add_heading_2(doc, "4.2 Client-Side UI Lock (js/wholesaler.js)")
     add_body_paragraph(
         doc,
-        "When rendering order tables, js/wholesaler.js evaluates the user's approval status. If approved is false, the action button is disabled with an explanatory tooltip and locked badge:"
+        "When rendering order tables, js/wholesaler.js evaluates the user's approval status. If approved is false, an amber alert banner is displayed, and the verification action button is disabled with a locked icon and explanatory tooltip: 'Accreditation Pending: Admin approval required to verify stock'."
     )
-
-    js_snippet = [
-        "if (!isApproved) {",
-        "    approvalAlert.style.display = 'block';",
-        "    verifyBtn.disabled = true;",
-        "    verifyBtn.className = 'btn btn-secondary btn-sm disabled';",
-        "    verifyBtn.title = 'Accreditation Pending: Admin approval required to verify stock';",
-        "    verifyBtn.innerHTML = '<i data-lucide=\"lock\"></i> Pending Approval';",
-        "}"
-    ]
-    add_diagram_box(doc, "Client-Side Lock Logic", js_snippet)
 
     # 5. Testing & Verification Scenarios
     add_heading_1(doc, "5. Testing & Verification Demonstration")
@@ -155,7 +93,7 @@ def build_wholesaler_approval_doc():
     add_bullet_point(doc, "wholesaler.pending@example.com (Matilda Evans - Melbourne Produce Hub VIC): Pre-seeded as approved: false. Demonstrates the pending warning banner and locked verification controls.", "2. Pending Wholesaler: ")
     add_bullet_point(doc, "admin@example.com: Demonstrates navigating to admin/approvals.html, clicking 'Approve Wholesaler' on Matilda, and instantly unlocking her verification powers.", "3. Administrator Approval: ")
 
-    add_screenshot(doc, "19_browser_login_demo_buttons.png", "1-Click Demo Bar on login.html Providing Quick Switching Between Approved and Pending Wholesalers")
+    add_screenshot(doc, "19_browser_login_demo_buttons.png", "1-Click Demo Bar on login.html Providing Quick Switching Between Approved and Pending Wholesalers", width_inches=6.0)
 
     output_path = os.path.join("docx", "wholesaler_approval.docx")
     doc.save(output_path)

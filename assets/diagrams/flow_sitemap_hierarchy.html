@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  body { background: #0B132B; color: #FFFFFF; padding: 35px; width: 1350px; height: 850px; overflow: hidden; }
+  .title-bar { text-align: center; margin-bottom: 25px; }
+  .title-bar h1 { font-size: 26px; font-weight: 800; color: #48E5C2; letter-spacing: -0.5px; margin-bottom: 5px; }
+  .title-bar p { font-size: 14px; color: #94A3B8; }
+  
+  .root-node {
+    background: linear-gradient(135deg, #1B4D20, #2E7D32);
+    border: 2px solid #4ADE80;
+    border-radius: 14px;
+    padding: 14px 28px;
+    width: 440px;
+    margin: 0 auto 20px auto;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(46, 125, 50, 0.4);
+  }
+  .root-node h2 { font-size: 18px; font-weight: 700; color: #FFF; }
+  .root-node span { font-size: 12px; color: #D1FAE5; }
+
+  .connector-v { width: 3px; height: 18px; background: #64748B; margin: 0 auto; }
+  .connector-h-bar { width: 1120px; height: 3px; background: #64748B; margin: 0 auto 18px auto; position: relative; }
+  
+  .portal-row {
+    display: flex;
+    justify-content: space-between;
+    width: 1280px;
+    margin: 0 auto;
+    gap: 16px;
+  }
+  .portal-card {
+    flex: 1;
+    background: #1E293B;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 16px 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  .portal-card.farmer { border-top: 4px solid #10B981; }
+  .portal-card.wholesaler { border-top: 4px solid #F59E0B; }
+  .portal-card.driver { border-top: 4px solid #3B82F6; }
+  .portal-card.customer { border-top: 4px solid #8B5CF6; }
+  .portal-card.admin { border-top: 4px solid #EF4444; }
+
+  .portal-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+  .portal-card .role-badge { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 2px 7px; border-radius: 6px; margin-bottom: 12px; }
+  .farmer .role-badge { background: rgba(16, 185, 129, 0.2); color: #34D399; }
+  .wholesaler .role-badge { background: rgba(245, 158, 11, 0.2); color: #FBBF24; }
+  .driver .role-badge { background: rgba(59, 130, 246, 0.2); color: #60A5FA; }
+  .customer .role-badge { background: rgba(139, 92, 246, 0.2); color: #A78BFA; }
+  .admin .role-badge { background: rgba(239, 68, 68, 0.2); color: #F87171; }
+
+  .sub-pages { list-style: none; }
+  .sub-pages li {
+    background: #0F172A;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-bottom: 6px;
+    font-size: 11px;
+    color: #E2E8F0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .sub-pages li .url { font-family: monospace; color: #94A3B8; font-size: 10px; }
+  .sub-pages li.warn { border-color: #F59E0B; color: #FDE68A; }
+
+  .bottom-docs-bar {
+    margin-top: 22px;
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 10px;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .doc-pill {
+    background: #1F2937;
+    border: 1px solid #4B5563;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    color: #6EE7B7;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <div class="title-bar">
+    <h1>AGRITRACE AUSTRALIA — INTERACTIVE SYSTEM SITEMAP</h1>
+    <p>Complete Hierarchical Navigation Taxonomy & Stakeholder Domain Routing Structure</p>
+  </div>
+
+  <div class="root-node">
+    <h2>🏠 index.html (Storefront & Discovery Hub)</h2>
+    <span>Public Landing • Australian Fair Trade Overview • Direct Portals Access</span>
+  </div>
+
+  <div class="connector-v"></div>
+  <div class="connector-h-bar"></div>
+
+  <div class="portal-row">
+    <!-- Farmer -->
+    <div class="portal-card farmer">
+      <h3>🌾 Farmer Portal</h3>
+      <div class="role-badge">Role: farmer</div>
+      <ul class="sub-pages">
+        <li><span>Dashboard</span><span class="url">dashboard.html</span></li>
+        <li><span>Produce Batches</span><span class="url">products.html</span></li>
+        <li><span>Incoming Orders</span><span class="url">orders.html</span></li>
+      </ul>
+    </div>
+
+    <!-- Wholesaler -->
+    <div class="portal-card wholesaler">
+      <h3>🏢 Wholesaler Hub</h3>
+      <div class="role-badge">Role: wholesaler</div>
+      <ul class="sub-pages">
+        <li><span>Dashboard</span><span class="url">dashboard.html</span></li>
+        <li class="warn"><span>Stock Verification*</span><span class="url">orders.html</span></li>
+        <li style="border:none; background:none; font-size:9.5px; color:#F59E0B; padding:2px;">*Locked until Accredited by Admin</li>
+      </ul>
+    </div>
+
+    <!-- Driver -->
+    <div class="portal-card driver">
+      <h3>🚚 Logistics Driver</h3>
+      <div class="role-badge">Role: driver</div>
+      <ul class="sub-pages">
+        <li><span>Driver Dashboard</span><span class="url">dashboard.html</span></li>
+        <li><span>Transit Deliveries</span><span class="url">deliveries.html</span></li>
+        <li><span>Cold-Chain Handover</span><span class="url">Live GPS</span></li>
+      </ul>
+    </div>
+
+    <!-- Customer -->
+    <div class="portal-card customer">
+      <h3>🛒 Consumer Store</h3>
+      <div class="role-badge">Role: customer</div>
+      <ul class="sub-pages">
+        <li><span>Fresh Catalog</span><span class="url">products.html</span></li>
+        <li><span>Shopping Cart</span><span class="url">cart.html</span></li>
+        <li><span>7-Stage Tracking</span><span class="url">orders.html</span></li>
+        <li><span>Farmer Reviews</span><span class="url">feedback.html</span></li>
+      </ul>
+    </div>
+
+    <!-- Admin -->
+    <div class="portal-card admin">
+      <h3>🛡️ Administrator</h3>
+      <div class="role-badge">Role: admin</div>
+      <ul class="sub-pages">
+        <li><span>Operations Hub</span><span class="url">dashboard.html</span></li>
+        <li style="border-color:#EF4444; color:#FCA5A5;"><span>Wholesaler Approvals</span><span class="url">approvals.html</span></li>
+        <li><span>User Registry</span><span class="url">users.html</span></li>
+        <li><span>Catalog & Orders</span><span class="url">products/orders</span></li>
+        <li><span>Financial Eval</span><span class="url">evaluation.html</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bottom-docs-bar">
+    <span style="font-size:12px; font-weight:700; color:#9CA3AF;">SHARED PLATFORM DOCUMENTATION & UTILITIES:</span>
+    <div class="doc-pill">📖 user-manual.html</div>
+    <div class="doc-pill">💻 installation-manual.html</div>
+    <div class="doc-pill">📊 evaluation-report.html</div>
+    <div class="doc-pill">🇦🇺 seed.html (Australian DB)</div>
+    <div class="doc-pill">🧪 test_runner.html (31 Tests)</div>
+  </div>
+</body>
+</html>
