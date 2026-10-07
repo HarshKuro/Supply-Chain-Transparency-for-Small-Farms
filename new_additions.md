@@ -101,9 +101,19 @@ A complete operational guide for end users and evaluators was created at [user-m
   - **🛒 Consumer**: Browsing regional harvests, adding produce to cart, executing fair-trade checkout in AUD, tracking live 7-stage order status, and rating farmers.
   - **🛡️ System Administrator**: Platform monitoring, approving/revoking wholesaler accounts, auditing all system users and transactions.
 - **Interactive Quick-Credential Cards**: Provides 1-click test emails and passwords for evaluators.
+- **Complete Portal Screenshot Suite (26 Embedded Figures)**:
+  - System architecture visual sitemap & 7-stage custody verification sequence.
+  - Public hero landing page (`index.html`) & role-based registration (`register.html`).
+  - Secure authentication portal with 1-click demo bar (`login.html`).
+  - Farmer dashboard, harvest batch creation in AUD, and order confirmation (`farmer/`).
+  - Wholesaler pending approval warning banner & locked audit controls vs. accredited certified workspace (`wholesaler/`).
+  - Logistics driver dashboard and 3-step transit milestone execution queue (`driver/`).
+  - Consumer account dashboard, regional produce catalog, shopping cart, live order provenance tracker, and farmer rating form (`customer/`).
+  - Admin command center, wholesaler accreditation management hub, master user registry, produce catalog audit, transaction ledger, and financial evaluation telemetry (`admin/`).
+  - Available in both interactive web format (`user-manual.html`) and official printable Word document (`docx/usermanual.docx`, 1.92 MB).
 
 ![Stakeholder User Manual](screenshots/12_browser_user_manual.png)
-*Figure 4.1: Operational User Manual (`user-manual.html`) showing role workflows and navigation*
+*Figure 4.1: Operational User Manual (`user-manual.html`) showing role workflows and visual documentation*
 
 ---
 
