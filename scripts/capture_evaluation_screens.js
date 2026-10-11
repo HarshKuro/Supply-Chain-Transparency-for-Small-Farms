@@ -37,9 +37,11 @@ async function run() {
     await capture(page, '14_browser_evaluation_report.png', 'Public Evaluation Report Page');
 
     // 2. Authenticate as admin
-    console.log('Authenticating as admin...');
+    console.log('Authenticating as admin via email and password...');
     await page.goto(`${BASE_URL}/login.html`, { waitUntil: 'networkidle2' });
-    await page.click('.demo-btn[data-email="admin@example.com"]');
+    await page.type('#email', 'admin@example.com');
+    await page.type('#password', 'password123');
+    await page.click('#loginForm button[type="submit"]');
     for (let i = 0; i < 12; i++) {
         await sleep(600);
         if (!page.url().includes('login.html')) break;

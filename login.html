@@ -18,8 +18,7 @@
                 </a>
             </div>
             <nav aria-label="Auth Navigation">
-                <a href="sitemap.html"><i data-lucide="map"></i> Site Map</a>
-                <a href="user-manual.html"><i data-lucide="book-open"></i> User Manual</a>
+                <a href="index.html"><i data-lucide="home"></i> Home</a>
                 <a href="register.html"><i data-lucide="user-plus"></i> Register</a>
             </nav>
         </div>
@@ -31,7 +30,7 @@
             <form id="loginForm">
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="e.g. farmer@example.com" required autocomplete="email">
+                    <input type="email" id="email" placeholder="e.g. farmer@example.com or admin@example.com" required autocomplete="email">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -48,11 +47,11 @@
                     <i data-lucide="sparkles" style="width: 14px; height: 14px; vertical-align: middle;"></i> 1-Click Demo Logins (Password: password123)
                 </p>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem;">
-                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="admin@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
-                        🛡️ Admin Portal
-                    </button>
                     <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="farmer@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
                         🌾 Jack (Farmer)
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="customer@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
+                        🛒 Chloe (Customer)
                     </button>
                     <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="wholesaler@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
                         🏢 Liam (Wholesaler - Approved)
@@ -60,11 +59,8 @@
                     <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="wholesaler.pending@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
                         ⏳ Matilda (Wholesaler - Pending)
                     </button>
-                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="driver@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
+                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="driver@example.com" style="font-size: 0.78rem; justify-content: flex-start; grid-column: span 2;">
                         🚚 Lucas (Driver)
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="customer@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
-                        🛒 Chloe (Customer)
                     </button>
                 </div>
             </div>

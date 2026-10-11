@@ -28,9 +28,15 @@ async function runSession(browser, email, steps) {
     await page.setViewport({ width: 1300, height: 850 });
 
     if (email) {
-        console.log(`\n--- Authenticating as: ${email} ---`);
         await page.goto(`${BASE_URL}/login.html`, { waitUntil: 'networkidle2' });
-        await page.click(`.demo-btn[data-email="${email}"]`);
+        const demoBtn = await page.$(`.demo-btn[data-email="${email}"]`);
+        if (demoBtn) {
+            await demoBtn.click();
+        } else {
+            await page.type('#email', email);
+            await page.type('#password', 'password123');
+            await page.click('#loginForm button[type="submit"]');
+        }
         // Wait for redirect to happen
         for (let i = 0; i < 12; i++) {
             await sleep(800);

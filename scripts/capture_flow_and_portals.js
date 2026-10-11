@@ -66,7 +66,14 @@ async function capture(page, filename, desc) {
 async function loginUser(page, email) {
     console.log(`\nLogging in as: ${email}...`);
     await page.goto(`${BASE_URL}/login.html`, { waitUntil: 'networkidle2' });
-    await page.click(`.demo-btn[data-email="${email}"]`);
+    const demoBtn = await page.$(`.demo-btn[data-email="${email}"]`);
+    if (demoBtn) {
+        await demoBtn.click();
+    } else {
+        await page.type('#email', email);
+        await page.type('#password', 'password123');
+        await page.click('#loginForm button[type="submit"]');
+    }
     await page.waitForFunction(() => !window.location.href.includes('login.html'), { timeout: 12000 });
     await waitForDataReady(page);
 }
