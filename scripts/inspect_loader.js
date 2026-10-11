@@ -7,7 +7,9 @@ async function checkPageLoaders() {
 
     // Check login page
     await page.goto('http://localhost:8000/login.html');
-    await page.click('.demo-btn[data-email="farmer@example.com"]');
+    await page.type('#email', 'farmer@example.com');
+    await page.type('#password', 'password123');
+    await page.click('#loginForm button[type="submit"]');
     await new Promise(r => setTimeout(r, 1000));
     
     // Check farmer dashboard

@@ -30,7 +30,7 @@
             <form id="loginForm">
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="e.g. farmer@example.com or admin@example.com" required autocomplete="email">
+                    <input type="email" id="email" placeholder="Enter your email address" required autocomplete="email">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -41,29 +41,6 @@
                     <span>Login</span>
                 </button>
             </form>
-
-            <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed var(--border-color); text-align: left;">
-                <p style="font-size: 0.85rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;">
-                    <i data-lucide="sparkles" style="width: 14px; height: 14px; vertical-align: middle;"></i> 1-Click Demo Logins (Password: password123)
-                </p>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem;">
-                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="farmer@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
-                        🌾 Jack (Farmer)
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="customer@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
-                        🛒 Chloe (Customer)
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="wholesaler@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
-                        🏢 Liam (Wholesaler - Approved)
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="wholesaler.pending@example.com" style="font-size: 0.78rem; justify-content: flex-start;">
-                        ⏳ Matilda (Wholesaler - Pending)
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm demo-btn" data-email="driver@example.com" style="font-size: 0.78rem; justify-content: flex-start; grid-column: span 2;">
-                        🚚 Lucas (Driver)
-                    </button>
-                </div>
-            </div>
 
             <div class="auth-links">
                 <p>Don't have an account? <a href="register.html">Register here</a></p>
@@ -82,14 +59,6 @@
     </script>
     <script type="module">
         import { loginUser } from './js/auth.js';
-        
-        document.querySelectorAll('.demo-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.getElementById('email').value = btn.getAttribute('data-email');
-                document.getElementById('password').value = 'password123';
-                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
-            });
-        });
 
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();

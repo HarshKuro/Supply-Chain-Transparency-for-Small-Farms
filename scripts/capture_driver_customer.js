@@ -24,7 +24,9 @@ async function captureRole(browser, email, steps) {
     await page.setViewport({ width: 1300, height: 850 });
 
     await page.goto(`${BASE_URL}/login.html`, { waitUntil: 'networkidle2' });
-    await page.click(`.demo-btn[data-email="${email}"]`);
+    await page.type('#email', email);
+    await page.type('#password', 'password123');
+    await page.click('#loginForm button[type="submit"]');
     
     // Wait for the URL to change from login.html
     await page.waitForFunction(() => !window.location.href.includes('login.html'), { timeout: 10000 });
