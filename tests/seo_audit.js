@@ -47,25 +47,21 @@ check('SEO-01', 'robots.txt configuration & sitemap directive', () => {
 });
 
 // 2. Sitemap.xml
-check('SEO-02', 'sitemap.xml structure & documentation URL coverage', () => {
+check('SEO-02', 'sitemap.xml structure & production URL coverage', () => {
     const file = path.join(baseDir, 'sitemap.xml');
     if (!fs.existsSync(file)) throw new Error('sitemap.xml not found');
     const content = fs.readFileSync(file, 'utf8');
     const urls = [
         '/index.html',
         '/login.html',
-        '/register.html',
-        '/sitemap.html',
-        '/user-manual.html',
-        '/installation-manual.html',
-        '/evaluation-report.html'
+        '/register.html'
     ];
     for (const u of urls) {
         if (!content.includes(`<loc>${u}</loc>`)) {
             throw new Error(`Missing expected URL in sitemap: ${u}`);
         }
     }
-    return 'All public & documentation URLs indexed in sitemap.xml';
+    return 'All public production URLs indexed in sitemap.xml';
 });
 
 // 3. Index Page Title

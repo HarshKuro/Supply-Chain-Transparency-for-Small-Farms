@@ -11,11 +11,9 @@ AgriTrace is a modern, responsive web application connecting Australian small fa
 - **🛒 Customer Marketplace (`customer/`):** Browse fresh regional Australian produce, fair trade checkout in AUD, 7-stage live order transparency tracking, and direct farmer reviews.
 - **🛡️ Administrator Governance (`admin/`):** Macro-oversight of platform transactions in AUD, user management, and dedicated **Wholesaler Approvals Hub (`admin/approvals.html`)**.
 
-## Integrated Documentation & Manuals
-- **🗺️ Site Map (`sitemap.html`):** Complete navigable directory of all public pages, stakeholder portals, and tools.
-- **📖 User Manual (`user-manual.html`):** Comprehensive role-by-role guide for all 5 stakeholders with step-by-step instructions.
-- **💻 Installation Manual (`installation-manual.html`):** Technical guide for Firebase project creation, Firestore security rules deployment, and local hosting.
-- **📊 Evaluation Report (`evaluation-report.html` & `admin/evaluation.html`):** In-depth financial evaluation detailing development CAPEX ($18,900 AUD), recurring cloud OPEX ($280 AUD/mo), gross revenue ($1,027 AUD/mo), and small farm ROI (+95.5% net margin gain, +$10,320 AUD/yr).
+## Search Engine Optimization & Sitemap
+- **🗺️ XML Sitemap (`/sitemap.xml`):** Standardized, machine-readable sitemap conforming to sitemaps.org schemas, linked directly in `robots.txt` for search engine crawler discovery.
+
 
 ## Quick Demo Credentials (Password: `password123`)
 - **Admin:** `admin@example.com` (AgriTrace Administrator, Canberra ACT)
