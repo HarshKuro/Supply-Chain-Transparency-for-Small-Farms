@@ -76,7 +76,6 @@ The application implements strict **Role-Based Access Control (RBAC)** across fi
    - `users.html`: Stakeholder management table across all 5 roles.
    - `products.html`: Master harvest inventory audit across all Australian regions.
    - `orders.html`: Master supply chain ledger with live status indicators.
-   - `evaluation.html`: Platform economic feasibility model and farmer margin benefits.
 
 ---
 
@@ -186,7 +185,6 @@ Supply Chain Transparency for Small Farms/
 ├── admin/                     # Administrator oversight & governance portal
 │   ├── approvals.html         # Wholesaler accreditation verification hub
 │   ├── dashboard.html         # Executive system metrics & controls
-│   ├── evaluation.html        # Economic model & farmer margin analysis
 │   ├── orders.html            # Master multi-role transaction ledger
 │   ├── products.html          # Global harvest inventory management
 │   └── users.html             # Stakeholder directory & role assignment
